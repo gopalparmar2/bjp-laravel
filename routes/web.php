@@ -168,6 +168,12 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 });
 
 Route::group(['as' => 'front.'], function () {
+    Route::controller(FrontHomeController::class)->group(function () {
+        Route::group(['middleware' => ['auth']], function () {
+            Route::get('/', 'index')->name('index');
+        });
+    });
+
     Route::controller(AuthController::class)->group(function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::get('/verify-otp', 'showVerifyOtpForm')->name('show.verify.otp.form');
@@ -175,13 +181,6 @@ Route::group(['as' => 'front.'], function () {
 
             Route::get('/user-details', 'showUserDetailsForm')->name('show.user.details.form');
             Route::post('/user-details', 'storeUserDetails')->name('store.user.details');
-        });
-    });
-
-    Route::controller(FrontHomeController::class)->group(function () {
-        Route::get('/import-data', 'importData');
-        Route::group(['middleware' => ['auth']], function () {
-            Route::get('/', 'index')->name('index');
         });
     });
 });
