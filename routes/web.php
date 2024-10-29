@@ -181,6 +181,11 @@ Route::group(['as' => 'front.'], function () {
 
             Route::get('/user-details', 'showUserDetailsForm')->name('show.user.details.form');
             Route::post('/user-details', 'storeUserDetails')->name('store.user.details');
+
+            Route::get('/update-details', 'showUpdateDetailsForm')->name('show.update.details.form');
+            Route::post('/update-details', 'updateDetails')->name('update.details');
+
+            Route::get('/referral', 'referral')->name('refferal');
         });
     });
 });

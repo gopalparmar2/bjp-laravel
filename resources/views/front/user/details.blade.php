@@ -14,14 +14,6 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('frontAssets/css/styles.css') }}">
-<style>
- .MuiInputBase-input-box{
-    height: 55px;
-    border-radius:7px;
-    width: 100% !important;
-    padding: 0px 10px !important;
- }
-</style>
 </head>
 
 <body>
@@ -45,7 +37,7 @@
                         <p class="selected-language">en</p>
                     </div>
 
-                    <div class="logout-icon">
+                    <div class="logout-icon" onclick="event.preventDefault(); document.getElementById('frmLogout').submit();">
                         <svg class="css-i4bv87-MuiSvgIcon-root" focusable="false" aria-hidden="true" viewBox="0 0 24 24"
                             data-testid="LogoutIcon">
                             <path
@@ -53,6 +45,10 @@
                             </path>
                         </svg>
                     </div>
+
+                    <form id="frmLogout" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
                 </div>
             </div>
 
@@ -139,7 +135,7 @@
                                     class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root  label-name "
                                     data-shrink="false" for=":r2:" id="inputNameLabel">
                                     {{-- <span class="Content-name"> Name *</span> --}}
-                                   
+
                                 </label>
 
                                 <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root"
@@ -284,7 +280,7 @@
                                 {{-- <label
                                     class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
                                     data-shrink="false" for=":r9:" id=":r9:-label">
-                                    
+
                                 </label> --}}
 
                                 <div
@@ -401,7 +397,7 @@
                                 {{-- <label
                                     class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
                                     data-shrink="false" for=":rd:" id=":rd:-label">
-                                    
+
                                 </label> --}}
 
                                 <div

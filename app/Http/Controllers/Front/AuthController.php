@@ -16,7 +16,7 @@ class AuthController extends Controller
         try {
             $data = [];
             $data['page_title'] = 'Verify Otp';
-            
+
             $isOtpVerificationOn = \Config::get('app.isOtpVerificationOn');
 
             if ($isOtpVerificationOn) {
@@ -72,6 +72,34 @@ class AuthController extends Controller
             } else {
                 // OTP is invalid or expired
             }
+        } catch (\Exception $e) {
+            Session::flash('alert-message', $e->getMessage());
+            Session::flash('alert-class','error');
+
+            return redirect()->back();
+        }
+    }
+
+    public function showUpdateDetailsForm() {
+        try {
+            $data = [];
+            $data['page_title'] = 'Update Details';
+
+            return view('front.user.update_details', $data);
+        } catch (\Exception $e) {
+            Session::flash('alert-message', $e->getMessage());
+            Session::flash('alert-class','error');
+
+            return redirect()->back();
+        }
+    }
+
+    public function referral() {
+        try {
+            $data = [];
+            $data['page_title'] = 'Refferal';
+
+            return view('front.user.referral', $data);
         } catch (\Exception $e) {
             Session::flash('alert-message', $e->getMessage());
             Session::flash('alert-class','error');
