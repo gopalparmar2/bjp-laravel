@@ -14,6 +14,16 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('frontAssets/css/styles.css') }}">
+
+    <style>
+        
+      input {
+        outline:0;
+     }
+     .selected-language  {
+    color: #f5821f;
+}
+    </style>
 </head>
 
 <body>
@@ -30,7 +40,7 @@
                     <div class="dropdown-container">
                         <button class="css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root" tabindex="0" type="button"
                             aria-haspopup="true" aria-label="Change Language" data-mui-internal-clone-element="true">
-                            <img src="{{ asset('frontAssets/imgs/img1.png') }}" class="translation-icon" alt="icon">
+                            {{-- <img src="{{ asset('frontAssets/imgs/img1.png') }}" class="translation-icon" alt="icon"> --}}
                             <span class="css-8je8zh-MuiTouchRipple-root"></span>
                         </button>
 

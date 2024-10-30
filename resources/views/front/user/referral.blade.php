@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <h1>Refferal Page</h1>
+    <h1>Refferal Page www</h1>
 
     <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
 </body>
