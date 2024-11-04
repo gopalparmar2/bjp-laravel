@@ -17,9 +17,7 @@ use App\Http\Controllers\Admin\QualificationController;
 use App\Http\Controllers\Admin\ReligionController;
 use App\Http\Controllers\Admin\CategoryController;
 
-
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
-use App\Http\Controllers\Front\AuthController;
 
 Auth::routes();
 
@@ -171,11 +169,7 @@ Route::group(['as' => 'front.'], function () {
     Route::controller(FrontHomeController::class)->group(function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::get('/', 'index')->name('index');
-        });
-    });
 
-    Route::controller(AuthController::class)->group(function () {
-        Route::group(['middleware' => ['auth']], function () {
             Route::get('/verify-otp', 'showVerifyOtpForm')->name('show.verify.otp.form');
             Route::post('/verify-otp', 'verifyOtp')->name('verify.otp');
 
@@ -186,6 +180,7 @@ Route::group(['as' => 'front.'], function () {
             Route::post('/update-details', 'updateDetails')->name('update.details');
 
             Route::get('/referral', 'referral')->name('refferal');
+            Route::get('/thank-you', 'thankYou')->name('thankyou');
         });
     });
 });
