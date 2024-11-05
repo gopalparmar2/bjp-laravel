@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Session;
 
-class IsAdmin
+class CheckProfileCompletion
 {
     /**
      * Handle an incoming request.
@@ -17,12 +16,10 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user() && !auth()->user()->hasRole('super-admin')) {
-            Session::flash('alert-message', __('You cant access that page!'));
-            Session::flash('alert-class','error');
-
-            return redirect()->back();
-        }
+        // dd(auth()->user());
+        // if (auth()->user() && !auth()->user()->hasRole('super-admin')) {
+        //     return redirect()->back();
+        // }
 
         return $next($request);
     }

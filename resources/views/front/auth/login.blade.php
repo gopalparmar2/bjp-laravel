@@ -1,32 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('front.layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>BJP | Home</title>
+@section('styles')
+    @parent
+@endsection
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&amp;display=swap"
-        rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ asset('frontAssets/css/styles.css') }}">
-    <style>
-        .swal2-popup.swal2-toast {
-            font-size: 13px;
-        }
-    </style>
-</head>
-
-<body>
+@section('content')
     <div class="main-container-bg main-container">
         <div class="d-flex align-style align-items-center secondary-container fixed-position">
             <div class="d-flex align-items-center" style="column-gap: 6px">
@@ -95,11 +73,15 @@
             </div>
         </form>
 
-        <div role="presentation" class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none" id="divTermsCondition">
-            <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+        <div role="presentation"
+            class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none"
+            id="divTermsCondition">
+            <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop"
+                style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
             <div tabindex="0" data-testid="sentinelStart"></div>
 
-            <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper" tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
+            <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper"
+                tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
                 <div class="MuiBox-root css-sp5hsl" role="presentation">
                     <div class=" h-100 overflow-hdn">
                         <div variant="h6" class="terms" style="color: white; font-size: larger;">
@@ -116,9 +98,12 @@
                                     <div></div>
 
                                     <p class="m-0">Okay, Got it</p>
-                                    <svg width="35" height="36" viewBox="0 0 35 36" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Next">
+                                    <svg width="35" height="36" viewBox="0 0 35 36" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg" alt="Next">
                                         <circle cx="17.5113" cy="17.8951" r="17.1343" fill="white"></circle>
-                                        <path d="M21.7945 18.6981C21.7945 18.9478 21.705 19.1976 21.5133 19.3947L17.0018 24.0344C16.6312 24.4156 16.0177 24.4156 15.6471 24.0344C15.2765 23.6533 15.2765 23.0224 15.6471 22.6412L19.4813 18.6981L15.6471 14.755C15.2765 14.3738 15.2765 13.743 15.6471 13.3618C16.0177 12.9806 16.6312 12.9806 17.0018 13.3618L21.5133 18.0015C21.705 18.1987 21.7945 18.4484 21.7945 18.6981Z" fill="#F5821F"></path>
+                                        <path
+                                            d="M21.7945 18.6981C21.7945 18.9478 21.705 19.1976 21.5133 19.3947L17.0018 24.0344C16.6312 24.4156 16.0177 24.4156 15.6471 24.0344C15.2765 23.6533 15.2765 23.0224 15.6471 22.6412L19.4813 18.6981L15.6471 14.755C15.2765 14.3738 15.2765 13.743 15.6471 13.3618C16.0177 12.9806 16.6312 12.9806 17.0018 13.3618L21.5133 18.0015C21.705 18.1987 21.7945 18.4484 21.7945 18.6981Z"
+                                            fill="#F5821F"></path>
                                     </svg>
                                 </button>
                             </div>
@@ -131,32 +116,8 @@
         </div>
     </div>
 
-    <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.js') }}"></script>
-
-    <script>
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-        });
-    </script>
-
-    @if (Session::has('alert-message'))
-        <script>
-            Toast.fire({
-                icon: "{{ Session::get('alert-class', 'info') }}",
-                title: "{{ Session::get('alert-message') }}"
-            })
-        </script>
-    @endif
-
+@section('scripts')
+    @parent
     <script>
         const mobileNumberMaxLength = 10;
 
@@ -239,6 +200,5 @@
             }
         }
     </script>
-</body>
-
-</html>
+@endsection
+@endsection

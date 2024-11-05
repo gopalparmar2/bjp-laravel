@@ -87,21 +87,19 @@ class LoginController extends Controller
                     }
                 }
 
-                $isOtpVerificationOn = \Config::get('app.isOtpVerificationOn');
-
-                if ($isOtpVerificationOn) {
-                    // $user->otp = generateOtp();
-                    $user->otp = 123456;
-                    $user->otp_expires_at = Carbon::now()->addMinutes(5);
-                    $user->save();
-                }
-
                 if (Auth::loginUsingId($user->id)) {
+                    $isOtpVerificationOn = \Config::get('app.isOtpVerificationOn');
+
                     if ($isOtpVerificationOn) {
+                        // $user->otp = generateOtp();
+                        $user->otp = 123456;
+                        $user->otp_expires_at = Carbon::now()->addMinutes(5);
+                        $user->save();
+
                         return redirect()->route('front.show.verify.otp.form');
                     }
 
-                    return redirect()->route('front.store.user.details');
+                    return redirect()->route('front.show.user.details.form');
                 }
 
                 Session::flash('alert-message', 'Something went wrong.');

@@ -167,7 +167,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
 Route::group(['as' => 'front.'], function () {
     Route::controller(FrontHomeController::class)->group(function () {
-        Route::group(['middleware' => ['auth']], function () {
+        Route::group(['middleware' => ['auth', 'checkProfileCompletion']], function () {
             Route::get('/', 'index')->name('index');
 
             Route::get('/verify-otp', 'showVerifyOtpForm')->name('show.verify.otp.form');
@@ -175,6 +175,7 @@ Route::group(['as' => 'front.'], function () {
 
             Route::get('/user-details', 'showUserDetailsForm')->name('show.user.details.form');
             Route::post('/user-details', 'storeUserDetails')->name('store.user.details');
+            Route::post('/update-user-image', 'updateUserImage')->name('update.user.image');
 
             Route::get('/update-details', 'showUpdateDetailsForm')->name('show.update.details.form');
             Route::post('/update-details', 'updateDetails')->name('update.details');
