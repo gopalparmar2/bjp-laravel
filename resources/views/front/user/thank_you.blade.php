@@ -247,7 +247,7 @@
                         d="M9.413 18.1055C9.36592 18.3409 9.17196 18.3531 9.02413 18.3691C8.76497 18.3872 8.50501 18.3906 8.24546 18.3795C8.1769 18.3805 8.10989 18.359 8.05464 18.3184C7.9994 18.2778 7.95895 18.2202 7.93945 18.1544C8.1127 17.872 8.43377 17.904 8.68705 17.8861C8.94033 17.8682 9.22939 17.8654 9.413 18.1055Z"
                         fill="white"></path>
                 </svg>
-                <p class="m-0 bjp-text">BHARATIYA JANATA PARTY</p>
+                {{-- <p class="m-0 bjp-text">BHARATIYA JANATA PARTY</p> --}}
             </div>
 
             <div class="header-wrapper">
@@ -272,13 +272,15 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="thank-you-page-content">
                         <h1>Your submission is received and we will contact you soon </h1>
-                        <a href="#" class="btn btn-primary arrow-icon"> Go back to Homepage </a>
+                        {{-- <a href="#" class="btn btn-primary arrow-icon"> Go back to Homepage </a> --}}
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+    <div class="update-next-btn-container">
+        <div class="form-update-btn form-update-dark-btn " style="width: 50%;">Go back to Homepage </div>
+    </div>
     </div>
 
 
