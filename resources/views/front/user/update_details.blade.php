@@ -190,7 +190,7 @@
                                             <input aria-invalid="false" disabled="" id=":r2:"
                                                 name="mobile_number" type="text"
                                                 class="MuiInputBase-input MuiFilledInput-input Mui-disabled css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                                value="8238354292">
+                                                value="12234567">
                                         </div>
                                     </div>
                                 </div>
@@ -214,15 +214,15 @@
                                     <div class="input-name">
                                         <div
                                             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                            <label
+                                            {{-- <label
                                                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled css-o943dk-MuiFormLabel-root-MuiInputLabel-root"
-                                                data-shrink="true" for=":r3:" id=":r3:-label">Name *</label>
+                                                data-shrink="true" for=":r3:" id=":r3:-label">Name *</label> --}}
                                             <div
                                                 class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
                                                 <input aria-invalid="false" id=":r3:" name="name"
-                                                    type="text"
-                                                    class="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                                    value="bhavik">
+                                                    type="text" placeholder="Name "
+                                                    class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                                                    value="">
                                             </div>
                                         </div>
                                     </div>
@@ -547,15 +547,15 @@
                                     <div class="family-form-container">
                                         <div
                                             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                            <label
+                                            {{-- <label
                                                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled css-o943dk-MuiFormLabel-root-MuiInputLabel-root"
                                                 data-shrink="true" for=":r8v:" id=":r8v:-label">Full Name
-                                                *</label>
+                                                *</label> --}}
                                             <div
                                                 class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
                                                 <input aria-invalid="false" id=":r8v:" name="name"
-                                                    type="text"
-                                                    class="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                                                    type="text" placeholder="Full Name"
+                                                    class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                                                     value="">
                                             </div>
                                         </div>
@@ -677,22 +677,22 @@
                                         </div>
                                         <div
                                             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                            <label
+                                            {{-- <label
                                                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled css-o943dk-MuiFormLabel-root-MuiInputLabel-root"
                                                 data-shrink="true" for=":r95:" id=":r95:-label">Mobile
-                                                number</label>
+                                                number</label> --}}
                                             <div
                                                 class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
                                                 <input aria-invalid="false" id=":r95:" name="phone_number"
-                                                    type="tel" maxlength="10"
-                                                    class="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                                                    type="tel" maxlength="10" placeholder="Mobile number"
+                                                    class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                                                     value="">
                                             </div>
                                         </div>
                                         <div style="display: flex; flex-direction: row; gap: 10px;">
                                             <div class="family-form-add-btn">Add</div>
                                         </div>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
 
@@ -708,17 +708,16 @@
                                     <div class="input-container">
                                         <div
                                             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                            <label
+                                            {{-- <label
                                                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled css-o943dk-MuiFormLabel-root-MuiInputLabel-root"
-                                                data-shrink="true" for=":r96:" id=":r96:-label">Address (House
-                                                /
-                                                Flat / Floor No.)</label>
+                                                data-shrink="true" for=":r96:" id=":r96:-label">Address (House                                         /
+                                                Flat / Floor No.)</label> --}}
                                             <div
                                                 class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
                                                 <input aria-invalid="false" id=":r96:" name="address"
-                                                    type="text" maxlength="100"
-                                                    class="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                                    value="rajkot">
+                                                    type="text" maxlength="100" placeholder="Address (House / Flat / Floor No.)"
+                                                    class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                                                    value="">
                                             </div>
                                         </div>
                                     </div>
@@ -727,16 +726,16 @@
                                     <div class="input-container">
                                         <div
                                             class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                            <label
+                                            {{-- <label
                                                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled css-o943dk-MuiFormLabel-root-MuiInputLabel-root"
                                                 data-shrink="true" for=":r97:"
-                                                id=":r97:-label">Pincode</label>
+                                                id=":r97:-label">Pincode</label> --}}
                                             <div
                                                 class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
                                                 <input aria-invalid="false" id=":r97:" name="pin_code"
-                                                    type="tel" maxlength="6"
-                                                    class="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                                    value="453535">
+                                                    type="tel" maxlength="6" placeholder="Pincode"
+                                                    class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                                                    value="">
                                             </div>
                                         </div>
                                     </div>

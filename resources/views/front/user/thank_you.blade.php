@@ -22,7 +22,10 @@
 
     <style>
         /* thank you page design */
-
+        .selected-language
+       {
+            color: #f5821f;
+        }
 
         .thank-you-wrapper {
            
