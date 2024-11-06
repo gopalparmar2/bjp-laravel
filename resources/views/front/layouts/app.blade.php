@@ -15,9 +15,11 @@
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="{{ asset('frontassets/css/styles.css') }}">
 
-        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css"> --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="{{ asset('frontassets/css/styles.css') }}">
 
         <style>
             .swal2-popup.swal2-toast {
@@ -35,6 +37,23 @@
             .selected-language {
                 color: #f5821f;
             }
+
+            .nav-pills .nav-link.active,
+            .nav-pills .show>.nav-link {
+                color: #f5821f;
+                background-color: #ffffff;
+                border-bottom: 1px solid #f5821f;
+            }
+
+            .selected-language,
+            .nav-link:focus,
+            .nav-link:hover {
+                color: #f5821f;
+            }
+
+            .nav-pills .nav-link {
+                border-radius: 0px;
+            }
         </style>
     @show
   </head>
@@ -45,6 +64,7 @@
     @section('scripts')
         <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
         <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.js') }}"></script>
 
@@ -59,6 +79,54 @@
                     toast.addEventListener('mouseenter', Swal.stopTimer)
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
+            });
+
+            // $('#dob').datepicker({
+            //     dateFormat: 'dd/mm/yy',
+            // });
+
+            $('#dob').datepicker({
+                dateFormat: 'dd-mm-yy',
+                endDate: '-18y',
+                autoclose: true
+            }).on("change", function() {
+                var selectedDate = $(this).datepicker("getDate");
+
+                if (selectedDate) {
+                    var today = new Date();
+                    var age = today.getFullYear() - selectedDate.getFullYear();
+                    var monthDifference = today.getMonth() - selectedDate.getMonth();
+                    var dayDifference = today.getDate() - selectedDate.getDate();
+
+                    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+                        age--;
+                    }
+
+                    $('#age').val(age + ' Yrs');
+                }
+            });
+
+            $(document).on('click', '.chip', function() {
+                $(".chip").removeClass("selected");
+                $(this).addClass('selected');
+            });
+
+            $('.MuiFilledInput-input').on('focus', function() {
+                const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
+                const inputParentDiv = $(this).closest('.MuiInputBase-root');
+
+                label.addClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
+                    .removeClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
+                inputParentDiv.addClass('Mui-focused');
+            });
+
+            $('.MuiFilledInput-input').on('blur', function() {
+                const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
+                const inputParentDiv = $(this).closest('.MuiInputBase-root');
+
+                label.removeClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
+                    .addClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
+                inputParentDiv.removeClass('Mui-focused');
             });
         </script>
 

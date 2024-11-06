@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="bg-white main-container">
-        <div class="d-flex align-style align-items-center  secondary-container fixed-position">
+        <div class="d-flex align-style align-items-center secondary-container fixed-position">
             <div class="d-flex align-items-center " style="column-gap: 6px;">
                 <img src="{{ asset('frontAssets/imgs/logo.svg') }}" alt="logo">
 
@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <div class="margin-second d-flex  align-items-center pd-heading" style="padding: 0px 25px;">
+        <div class="margin-second d-flex align-items-center pd-heading" style="padding: 0px 25px;">
             <div style="width: 18px;"></div>
 
             <p class="m-0 fill-details-text">Provide Details</p>
@@ -53,13 +53,17 @@
         <div class="pp-main-container">
             <div class="pp-sub-contt">
                 <div class="profile-pic-container">
-                    @if (isset(auth()->user()->image) && auth()->user()->image != '' && \File::exists(public_path('uploads/users/' . auth()->user()->image)))
+                    @if (isset(auth()->user()->image) &&
+                            auth()->user()->image != '' &&
+                            \File::exists(public_path('uploads/users/' . auth()->user()->image)))
                         <div class="MuiAvatar-root MuiAvatar-circular css-11fq0lf-MuiAvatar-root">
-                            <img src="{{ asset('uploads/users/'.auth()->user()->image) }}" alt="Profile Image" class="MuiAvatar-img css-1pqm26d-MuiAvatar-img">
+                            <img src="{{ asset('uploads/users/' . auth()->user()->image) }}" alt="Profile Image"
+                                class="MuiAvatar-img css-1pqm26d-MuiAvatar-img">
                         </div>
                     @else
                         <div class="css-mkijz0-MuiAvatar-root">
-                            <svg class="css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="PersonIcon">
+                            <svg class="css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback" focusable="false" aria-hidden="true"
+                                viewBox="0 0 24 24" data-testid="PersonIcon">
                                 <path
                                     d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z">
                                 </path>
@@ -78,7 +82,9 @@
                 </button>
             </div>
 
-            @if (isset(auth()->user()->image) && auth()->user()->image != '' && \File::exists(public_path('uploads/users/' . auth()->user()->image)))
+            @if (isset(auth()->user()->image) &&
+                    auth()->user()->image != '' &&
+                    \File::exists(public_path('uploads/users/' . auth()->user()->image)))
                 <div class="profile-photo-label" id="profilePhotoLabel">Profile Photo</div>
             @else
                 <div class="profile-photo-label" id="profilePhotoLabel">Upload Photo</div>
@@ -96,16 +102,15 @@
                         <div class="css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
                             <label
                                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary Mui-disabled MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled css-o943dk-MuiFormLabel-root-MuiInputLabel-root"
-                                data-shrink="true" for=":r1:" id=":r1:-label">
+                                data-shrink="true">
                                 Mobile number
                             </label>
 
                             <div
                                 class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                <input aria-invalid="false" disabled="" id=":r1:" name="mobile_number"
-                                    type="text"
+                                <input type="text" name="mobile_number"
                                     class="MuiInputBase-input MuiFilledInput-input Mui-disabled css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                    value="7874828898">
+                                    value="{{ auth()->user()->mobile_number }}" disabled>
                             </div>
                         </div>
                     </div>
@@ -126,22 +131,14 @@
                     <div class="separate"></div>
 
                     <div class="dfw-contt-two">
-                        <div class="input-name ">
-                            <div
-                                class="form MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                <label
-                                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root  label-name "
-                                    data-shrink="false" for=":r2:" id="inputNameLabel">
-                                    {{-- <span class="Content-name"> Name *</span> --}}
-
+                        <div class="input-name">
+                            <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
+                                <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root" data-shrink="true" for="name" id="name-label">
+                                    Name *
                                 </label>
 
-                                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root"
-                                    id="inputNameDiv">
-                                    <input aria-invalid="false" placeholder="Name *" id="inputName" name="name"
-                                        type="text"
-                                        class=" MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                        value="">
+                                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                    <input type="text" name="name" id="name" class="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input">
                                 </div>
                             </div>
                         </div>
@@ -215,9 +212,9 @@
 
                     <div class="gender-label" style="margin-top: 10px;">Gender *</div>
                     <div class="chip-container">
-                        <div class="chip ">Female</div>
-                        <div class="chip ">Male</div>
-                        <div class="chip ">Other</div>
+                        <div class="chip">Female</div>
+                        <div class="chip">Male</div>
+                        <div class="chip">Other</div>
                     </div>
                 </div>
 
@@ -226,17 +223,16 @@
                         <div class="input-container">
                             <div
                                 class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                {{-- <label
-                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
-                                data-shrink="false" for=":r7:" id=":r7:-label">
-                                Email Id
-                            </label> --}}
+                                <label
+                                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
+                                    data-shrink="false" for="email" id="email-label">
+                                    Email Id
+                                </label>
 
                                 <div
                                     class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input aria-invalid="false" id=":r7:" placeholder="Email Id" name="email"
-                                        type="text"
-                                        class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                                    <input type="text" name="email" id="email"
+                                        class="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                                         value="">
                                 </div>
                             </div>
@@ -253,17 +249,10 @@
                         <div class="input-container">
                             <div
                                 class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                {{-- <label
-                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
-                                data-shrink="false" for=":r8:" id=":r8:-label">
-                                Address (House / Flat / Floor No.)
-                            </label> --}}
-
                                 <div
                                     class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input aria-invalid="false" id=":r8:"
-                                        placeholder="Address (House / Flat / Floor No.)" name="house_no" type="text"
-                                        maxlength="100"
+                                    <input id=":r8:" placeholder="Address (House / Flat / Floor No.)"
+                                        name="house_no" type="text" maxlength="100"
                                         class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                                         value="">
                                 </div>
@@ -275,16 +264,10 @@
                         <div class="input-container">
                             <div
                                 class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                {{-- <label
-                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
-                                data-shrink="false" for=":r9:" id=":r9:-label">
-
-                            </label> --}}
-
                                 <div
                                     class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input aria-invalid="false" placeholder="Pincode" id=":r9:" name="pincode"
-                                        type="tel" maxlength="6"
+                                    <input placeholder="Pincode" id=":r9:" name="pincode" type="tel"
+                                        maxlength="6"
                                         class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                                         value="">
                                 </div>
@@ -295,23 +278,22 @@
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
                             <label
-                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root"
+                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard MuiFormLabel-colorPrimary css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root"
                                 data-shrink="false" id="demo-simple-select-standard-label">
                                 State *
                             </label>
 
                             <div
-                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl  css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root">
+                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
                                 <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false"
                                     aria-haspopup="listbox"
                                     aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
-                                    id="demo-simple-select-standard"
+                                    id="divStateName"
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
-                                    <span class="notranslate">&ZeroWidthSpace;</span>
                                 </div>
 
-                                <input aria-invalid="false" name="state" aria-hidden="true" tabindex="-1"
-                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput" value="">
+                                <input name="state" id="state" aria-hidden="true" tabindex="-1"
+                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
                                     focusable="false" aria-hidden="true" viewBox="0 0 24 24"
@@ -331,17 +313,16 @@
                             </label>
 
                             <div
-                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl  css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root">
+                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
                                 <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false"
                                     aria-haspopup="listbox"
                                     aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
-                                    id="demo-simple-select-standard"
+                                    id="divDistrictName"
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
-                                    <span class="notranslate">&ZeroWidthSpace;</span>
                                 </div>
 
-                                <input aria-invalid="false" name="district" aria-hidden="true" tabindex="-1"
-                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput" value="">
+                                <input name="district" id="district" aria-hidden="true" tabindex="-1"
+                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
                                     focusable="false" aria-hidden="true" viewBox="0 0 24 24"
@@ -361,17 +342,16 @@
                             </label>
 
                             <div
-                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl  css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root">
+                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
                                 <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false"
                                     aria-haspopup="listbox"
                                     aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
-                                    id="demo-simple-select-standard"
+                                    id="divAssemblyName"
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
-                                    <span class="notranslate">&ZeroWidthSpace;</span>
                                 </div>
 
-                                <input aria-invalid="false" name="ac" aria-hidden="true" tabindex="-1"
-                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput" value="">
+                                <input name="assembly_constituency" id="assembly_constituency" aria-hidden="true"
+                                    tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
                                     focusable="false" aria-hidden="true" viewBox="0 0 24 24"
@@ -392,16 +372,10 @@
                         <div class="input-container">
                             <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
                                 inputmode="text">
-                                {{-- <label
-                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
-                                data-shrink="false" for=":rd:" id=":rd:-label">
-
-                            </label> --}}
-
                                 <div
                                     class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input aria-invalid="false" placeholder="Mobile number / Referral code"
-                                        id=":rd:" name="referral_code" type="text" maxlength="10"
+                                    <input placeholder="Mobile number / Referral code" id=":rd:"
+                                        name="referral_code" type="text" maxlength="10"
                                         class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                                         value="">
                                 </div>
@@ -412,7 +386,7 @@
 
                 <div class="height-div"></div>
 
-                <div class="checkbox-container checkbox-container-user  bg-pledge ">
+                <div class="checkbox-container checkbox-container-user bg-pledge ">
                     <div>
                         <input type="checkbox" class="user-checkbox">
                     </div>
@@ -514,19 +488,23 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
-    <div role="presentation" id="uploadProfilePicPopup" class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none">
-        <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+    <div role="presentation" id="uploadProfilePicPopup"
+        class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop"
+            style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
         <div tabindex="0" data-testid="sentinelStart"></div>
 
-        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper" tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper"
+            tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
             <div class="MuiBox-root css-10mm8wz" role="presentation">
                 <div class="profile-upload-containerr">
                     <div class="profile-upload-sub-containerr">
                         <div>
                             <label class="file-label">
                                 <div class="upload-icon">
-                                    <svg width="124" height="95" viewBox="0 0 124 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <svg width="124" height="95" viewBox="0 0 124 95" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path
                                             d="M64.8419 23.5506L64.5283 23.4687C63.583 23.2218 62.9207 22.292 63.254 21.3127L64.8419 23.5506ZM64.8419 23.5506L64.8658 23.5265M64.8419 23.5506L64.8658 23.5265M64.8658 23.5265C65.7025 23.5985 66.5581 23.154 66.8368 22.33C68.8812 16.3162 75.3599 12.0479 82.6512 12.0479C83.6144 12.0479 84.5273 11.3489 84.5273 10.335C84.5273 9.32101 83.6144 8.62205 82.6512 8.62205C73.5045 8.62205 65.7543 13.9565 63.2541 21.3124L64.8658 23.5265Z"
                                             fill="#F15600" stroke="#F9FFF9" stroke-width="1.12845"></path>
@@ -545,7 +523,8 @@
                                     </svg>
                                 </div>
 
-                                <input id="file-upload-gallery" type="file" class="file-input" accept="image/jpeg, image/png, image/heic, image/heif">
+                                <input id="file-upload-gallery" type="file" class="file-input"
+                                    accept="image/jpeg, image/png, image/heic, image/heif">
                             </label>
                         </div>
 
@@ -568,12 +547,15 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
-    <div role="presentation" id="previewUploadedImg" class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none">
-        <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+    <div role="presentation" id="previewUploadedImg"
+        class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop"
+            style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
         <div tabindex="0" data-testid="sentinelStart"></div>
 
-        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper" tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper"
+            tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
             <div class="MuiBox-root css-10mm8wz" role="presentation">
                 <div class="profile-upload-containerr">
                     <div class="profile-upload-sub-containerr">
@@ -591,9 +573,12 @@
 
                         <p class="m-0"> Upload</p>
 
-                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="35" height="35" viewBox="0 0 35 35" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
                             <circle cx="17.1343" cy="17.1343" r="17.1343" fill="#FE9900"></circle>
-                            <path d="M21.4179 17.9376C21.4179 18.1873 21.3284 18.4371 21.1367 18.6342L16.6252 23.2739C16.2546 23.6551 15.6411 23.6551 15.2705 23.2739C14.8999 22.8928 14.8999 22.2619 15.2705 21.8807L19.1046 17.9376L15.2705 13.9945C14.8999 13.6133 14.8999 12.9825 15.2705 12.6013C15.6411 12.2201 16.2546 12.2201 16.6252 12.6013L21.1367 17.241C21.3284 17.4382 21.4179 17.6879 21.4179 17.9376Z" fill="white"></path>
+                            <path
+                                d="M21.4179 17.9376C21.4179 18.1873 21.3284 18.4371 21.1367 18.6342L16.6252 23.2739C16.2546 23.6551 15.6411 23.6551 15.2705 23.2739C14.8999 22.8928 14.8999 22.2619 15.2705 21.8807L19.1046 17.9376L15.2705 13.9945C14.8999 13.6133 14.8999 12.9825 15.2705 12.6013C15.6411 12.2201 16.2546 12.2201 16.6252 12.6013L21.1367 17.241C21.3284 17.4382 21.4179 17.6879 21.4179 17.9376Z"
+                                fill="white"></path>
                         </svg>
                     </button>
                 </div>
@@ -607,27 +592,6 @@
     @parent
 
     <script>
-        $('#dob').datepicker({
-            dateFormat: 'dd-mm-yy',
-            endDate: '-18y',
-            autoclose: true
-        }).on("change", function() {
-            var selectedDate = $(this).datepicker("getDate");
-
-            if (selectedDate) {
-                var today = new Date();
-                var age = today.getFullYear() - selectedDate.getFullYear();
-                var monthDifference = today.getMonth() - selectedDate.getMonth();
-                var dayDifference = today.getDate() - selectedDate.getDate();
-
-                if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
-                    age--;
-                }
-
-                $('#age').val(age + ' Yrs');
-            }
-        });
-
         $(document).on('click', '.chip', function() {
             $(".chip").removeClass("selected");
             $(this).addClass('selected');
@@ -653,7 +617,7 @@
 
                 var reader = new FileReader();
 
-                reader.onload = function (e) {
+                reader.onload = function(e) {
                     $('#profile-img').attr('src', e.target.result);
                 }
 
@@ -677,9 +641,12 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token
                 },
                 dataType: "json",
-                success: function (response) {
+                success: function(response) {
                     if (response.success) {
-                        let imgHrml = '<div class="MuiAvatar-root MuiAvatar-circular css-11fq0lf-MuiAvatar-root"> <img src="'+response.image+'" alt="Profile Image" class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"> </div>';
+                        let imgHrml =
+                            '<div class="MuiAvatar-root MuiAvatar-circular css-11fq0lf-MuiAvatar-root"> <img src="' +
+                            response.image +
+                            '" alt="Profile Image" class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"> </div>';
 
                         $('.profile-pic-container').html(imgHrml);
                         $('#profilePhotoLabel').html('Profile Photo');
@@ -693,6 +660,47 @@
                     $('#previewUploadedImg').addClass('d-none');
                 }
             });
+        });
+
+        $(document).on('click', '.dropdown', function() {
+            isClicked = $(this).find('svg').hasClass('css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
+
+            if (isClicked) {
+                $(this).find('svg').removeClass('css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
+                $(this).find('svg').addClass('MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
+
+                $(this).prev('label').removeClass('css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
+                $(this).prev('label').addClass(
+                    'MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root');
+
+                $(this).addClass('Mui-focused');
+            } else {
+                $(this).find('svg').removeClass('MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
+                $(this).find('svg').addClass('css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
+
+                $(this).prev('label').removeClass(
+                    'MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root');
+                $(this).prev('label').addClass('css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
+                $(this).removeClass('Mui-focused');
+            }
+        });
+
+        $('.MuiFilledInput-input').on('focus', function() {
+            const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
+            const inputParentDiv = $(this).closest('.MuiInputBase-root');
+
+            label.addClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
+                .removeClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
+            inputParentDiv.addClass('Mui-focused');
+        });
+
+        $('.MuiFilledInput-input').on('blur', function() {
+            const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
+            const inputParentDiv = $(this).closest('.MuiInputBase-root');
+
+            label.removeClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
+                .addClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
+            inputParentDiv.removeClass('Mui-focused');
         });
     </script>
 @endsection

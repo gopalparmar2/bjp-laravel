@@ -5863,3 +5863,76 @@ input[type="number"] {
 }
 
 /* ---------------------------- */
+
+.css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root {
+    color: rgba(0, 0, 0, 0.6);
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    display: block;
+    transform-origin: left top;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: translate(0px, 20px) scale(1);
+    padding: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: color 200ms cubic-bezier(0, 0, 0.2, 1), transform 200ms cubic-bezier(0, 0, 0.2, 1), max-width 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+label + .css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root {
+    margin-top: 16px;
+}
+
+.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon {
+    margin-top: -6px;
+}
+
+.css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon {
+    user-select: none;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    fill: currentcolor;
+    flex-shrink: 0;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 0px;
+    top: calc(50% - 0.5em);
+    pointer-events: none;
+    color: rgba(0, 0, 0, 0.54);
+    transform: rotate(180deg);
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ------------------------ */
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+    color: rgb(25, 118, 210);
+}
+
+.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
+    color: rgba(0, 0, 0, 0.6);
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+    display: block;
+    transform-origin: left top;
+    text-overflow: ellipsis;
+    max-width: 133%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transform: translate(0px, -1.5px) scale(0.75);
+    padding: 0px;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: color 200ms cubic-bezier(0, 0, 0.2, 1), transform 200ms cubic-bezier(0, 0, 0.2, 1), max-width 200ms cubic-bezier(0, 0, 0.2, 1);
+}
