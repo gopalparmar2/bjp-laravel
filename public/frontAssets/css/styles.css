@@ -5724,7 +5724,7 @@ input[type="number"] {
 }
 
 .css-yf8vq0-MuiSelect-nativeInput {
-    bottom: 0px;
+    right: 0px !important;
     left: 0px;
     position: absolute;
     opacity: 0;
