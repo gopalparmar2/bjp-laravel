@@ -133,12 +133,9 @@
                     <div class="dfw-contt-two">
                         <div class="input-name">
                             <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                <label class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root" data-shrink="true" for="name" id="name-label">
-                                    Name *
-                                </label>
-
-                                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input type="text" name="name" id="name" class="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input">
+                                <div
+                                    class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                    <input type="text" name="name" id="name" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Name *">
                                 </div>
                             </div>
                         </div>
@@ -157,7 +154,7 @@
                                         class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd Mui-readOnly MuiInputBase-readOnly css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root">
                                         <input type="text" name="dob" id="dob"
                                             class="!outline-0 focus:border-0 MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd Mui-readOnly MuiInputBase-readOnly css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                            placeholder="DD-MM-YYYY">
+                                            placeholder="DD-MM-YYYY" autocomplete="off">
 
                                         <fieldset aria-hidden="true"
                                             class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline">
@@ -211,33 +208,27 @@
                     </div>
 
                     <div class="gender-label" style="margin-top: 10px;">Gender *</div>
+                    <input type="hidden" name="gender" id="gender" value="">
                     <div class="chip-container">
-                        <div class="chip">Female</div>
-                        <div class="chip">Male</div>
-                        <div class="chip">Other</div>
+                        <div class="chip" data-value="1">Female</div>
+                        <div class="chip" data-value="2">Male</div>
+                        <div class="chip" data-value="3">Other</div>
                     </div>
                 </div>
 
                 <div>
                     <div>
                         <div class="input-container">
-                            <div
-                                class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                <label
-                                    class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary css-e4w4as-MuiFormLabel-root-MuiInputLabel-root"
-                                    data-shrink="false" for="email" id="email-label">
-                                    Email Id
-                                </label>
-
-                                <div
-                                    class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input type="text" name="email" id="email"
-                                        class="MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                        value="">
+                            <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
+                                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                    <input type="text" name="email" id="email" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Email Id" value="">
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                    <span style="color: red;" id="emailErr" class="d-none">Enter a valid email
+                    </span>
                 </div>
 
                 <div class="divider-div"></div>
@@ -251,8 +242,8 @@
                                 class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
                                 <div
                                     class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input id=":r8:" placeholder="Address (House / Flat / Floor No.)"
-                                        name="house_no" type="text" maxlength="100"
+                                    <input id=":r8:" placeholder="Address (House / Flat / Floor No.)" name="address"
+                                        type="text" maxlength="100"
                                         class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                                         value="">
                                 </div>
@@ -266,10 +257,9 @@
                                 class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
                                 <div
                                     class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input placeholder="Pincode" id=":r9:" name="pincode" type="tel"
-                                        maxlength="6"
+                                    <input type="tel" name="pincode" id="pincode" maxlength="6"
                                         class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                        value="">
+                                        placeholder="Pincode" value="">
                                 </div>
                             </div>
                         </div>
@@ -284,7 +274,7 @@
                             </label>
 
                             <div
-                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
+                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
                                 <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false"
                                     aria-haspopup="listbox"
                                     aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
@@ -293,7 +283,7 @@
                                 </div>
 
                                 <input name="state" id="state" aria-hidden="true" tabindex="-1"
-                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
+                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput" value="">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
                                     focusable="false" aria-hidden="true" viewBox="0 0 24 24"
@@ -313,16 +303,16 @@
                             </label>
 
                             <div
-                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
+                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
                                 <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false"
                                     aria-haspopup="listbox"
                                     aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
                                     id="divDistrictName"
-                                    class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                                    class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input  css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
                                 </div>
 
                                 <input name="district" id="district" aria-hidden="true" tabindex="-1"
-                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
+                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput" value="">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
                                     focusable="false" aria-hidden="true" viewBox="0 0 24 24"
@@ -368,16 +358,27 @@
                 <div class="add-address-label">Referral (only a Primary Member can refer)</div>
 
                 <div>
+                    <input type="hidden" name="referral_user_id" id="referral_user_id">
+
                     <div>
                         <div class="input-container">
-                            <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root"
-                                inputmode="text">
-                                <div
-                                    class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input placeholder="Mobile number / Referral code" id=":rd:"
-                                        name="referral_code" type="text" maxlength="10"
-                                        class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                        value="">
+                            <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root" inputmode="text">
+                                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                    <input type="text" name="referral_code" id="referral_code" class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Mobile number / Referral code" maxlength="10" value="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <span style="color: red;" class="d-none" id="errReferral">Please enter valid referral</span>
+
+                    <div class="d-none" id="divReferredName" style="margin-top: 1rem;">
+                        <div>
+                            <div class="input-container">
+                                <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
+                                    <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                        <input type="text" name="referred_name" id="referred_name" class="MuiInputBase-input-box MuiFilledInput-input Mui-disabled css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Referred by (name)" disabled value="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -388,14 +389,14 @@
 
                 <div class="checkbox-container checkbox-container-user bg-pledge ">
                     <div>
-                        <input type="checkbox" class="user-checkbox">
+                        <input type="checkbox" class="user-checkbox" id="isPledge">
                     </div>
 
                     <div class="checkbox-tnc pledge-style">I pledge and willing to receive regular updates from BJP
                     </div>
                 </div>
 
-                <button class="btn-container" disabled="">
+                <button class="btn-container" id="btnSave" disabled>
                     <div></div>
 
                     Save
@@ -427,61 +428,51 @@
             tabindex="-1"
             style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); top: 80px; left: 178px; transform-origin: 180px 172.588px;">
             <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox"
-                tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id=":ra:"
+                tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="stateUl"
                 style="padding-right: 0px; width: calc(100% + 0px);">
-                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root"
-                    tabindex="0" role="option" aria-selected="false" data-value="33">
-                    Andaman and Nicobar Islands
-                    <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </li>
 
-                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root"
-                    tabindex="-1" role="option" aria-selected="false" data-value="1">
-                    Andhra Pradesh
-                    <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </li>
+            </ul>
+        </div>
 
-                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root"
-                    tabindex="-1" role="option" aria-selected="false" data-value="2">
-                    Arunachal Pradesh
-                    <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </li>
+        <div tabindex="0" data-testid="sentinelEnd"></div>
+    </div>
 
-                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root"
-                    tabindex="-1" role="option" aria-selected="false" data-value="3">
-                    Assam
-                    <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </li>
+    <div role="presentation" id="menu-district"
+        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none">
+        <div aria-hidden="true"
+            class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
+            style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
-                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root"
-                    tabindex="-1" role="option" aria-selected="false" data-value="4">
-                    Bihar
-                    <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </li>
+        <div tabindex="0" data-testid="sentinelStart"></div>
 
-                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root"
-                    tabindex="-1" role="option" aria-selected="false" data-value="34">
-                    Chandigarh
-                    <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </li>
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper"
+            tabindex="-1"
+            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); top: 80px; left: 178px; transform-origin: 180px 172.588px;">
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox"
+                tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="districtUl"
+                style="padding-right: 0px; width: calc(100% + 0px);">
 
-                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root"
-                    tabindex="-1" role="option" aria-selected="false" data-value="5">
-                    Chhattisgarh
-                    <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </li>
+            </ul>
+        </div>
 
-                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root"
-                    tabindex="-1" role="option" aria-selected="false" data-value="32">
-                    Dadra Nagar Haveli & Daman-Diu
-                    <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </li>
+        <div tabindex="0" data-testid="sentinelEnd"></div>
+    </div>
 
-                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root"
-                    tabindex="-1" role="option" aria-selected="false" data-value="30">
-                    Delhi
-                    <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
-                </li>
+    <div role="presentation" id="menu-assembly"
+        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none">
+        <div aria-hidden="true"
+            class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
+            style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+
+        <div tabindex="0" data-testid="sentinelStart"></div>
+
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper"
+            tabindex="-1"
+            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); top: 80px; left: 178px; transform-origin: 180px 172.588px;">
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox"
+                tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="assemblyUl"
+                style="padding-right: 0px; width: calc(100% + 0px);">
+
             </ul>
         </div>
 
@@ -595,6 +586,10 @@
         $(document).on('click', '.chip', function() {
             $(".chip").removeClass("selected");
             $(this).addClass('selected');
+
+            const gender = $(this).data('value');
+            $('#gender').val(gender);
+            checkFormValues();
         });
 
         $(document).on('click', '.pp-upload-btn', function() {
@@ -702,6 +697,237 @@
                 .addClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
             inputParentDiv.removeClass('Mui-focused');
         });
+
+        $(document).on('click', '#divStateName', function() {
+            $.ajax({
+                type: "GET",
+                url: "{!! route('ajax.get_all_states') !!}",
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        $('#stateUl').html(response.html);
+                        $('#menu-state').removeClass('d-none');
+                    }
+                }
+            });
+        });
+
+        $(document).on('click', '.stateLi', function() {
+            const stateId = $(this).data('id');
+            const stateName = $(this).data('name');
+
+            $('#state').val(stateId);
+            $('#divStateName').html(stateName);
+            $('#menu-state').addClass('d-none');
+
+            $.ajax({
+                type: "POST",
+                url: "{!! route('ajax.get_districts_and_assemblies') !!}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "stateId": stateId
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response.success) {
+                        $('#districtUl').html(response.districtHtml);
+                        $('#assemblyUl').html(response.assemblyHtml);
+
+                        checkFormValues();
+                    }
+                }
+            });
+        });
+
+        $(document).on('click', '#divDistrictName', function() {
+            const stateId = $('#state').val();
+
+            if (stateId != '') {
+                $('#menu-district').removeClass('d-none');
+            }
+        });
+
+        $(document).on('click', '.districtLi', function() {
+            const districtId = $(this).data('id');
+            const districtName = $(this).data('name');
+
+            $('#district').val(districtId);
+            $('#divDistrictName').html(districtName);
+            $('#menu-district').addClass('d-none');
+
+            checkFormValues();
+        });
+
+        $(document).on('click', '#divAssemblyName', function() {
+            const stateId = $('#state').val();
+
+            if (stateId != '') {
+                $('#menu-assembly').removeClass('d-none');
+            }
+        });
+
+        $(document).on('click', '.assemblyLi', function() {
+            const assemblyId = $(this).data('id');
+            const assemblyName = $(this).data('name');
+
+            $('#assembly_constituency').val(assemblyId);
+            $('#divAssemblyName').html(assemblyName);
+            $('#menu-assembly').addClass('d-none');
+
+            checkFormValues();
+        });
+
+        $(document).on('keyup', '#pincode', function() {
+            const pincode = $(this).val();
+
+            if (pincode.length == 6) {
+                $.ajax({
+                    type: "POST",
+                    url: "{!! route('ajax.get_pincode_details') !!}",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "pincode": pincode
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.success) {
+                            $('.stateOrDistrict').find('svg').removeClass(
+                                'css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
+                            $('.stateOrDistrict').find('svg').addClass(
+                                'MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
+
+                            $('.stateOrDistrict').prev('label').removeClass(
+                                'css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
+                            $('.stateOrDistrict').prev('label').addClass(
+                                'MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root'
+                                );
+
+                            $('.stateOrDistrict').addClass('Mui-focused');
+
+                            $('#state').val(response.stateId);
+                            $('#divStateName').html(response.stateName);
+
+                            $('#district').val(response.districtId);
+                            $('#divDistrictName').html(response.districtName);
+
+                            $('#districtUl').html(response.districtHtml);
+                            $('#assemblyUl').html(response.assemblyHtml);
+
+                            checkFormValues();
+                        }
+                    }
+                });
+            }
+        });
+
+        $(document).on('keyup change', '#email', function() {
+            const emailErr = $('#emailErr').hasClass('d-none');
+            const email = $(this).val();
+
+            if (email == '' && !emailErr) {
+                $('#emailErr').addClass('d-none');
+            }
+
+            if (email != '') {
+                if (isValidEmail(email)) {
+                    $('#emailErr').addClass('d-none');
+                } else {
+                    $('#emailErr').removeClass('d-none');
+                }
+            }
+
+            checkFormValues();
+        });
+
+        function isValidEmail(email) {
+            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return emailPattern.test(email);
+        }
+
+        $(document).on('change', '#name, #dob, #isPledge', function() {
+            checkFormValues();
+        })
+
+        function checkFormValues() {
+            const name = $('#name').val();
+            const dob = $('#dob').val();
+            const gender = $('#gender').val();
+            const state = $('#state').val();
+            const district = $('#district').val();
+            const assembly = $('#assembly_constituency').val();
+            const isPledgeChecked = $('#isPledge').is(':checked');
+
+            const isSaveBtnDisabled = $('#btnSave').is(':disabled');
+            let isValidValues = false;
+
+            if (name != '' && dob != '' && gender != '' && state != '' && district != '' && assembly != '' &&
+                isPledgeChecked) {
+                isValidValues = true;
+            }
+
+            if (isValidValues) {
+                $('#btnSave').removeAttr('disabled');
+            } else {
+                $('#btnSave').attr('disabled', true);
+            }
+        }
+
+        // $('#referral_code').on('input', function() {
+        $(document).on('keyup, change, input', '#referral_code', function() {
+            const input = $(this).val();
+
+            if (isNaN(input)) {
+                $(this).val(input.toUpperCase().substring(0, 6));
+
+                if (input.length === 6) {
+                    checkUser(input, 'referral');
+                    return
+                }
+            } else {
+                $(this).val(input.substring(0, 10));
+
+                if (input.length === 10) {
+                    checkUser(input, 'mobile');
+                    return
+                }
+            }
+
+            const referral_user_id = $('#referral_user_id').val();
+            const referred_name = $('#referred_name').val();
+
+            if (referral_user_id != '') {
+                $('#referral_user_id').val('');
+            }
+            if (referred_name != '') {
+                $('#referred_name').val('');
+            }
+
+            $('#divReferredName').addClass('d-none');
+        });
+
+        function checkUser(value, type) {
+            $('#errReferral').addClass('d-none');
+            $('#divReferredName').addClass('d-none');
+
+            $.ajax({
+                url: "{!! route('ajax.check.referral.code') !!}",
+                method: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "value": value,
+                    "type": type,
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $('#referral_user_id').val(response.user_id);
+                        $('#referred_name').val(response.referred_name);
+                        $('#divReferredName').removeClass('d-none');
+                    } else {
+                        $('#errReferral').removeClass('d-none');
+                    }
+                }
+            });
+        }
     </script>
 @endsection
 @endsection

@@ -141,7 +141,29 @@ class HomeController extends Controller
 
     public function storeUserDetails(Request $request) {
         try {
-            dd($request->all());
+            $user = Auth::user();
+
+            $user->salutation = $request->salutation;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->dob = date('Y-m-d', strtotime($request->dob));
+            $user->age = str_replace(' Yrs', '', $request->age);
+            $user->gender = $request->gender;
+            $user->address = $request->address;
+            $user->pincode = $request->pincode;
+            $user->state_id = $request->state;
+            $user->district_id = $request->district;
+            $user->assembly_id = $request->assembly_constituency;
+            $user->referral_code = $request->referral_code;
+
+            if ($user->save()) {
+                return redirect()->route('front.show.update.details.form');
+            }
+
+            Session::flash('alert-message', 'Something went wrong');
+            Session::flash('alert-class','error');
+
+            return redirect()->back();
         } catch (\Exception $e) {
             Session::flash('alert-message', $e->getMessage());
             Session::flash('alert-class','error');

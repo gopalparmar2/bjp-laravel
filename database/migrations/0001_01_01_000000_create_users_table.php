@@ -29,7 +29,9 @@ return new class extends Migration
             $table->integer('state_id')->nullable();
             $table->integer('district_id')->nullable();
             $table->integer('assembly_id')->nullable();
+            $table->integer('referred_user_id')->nullable();
             $table->string('referral_code')->nullable();
+            $table->string('referred_name')->nullable();
             $table->integer('status')->default(1)->comment('0 => InActive 1 => Active');
             $table->string('image')->nullable();
             $table->rememberToken();

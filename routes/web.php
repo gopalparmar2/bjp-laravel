@@ -24,6 +24,10 @@ Auth::routes();
 Route::controller(AjaxController::class)->group(function () {
     Route::group(['as' => 'ajax.', 'prefix' => 'ajax'], function() {
         Route::get('/get-states', 'getStates')->name('get_states');
+        Route::get('/get-all-states', 'getAllStates')->name('get_all_states');
+        Route::post('/get-districts-and-assemblies', 'getDistrictAndAssemblies')->name('get_districts_and_assemblies');
+        Route::post('/get-pincode-details', 'getPincodeDetails')->name('get_pincode_details');
+        Route::post('/check-referral-code', 'checkReferralCode')->name('check.referral.code');
     });
 });
 

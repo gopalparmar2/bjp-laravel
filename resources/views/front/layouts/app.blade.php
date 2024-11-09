@@ -13,11 +13,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/libs/datepicker/bootstrap-datepicker.min.css">
 
         <link rel="stylesheet" href="{{ asset('frontassets/css/styles.css') }}">
 
@@ -63,9 +59,7 @@
 
     @section('scripts')
         <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script src="{{ asset('assets/libs/datepicker/bootstrap-datepicker.min.js') }}"></script>
         <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.js') }}"></script>
 
         <script>
@@ -121,12 +115,16 @@
             });
 
             $('.MuiFilledInput-input').on('blur', function() {
-                const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
-                const inputParentDiv = $(this).closest('.MuiInputBase-root');
+                let inputVal = $(this).val();
 
-                label.removeClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
-                    .addClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
-                inputParentDiv.removeClass('Mui-focused');
+                if (inputVal == '') {
+                    const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
+                    const inputParentDiv = $(this).closest('.MuiInputBase-root');
+
+                    label.removeClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
+                        .addClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
+                    inputParentDiv.removeClass('Mui-focused');
+                }
             });
         </script>
 
