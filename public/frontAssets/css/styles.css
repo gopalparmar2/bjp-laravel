@@ -1250,9 +1250,7 @@ input[type="number"] {
     min-width: 95% !important;
 }
 
-.css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-    color: #716f86 !important;
-}
+
 
 .css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root::after {
     border: none !important;
@@ -1273,9 +1271,9 @@ input[type="number"] {
     gap: 20px;
 }
 
-.input-container .css-10botns-MuiInputBase-input-MuiFilledInput-input {
+/* .input-container .css-10botns-MuiInputBase-input-MuiFilledInput-input {
     background-color: white !important;
-}
+} */
 
 .input-container {
     width: 100%;
@@ -1291,9 +1289,9 @@ input[type="number"] {
     border: none !important;
 }
 
-.input-container .css-batk84-MuiInputBase-root-MuiFilledInput-root {
+/* .input-container .css-batk84-MuiInputBase-root-MuiFilledInput-root {
     background: transparent !important;
-}
+} */
 
 .input-container .css-batk84-MuiInputBase-root-MuiFilledInput-root::after {
     border: none !important;
@@ -1309,10 +1307,10 @@ input[type="number"] {
     width: 92%;
 }
 
-.input-container
+/* .input-container
     .css-batk84-MuiInputBase-root-MuiFilledInput-root.Mui-disabled {
     background-color: transparent !important;
-}
+} */
 
 .profile-upload-containerr {
     height: 100%;
@@ -1715,9 +1713,9 @@ input[type="number"] {
     background: transparent !important;
 }
 
-.css-batk84-MuiInputBase-root-MuiFilledInput-root {
+/* .css-batk84-MuiInputBase-root-MuiFilledInput-root {
     background: transparent !important;
-}
+} */
 
 .input-name .css-o943dk-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
     color: #716f86 !important;
@@ -1981,15 +1979,15 @@ input[type="number"] {
     border: none !important;
 }
 
-.dob-field-one {
+/* .dob-field-one {
     border: 1px solid #c3c9d5;
-}
+} */
 
-.dob-field-one .css-10botns-MuiInputBase-input-MuiFilledInput-input {
+/* .dob-field-one .css-10botns-MuiInputBase-input-MuiFilledInput-input {
     border: none !important;
-}
+} */
 
-.family-form-add-btn {
+/* .family-form-add-btn {
     background: #ffefe7;
     color: #f15600;
     font-weight: 600;
@@ -2001,7 +1999,7 @@ input[type="number"] {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .user-area-container {
     background: #fef1dd;
@@ -4839,7 +4837,7 @@ input[type="number"] {
 
 .form-update-light-btn {
     background: #ffefe7;
-    color: black;
+    color: black; 
     margin-right: 11px;
     z-index: 2 !important;
 }
@@ -4909,15 +4907,15 @@ input[type="number"] {
     border: none !important;
 }
 
-.dob-field-one {
+/* .dob-field-one {
     border: 1px solid #c3c9d5;
-}
+} */
 
-.dob-field-one .css-10botns-MuiInputBase-input-MuiFilledInput-input {
+/* .dob-field-one .css-10botns-MuiInputBase-input-MuiFilledInput-input {
     border: none !important;
-}
+} */
 
-.family-form-add-btn {
+/* .family-form-add-btn {
     background: #ffefe7;
     color: #f15600;
     font-weight: 600;
@@ -4930,7 +4928,7 @@ input[type="number"] {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .family-form-cancel-btn {
     background: #eaeaea;
@@ -5071,6 +5069,7 @@ input[type="number"] {
     font-size: 16px;
     font-family: "Open Sans";
     cursor: pointer;
+    flex: 1;
     height: 45px;
     border-radius: 8px;
     display: flex;
@@ -5260,6 +5259,7 @@ input[type="number"] {
 }
 
 .css-batk84-MuiInputBase-root-MuiFilledInput-root {
+    background: transparent !important;
     font-family: Roboto, Helvetica, Arial, sans-serif;
     font-weight: 400;
     font-size: 1rem;
@@ -5305,11 +5305,11 @@ input[type="number"] {
     background-color: transparent !important;
 }
 
-.css-batk84-MuiInputBase-root-MuiFilledInput-root.Mui-disabled {
-    background-color: rgba(0, 0, 0, 0.12);
-}
+/* .css-batk84-MuiInputBase-root-MuiFilledInput-root.Mui-disabled {
+} */
 
 .css-batk84-MuiInputBase-root-MuiFilledInput-root.Mui-disabled {
+    background-color: rgba(0, 0, 0, 0.12);
     color: rgba(0, 0, 0, 0.38);
     cursor: default;
 }
@@ -5435,13 +5435,13 @@ input[type="number"] {
     outline: 0px;
 }
 
-.input-name .css-10botns-MuiInputBase-input-MuiFilledInput-input {
+/* .input-name .css-10botns-MuiInputBase-input-MuiFilledInput-input {
     border-radius: 0px !important;
 }
 
 .input-name .css-10botns-MuiInputBase-input-MuiFilledInput-input {
     background-color: white !important;
-}
+} */
 
 .css-r0ibox-MuiFormControl-root-MuiTextField-root {
     display: inline-flex;
@@ -5759,12 +5759,15 @@ input[type="number"] {
     z-index: 1200;
 }
 
+/* .css-195ptfl-MuiModal-root-MuiDrawer-root .MuiDrawer-paper {
+     background-color: transparent;
+    box-shadow: none;
+    
+} */
+
 .css-195ptfl-MuiModal-root-MuiDrawer-root .MuiDrawer-paper {
     background-color: transparent;
     box-shadow: none;
-}
-
-.css-195ptfl-MuiModal-root-MuiDrawer-root .MuiDrawer-paper {
     max-width: 421px !important;
     margin: auto !important;
     border-top-left-radius: 17px;
@@ -5889,9 +5892,7 @@ label + .css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root {
     margin-top: 16px;
 }
 
-.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon {
-    margin-top: -6px;
-}
+
 
 .css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon {
     user-select: none;
@@ -5914,7 +5915,9 @@ label + .css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root {
 
 .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
     color: rgb(25, 118, 210);
+    /* color: #716f86 !important; */
 }
+
 
 .css-1c2i806-MuiFormLabel-root-MuiInputLabel-root {
     color: rgba(0, 0, 0, 0.6);

@@ -1,6 +1,12 @@
 @extends('front.layouts.app')
 
 @section('styles')
+<style>
+    .css-yf8vq0-MuiSelect-nativeInput {    
+    opacity:1 !important; 
+    border: 0px !important;
+}
+</style>
     @parent
 @endsection
 
@@ -267,14 +273,14 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <label
+                            {{-- <label
                                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard MuiFormLabel-colorPrimary css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root"
                                 data-shrink="false" id="demo-simple-select-standard-label">
                                 State *
-                            </label>
+                            </label> --}}
 
                             <div
-                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
+                                class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
                                 <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false"
                                     aria-haspopup="listbox"
                                     aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
@@ -282,7 +288,7 @@
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
                                 </div>
 
-                                <input name="state" id="state" aria-hidden="true" tabindex="-1"
+                                <input name="state" placeholder="State*" id="state" aria-hidden="true" tabindex="-1"
                                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput" value="">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
@@ -296,14 +302,14 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <label
+                            {{-- <label
                                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root"
                                 data-shrink="false" id="demo-simple-select-standard-label">
                                 District *
-                            </label>
+                            </label> --}}
 
                             <div
-                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
+                                class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
                                 <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false"
                                     aria-haspopup="listbox"
                                     aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
@@ -311,7 +317,7 @@
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input  css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
                                 </div>
 
-                                <input name="district" id="district" aria-hidden="true" tabindex="-1"
+                                <input name="district" placeholder="District *" id="district" aria-hidden="true" tabindex="-1"
                                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput" value="">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
@@ -325,14 +331,14 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <label
+                            {{-- <label
                                 class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root"
                                 data-shrink="false" id="demo-simple-select-standard-label">
                                 Assembly constituency (AC)
-                            </label>
+                            </label> --}}
 
                             <div
-                                class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
+                                class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
                                 <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false"
                                     aria-haspopup="listbox"
                                     aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
@@ -340,7 +346,7 @@
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
                                 </div>
 
-                                <input name="assembly_constituency" id="assembly_constituency" aria-hidden="true"
+                                <input name="assembly_constituency" placeholder="Assembly constituency (AC)" id="assembly_constituency" aria-hidden="true"
                                     tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
@@ -417,7 +423,7 @@
     </div>
 
     <div role="presentation" id="menu-state"
-        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none">
+        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none " style="display: flex; align-items: center; justify-content: center;">
         <div aria-hidden="true"
             class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
             style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
@@ -426,7 +432,7 @@
 
         <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper"
             tabindex="-1"
-            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); top: 80px; left: 178px; transform-origin: 180px 172.588px;">
+            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); top: 80px;  transform-origin: 180px 172.588px;">
             <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox"
                 tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="stateUl"
                 style="padding-right: 0px; width: calc(100% + 0px);">
@@ -438,7 +444,7 @@
     </div>
 
     <div role="presentation" id="menu-district"
-        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none">
+        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none"  style="display: flex; align-items: center; justify-content: center;">
         <div aria-hidden="true"
             class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
             style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
@@ -447,7 +453,7 @@
 
         <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper"
             tabindex="-1"
-            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); top: 80px; left: 178px; transform-origin: 180px 172.588px;">
+            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); top: 80px;  transform-origin: 180px 172.588px;">
             <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox"
                 tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="districtUl"
                 style="padding-right: 0px; width: calc(100% + 0px);">
@@ -459,7 +465,7 @@
     </div>
 
     <div role="presentation" id="menu-assembly"
-        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none">
+        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none"  style="display: flex; align-items: center; justify-content: center;">
         <div aria-hidden="true"
             class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
             style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
@@ -468,7 +474,7 @@
 
         <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper"
             tabindex="-1"
-            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); top: 80px; left: 178px; transform-origin: 180px 172.588px;">
+            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); top: 80px;transform-origin: 180px 172.588px;">
             <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox"
                 tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="assemblyUl"
                 style="padding-right: 0px; width: calc(100% + 0px);">
