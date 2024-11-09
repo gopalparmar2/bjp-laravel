@@ -1,13 +1,13 @@
 @extends('front.layouts.app')
 
 @section('styles')
-<style>
-    .css-yf8vq0-MuiSelect-nativeInput {    
-    opacity:1 !important; 
-    border: 0px !important;
-}
-</style>
-    @parent
+@parent
+    <style>
+        .css-yf8vq0-MuiSelect-nativeInput {
+            opacity:1 !important;
+            border: 0px !important;
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -273,12 +273,6 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            {{-- <label
-                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard MuiFormLabel-colorPrimary css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root"
-                                data-shrink="false" id="demo-simple-select-standard-label">
-                                State *
-                            </label> --}}
-
                             <div
                                 class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
                                 <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false"
@@ -288,12 +282,9 @@
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
                                 </div>
 
-                                <input name="state" placeholder="State*" id="state" aria-hidden="true" tabindex="-1"
-                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput" value="">
+                                <input name="state" placeholder="State *" id="state" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
 
-                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
-                                    focusable="false" aria-hidden="true" viewBox="0 0 24 24"
-                                    data-testid="ArrowDropDownIcon">
+                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
                                     <path d="M7 10l5 5 5-5z"></path>
                                 </svg>
                             </div>
@@ -302,12 +293,6 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            {{-- <label
-                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root"
-                                data-shrink="false" id="demo-simple-select-standard-label">
-                                District *
-                            </label> --}}
-
                             <div
                                 class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
                                 <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false"
@@ -317,8 +302,7 @@
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input  css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
                                 </div>
 
-                                <input name="district" placeholder="District *" id="district" aria-hidden="true" tabindex="-1"
-                                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput" value="">
+                                <input name="district" placeholder="District *" id="district" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
                                     focusable="false" aria-hidden="true" viewBox="0 0 24 24"
@@ -331,12 +315,6 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            {{-- <label
-                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeMedium MuiInputLabel-standard css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root"
-                                data-shrink="false" id="demo-simple-select-standard-label">
-                                Assembly constituency (AC)
-                            </label> --}}
-
                             <div
                                 class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
                                 <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false"
@@ -346,12 +324,9 @@
                                     class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
                                 </div>
 
-                                <input name="assembly_constituency" placeholder="Assembly constituency (AC)" id="assembly_constituency" aria-hidden="true"
-                                    tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
+                                <input name="assembly_constituency" placeholder="Assembly constituency (AC)" id="assembly_constituency" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
 
-                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
-                                    focusable="false" aria-hidden="true" viewBox="0 0 24 24"
-                                    data-testid="ArrowDropDownIcon">
+                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
                                     <path d="M7 10l5 5 5-5z"></path>
                                 </svg>
                             </div>
@@ -724,7 +699,17 @@
 
             $('#state').val(stateId);
             $('#divStateName').html(stateName);
+
+            $('#district').val('');
+            $('#district').removeClass('d-none');
+            $('#divDistrictName').html('');
+
+            $('#assembly_constituency').val('');
+            $('#assembly_constituency').removeClass('d-none');
+            $('#divAssemblyName').html('');
+
             $('#menu-state').addClass('d-none');
+            $('#state').addClass('d-none');
 
             $.ajax({
                 type: "POST",
@@ -760,6 +745,7 @@
             $('#district').val(districtId);
             $('#divDistrictName').html(districtName);
             $('#menu-district').addClass('d-none');
+            $('#district').addClass('d-none');
 
             checkFormValues();
         });
@@ -779,6 +765,7 @@
             $('#assembly_constituency').val(assemblyId);
             $('#divAssemblyName').html(assemblyName);
             $('#menu-assembly').addClass('d-none');
+            $('#assembly_constituency').addClass('d-none');
 
             checkFormValues();
         });
@@ -815,6 +802,10 @@
 
                             $('#district').val(response.districtId);
                             $('#divDistrictName').html(response.districtName);
+
+                            $('#assembly_constituency').val('');
+                            $('#assembly_constituency').removeClass('d-none');
+                            $('#divAssemblyName').html('');
 
                             $('#districtUl').html(response.districtHtml);
                             $('#assemblyUl').html(response.assemblyHtml);
@@ -878,7 +869,6 @@
             }
         }
 
-        // $('#referral_code').on('input', function() {
         $(document).on('keyup, change, input', '#referral_code', function() {
             const input = $(this).val();
 

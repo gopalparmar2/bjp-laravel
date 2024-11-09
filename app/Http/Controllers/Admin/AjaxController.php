@@ -41,7 +41,7 @@ class AjaxController extends Controller
 
     public function getAllStates() {
         try {
-            $states = State::whereStatus(1)->get();
+            $states = State::whereStatus(1)->orderBy('name', 'asc')->get();
             $resHtml = '';
 
             foreach ($states as $state) {
@@ -62,8 +62,8 @@ class AjaxController extends Controller
 
     public function getDistrictAndAssemblies(Request $request) {
         try {
-            $districts = District::where('state_id', $request->stateId)->whereStatus(1)->get();
-            $assemblies = AssemblyConstituency::where('state_id', $request->stateId)->whereStatus(1)->get();
+            $districts = District::where('state_id', $request->stateId)->whereStatus(1)->orderBy('name', 'asc')->get();
+            $assemblies = AssemblyConstituency::where('state_id', $request->stateId)->whereStatus(1)->orderBy('name', 'asc')->get();
             $districtHtml = '';
             $assemblyHtml = '';
 
@@ -110,8 +110,8 @@ class AjaxController extends Controller
                     $response['districtName'] = $pincode->district->name;
                 }
 
-                $districts = District::where('state_id', $pincode->state->id)->whereStatus(1)->get();
-                $assemblies = AssemblyConstituency::where('state_id', $pincode->state->id)->whereStatus(1)->get();
+                $districts = District::where('state_id', $pincode->state->id)->whereStatus(1)->orderBy('name', 'asc')->get();
+                $assemblies = AssemblyConstituency::where('state_id', $pincode->state->id)->whereStatus(1)->orderBy('name', 'asc')->get();
                 $districtHtml = '';
                 $assemblyHtml = '';
 
@@ -128,7 +128,7 @@ class AjaxController extends Controller
             }
 
             return response()->json($response);
-        } catch (\Exception $w) {
+        } catch (\Exception $e) {
             $response['success'] = false;
             $response['message'] = $e->getMessage();
 
