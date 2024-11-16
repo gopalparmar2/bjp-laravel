@@ -20,7 +20,7 @@ a {
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
-    height: 100vh;
+    height: 100%;
     width: 100%;
 }
 
@@ -4837,7 +4837,7 @@ input[type="number"] {
 
 .form-update-light-btn {
     background: #ffefe7;
-    color: black; 
+    color: black;
     margin-right: 11px;
     z-index: 2 !important;
 }
@@ -5762,7 +5762,7 @@ input[type="number"] {
 /* .css-195ptfl-MuiModal-root-MuiDrawer-root .MuiDrawer-paper {
      background-color: transparent;
     box-shadow: none;
-    
+
 } */
 
 .css-195ptfl-MuiModal-root-MuiDrawer-root .MuiDrawer-paper {

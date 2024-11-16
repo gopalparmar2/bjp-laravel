@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pincode;
+use App\Models\Mandal;
 use Illuminate\Http\Request;
 
-class PincodeController extends Controller
+class MandalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class PincodeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pincode $pincode)
+    public function show(Mandal $mandal)
     {
         //
     }
@@ -42,7 +42,7 @@ class PincodeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pincode $pincode)
+    public function edit(Mandal $mandal)
     {
         //
     }
@@ -50,7 +50,7 @@ class PincodeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pincode $pincode)
+    public function update(Request $request, Mandal $mandal)
     {
         //
     }
@@ -58,7 +58,7 @@ class PincodeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pincode $pincode)
+    public function destroy(Mandal $mandal)
     {
         //
     }

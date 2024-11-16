@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BasicDataSeeder::class);
         $this->call(StateSeeder::class);
         $this->call(DistrictSeeder::class);
+        $this->call(ZillaSeeder::class);
         $this->call(AssemblyConstituencySeeder::class);
         $this->call(PincodeSeeder::class);
     }

@@ -5,9 +5,11 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Qualification;
+use App\Models\Relationship;
 use App\Models\Profession;
 use App\Models\Religion;
 use App\Models\Category;
+use App\Models\Education;
 
 class BasicDataSeeder extends Seeder
 {
@@ -111,6 +113,52 @@ class BasicDataSeeder extends Seeder
                 $newCategory = new Category();
                 $newCategory->name = $category['name'];
                 $newCategory->save();
+            }
+        }
+
+        $educations = [
+            [ "name" => "Less than 10th" ],
+            [ "name" => "10th Pass" ],
+            [ "name" => "Diploma/ITI" ],
+            [ "name" => "12th Pass" ],
+            [ "name" => "Graduate" ],
+            [ "name" => "Post Graduate" ],
+            [ "name" => "PhD and Above" ],
+        ];
+
+        foreach ($educations as $education) {
+            $exist = Education::where('name', $education['name'])->first();
+
+            if (!$exist) {
+                $newEducation = new Education();
+                $newEducation->name = $education['name'];
+                $newEducation->save();
+            }
+        }
+
+        $relationships = [
+            [ "name" => "Wife" ],
+            [ "name" => "Husband" ],
+            [ "name" => "Mother" ],
+            [ "name" => "Father" ],
+            [ "name" => "Son" ],
+            [ "name" => "Daughter" ],
+            [ "name" => "Grand Father" ],
+            [ "name" => "Grand Mother" ],
+            [ "name" => "Brother" ],
+            [ "name" => "Sister" ],
+            [ "name" => "Uncle" ],
+            [ "name" => "Aunt" ],
+            [ "name" => "Other" ],
+        ];
+
+        foreach ($relationships as $relationship) {
+            $exist = Relationship::where('name', $relationship['name'])->first();
+
+            if (!$exist) {
+                $newRelationship = new Relationship();
+                $newRelationship->name = $relationship['name'];
+                $newRelationship->save();
             }
         }
     }

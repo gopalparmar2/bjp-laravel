@@ -28,6 +28,7 @@ Route::controller(AjaxController::class)->group(function () {
         Route::post('/get-districts-and-assemblies', 'getDistrictAndAssemblies')->name('get_districts_and_assemblies');
         Route::post('/get-pincode-details', 'getPincodeDetails')->name('get_pincode_details');
         Route::post('/check-referral-code', 'checkReferralCode')->name('check.referral.code');
+        Route::post('/get-zilas', 'getZilas')->name('get_zils');
     });
 });
 
@@ -173,6 +174,7 @@ Route::group(['as' => 'front.'], function () {
     Route::controller(FrontHomeController::class)->group(function () {
         Route::group(['middleware' => ['auth', 'checkProfileCompletion']], function () {
             Route::get('/', 'index')->name('index');
+            Route::post('/store-scrap-data', 'storeScrapData')->name('store.scrap.data');
 
             Route::get('/verify-otp', 'showVerifyOtpForm')->name('show.verify.otp.form');
             Route::post('/verify-otp', 'verifyOtp')->name('verify.otp');
@@ -183,6 +185,9 @@ Route::group(['as' => 'front.'], function () {
 
             Route::get('/update-details', 'showUpdateDetailsForm')->name('show.update.details.form');
             Route::post('/update-details', 'updateDetails')->name('update.details');
+            Route::post('/store-family-member-details', 'storeFamilyMemberDetails')->name('store.family.member.details');
+            Route::post('/delete-family-member', 'deleteFamilyMember')->name('delete.family.member');
+            Route::post('/get-family-member', 'getFamilyMember')->name('get.family.member');
 
             Route::get('/referral', 'referral')->name('refferal');
             Route::get('/thank-you', 'thankYou')->name('thankyou');

@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assembly_constituencies', function (Blueprint $table) {
+        Schema::create('family_members', function (Blueprint $table) {
             $table->id();
-            $table->integer('state_id');
-            $table->string('name');
-            $table->integer('number');
-            $table->integer('status')->default(1)->comment('0 => InActive 1 => Active');
+            $table->integer('user_id');
+            $table->integer('relationship_id')->nullable();
+            $table->string('name')->nullable();
+            $table->string('mobile_number')->nullable();
+            $table->date('dob')->nullable();
+            $table->integer('age')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('assembly_constituencies');
+        Schema::dropIfExists('family_members');
     }
 };

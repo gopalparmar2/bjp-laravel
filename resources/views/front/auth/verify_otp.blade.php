@@ -32,8 +32,6 @@
             </div>
         </div>
 
-        <div class="Toastify"></div>
-
         <div class="auth-container">
             <div class="auth-text-container">
                 <img src="{{ asset('frontAssets/imgs/img2.png') }}" alt="not_found" style="width: 100%; border-radius: 8px">

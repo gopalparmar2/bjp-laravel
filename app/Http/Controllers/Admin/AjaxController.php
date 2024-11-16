@@ -9,6 +9,7 @@ use App\Models\District;
 use App\Models\Pincode;
 use App\Models\State;
 use App\Models\User;
+use App\Models\Zilla;
 
 class AjaxController extends Controller
 {
@@ -45,7 +46,28 @@ class AjaxController extends Controller
             $resHtml = '';
 
             foreach ($states as $state) {
-                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root stateLi" tabindex="0" role="option" aria-selected="false" data-id="'.$state->id.'" data-name="'.$state->name.'"> '.$state->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root stateLi" tabindex="0" role="option" aria-selected="false" data-id="'.$state->id.'" data-name="'.$state->name.'" data-assembly-url="'.route('ajax.get_districts_and_assemblies').'"> '.$state->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+            }
+
+            $response['success'] = true;
+            $response['html'] = $resHtml;
+
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $response['success'] = false;
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response);
+        }
+    }
+
+    public function getZilas(Request $request) {
+        try {
+            $zilas = Zilla::where('state_id', $request->stateId)->whereStatus(1)->orderBy('name', 'asc')->get();
+            $resHtml = '';
+
+            foreach ($zilas as $zila) {
+                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root zilaLi" tabindex="0" role="option" aria-selected="false" data-id="'.$zila->id.'" data-name="'.$zila->name.'"> '.$zila->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             $response['success'] = true;
@@ -64,8 +86,10 @@ class AjaxController extends Controller
         try {
             $districts = District::where('state_id', $request->stateId)->whereStatus(1)->orderBy('name', 'asc')->get();
             $assemblies = AssemblyConstituency::where('state_id', $request->stateId)->whereStatus(1)->orderBy('name', 'asc')->get();
+            $zilas = Zilla::where('state_id', $request->stateId)->whereStatus(1)->orderBy('name', 'asc')->get();
             $districtHtml = '';
             $assemblyHtml = '';
+            $zilaHtml = '';
 
             foreach ($districts as $district) {
                 $districtHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root districtLi" tabindex="0" role="option" aria-selected="false" data-id="'.$district->id.'" data-name="'.$district->name.'"> '.$district->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
@@ -75,9 +99,14 @@ class AjaxController extends Controller
                 $assemblyHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root assemblyLi" tabindex="0" role="option" aria-selected="false" data-id="'.$assembly->id.'" data-name="'.$assembly->name.'"> '.$assembly->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
+            foreach ($zilas as $zila) {
+                $zilaHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root zilaLi" tabindex="0" role="option" aria-selected="false" data-id="'.$zila->id.'" data-name="'.$zila->name.'"> '.$zila->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+            }
+
             $response['success'] = true;
             $response['districtHtml'] = $districtHtml;
             $response['assemblyHtml'] = $assemblyHtml;
+            $response['zilaHtml'] = $zilaHtml;
 
             return response()->json($response);
         } catch (\Exception $e) {
@@ -150,11 +179,9 @@ class AjaxController extends Controller
             }
 
             if ($user) {
-                $obfuscatedName = $this->obfuscateName($user->name);
-
                 $response['success'] = true;
                 $response['user_id'] = $user->id;
-                $response['referred_name'] = $obfuscatedName;
+                $response['referred_name'] = obfuscateName($user->name);
             } else {
                 $response['success'] = false;
             }
@@ -166,16 +193,5 @@ class AjaxController extends Controller
 
             return response()->json($response);
         }
-    }
-
-    private function obfuscateName($name) {
-        $parts = explode(' ', $name);
-        $obfuscated = [];
-
-        foreach ($parts as $part) {
-            $obfuscated[] = substr($part, 0, 1) . str_repeat('*', strlen($part) - 2) . substr($part, -1);
-        }
-
-        return implode(' ', $obfuscated);
     }
 }

@@ -44,11 +44,17 @@ class LoginController extends Controller
     // }
 
     protected function showLoginForm() {
-        if (request()->is('admin/*')) {
-            return view('admin.auth.login');
+        $user = Auth::user();
+
+        if (!$user) {
+            if (request()->is('admin/*')) {
+                return view('admin.auth.login');
+            }
+
+            return view('front.auth.login');
         }
 
-        return view('front.auth.login');
+        return redirect()->back();
     }
 
     protected function login(Request $request) {
@@ -99,7 +105,11 @@ class LoginController extends Controller
                         return redirect()->route('front.show.verify.otp.form');
                     }
 
-                    return redirect()->route('front.show.user.details.form');
+                    if (!$user->is_details_filled) {
+                        return redirect()->route('front.show.user.details.form');
+                    }
+
+                    return redirect()->route('front.index');
                 }
 
                 Session::flash('alert-message', 'Something went wrong.');

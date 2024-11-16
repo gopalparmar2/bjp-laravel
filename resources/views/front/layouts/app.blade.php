@@ -21,6 +21,9 @@
             .swal2-popup.swal2-toast {
                 font-size: 13px;
             }
+            .swal2-container {
+                z-index: 9999 !important;
+            }
 
             body {
                 color: #212529;
@@ -55,78 +58,15 @@
   </head>
 
   <body>
-    @yield('content')
+    <div id="app">
+        @yield('content')
+    </div>
 
     @section('scripts')
         <script src="{{ asset('assets/libs/jquery/jquery.min.js') }}"></script>
         <script src="{{ asset('assets/libs/datepicker/bootstrap-datepicker.min.js') }}"></script>
         <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.js') }}"></script>
-
-        <script>
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer)
-                    toast.addEventListener('mouseleave', Swal.resumeTimer)
-                }
-            });
-
-            // $('#dob').datepicker({
-            //     dateFormat: 'dd/mm/yy',
-            // });
-
-            $('#dob').datepicker({
-                dateFormat: 'dd-mm-yy',
-                endDate: '-18y',
-                autoclose: true
-            }).on("change", function() {
-                var selectedDate = $(this).datepicker("getDate");
-
-                if (selectedDate) {
-                    var today = new Date();
-                    var age = today.getFullYear() - selectedDate.getFullYear();
-                    var monthDifference = today.getMonth() - selectedDate.getMonth();
-                    var dayDifference = today.getDate() - selectedDate.getDate();
-
-                    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
-                        age--;
-                    }
-
-                    $('#age').val(age + ' Yrs');
-                }
-            });
-
-            $(document).on('click', '.chip', function() {
-                $(".chip").removeClass("selected");
-                $(this).addClass('selected');
-            });
-
-            $('.MuiFilledInput-input').on('focus', function() {
-                const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
-                const inputParentDiv = $(this).closest('.MuiInputBase-root');
-
-                label.addClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
-                    .removeClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
-                inputParentDiv.addClass('Mui-focused');
-            });
-
-            $('.MuiFilledInput-input').on('blur', function() {
-                let inputVal = $(this).val();
-
-                if (inputVal == '') {
-                    const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
-                    const inputParentDiv = $(this).closest('.MuiInputBase-root');
-
-                    label.removeClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
-                        .addClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
-                    inputParentDiv.removeClass('Mui-focused');
-                }
-            });
-        </script>
+        <script src="{{ asset('frontAssets/js/common.js') }}"></script>
 
         @if (Session::has('alert-message'))
             <script>

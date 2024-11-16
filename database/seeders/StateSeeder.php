@@ -14,49 +14,160 @@ class StateSeeder extends Seeder
     public function run(): void
     {
         $states = [
-            [ "name" => "Andaman and Nicobar Islands" ],
-            [ "name" => "Andhra Pradesh" ],
-            [ "name" => "Arunachal Pradesh" ],
-            [ "name" => "Assam" ],
-            [ "name" => "Bihar" ],
-            [ "name" => "Chandigarh" ],
-            [ "name" => "Chhattisgarh" ],
-            [ "name" => "Dadra Nagar Haveli & Daman-Diu" ],
-            [ "name" => "Delhi" ],
-            [ "name" => "Goa" ],
-            [ "name" => "Gujarat" ],
-            [ "name" => "Haryana" ],
-            [ "name" => "Himachal Pradesh" ],
-            [ "name" => "Jammu and Kashmir" ],
-            [ "name" => "Jharkhand" ],
-            [ "name" => "Karnataka" ],
-            [ "name" => "Kerala" ],
-            [ "name" => "Ladakh" ],
-            [ "name" => "Lakshadweep" ],
-            [ "name" => "Madhya Pradesh" ],
-            [ "name" => "Maharashtra" ],
-            [ "name" => "Manipur" ],
-            [ "name" => "Meghalaya" ],
-            [ "name" => "Mizoram" ],
-            [ "name" => "Nagaland" ],
-            [ "name" => "Odisha" ],
-            [ "name" => "Puducherry" ],
-            [ "name" => "Punjab" ],
-            [ "name" => "Rajasthan" ],
-            [ "name" => "Sikkim" ],
-            [ "name" => "Tamil Nadu" ],
-            [ "name" => "Telangana" ],
-            [ "name" => "Tripura" ],
-            [ "name" => "Uttarakhand" ],
-            [ "name" => "Uttar Pradesh" ],
-            [ "name" => "West Bengal" ],
+            [
+                "id" => 33,
+                "name" => "Andaman and Nicobar Islands"
+            ],
+            [
+                "id" => 1,
+                "name" => "Andhra Pradesh"
+            ],
+            [
+                "id" => 2,
+                "name" => "Arunachal Pradesh"
+            ],
+            [
+                "id" => 3,
+                "name" => "Assam"
+            ],
+            [
+                "id" => 4,
+                "name" => "Bihar"
+            ],
+            [
+                "id" => 34,
+                "name" => "Chandigarh"
+            ],
+            [
+                "id" => 5,
+                "name" => "Chhattisgarh"
+            ],
+            [
+                "id" => 32,
+                "name" => "Dadra Nagar Haveli & Daman-Diu"
+            ],
+            [
+                "id" => 30,
+                "name" => "Delhi"
+            ],
+            [
+                "id" => 6,
+                "name" => "Goa"
+            ],
+            [
+                "id" => 7,
+                "name" => "Gujarat"
+            ],
+            [
+                "id" => 8,
+                "name" => "Haryana"
+            ],
+            [
+                "id" => 9,
+                "name" => "Himachal Pradesh"
+            ],
+            [
+                "id" => 10,
+                "name" => "Jammu and Kashmir"
+            ],
+            [
+                "id" => 11,
+                "name" => "Jharkhand"
+            ],
+            [
+                "id" => 12,
+                "name" => "Karnataka"
+            ],
+            [
+                "id" => 13,
+                "name" => "Kerala"
+            ],
+            [
+                "id" => 38,
+                "name" => "Ladakh"
+            ],
+            [
+                "id" => 36,
+                "name" => "Lakshadweep"
+            ],
+            [
+                "id" => 14,
+                "name" => "Madhya Pradesh"
+            ],
+            [
+                "id" => 15,
+                "name" => "Maharashtra"
+            ],
+            [
+                "id" => 16,
+                "name" => "Manipur"
+            ],
+            [
+                "id" => 17,
+                "name" => "Meghalaya"
+            ],
+            [
+                "id" => 18,
+                "name" => "Mizoram"
+            ],
+            [
+                "id" => 19,
+                "name" => "Nagaland"
+            ],
+            [
+                "id" => 20,
+                "name" => "Odisha"
+            ],
+            [
+                "id" => 31,
+                "name" => "Puducherry"
+            ],
+            [
+                "id" => 21,
+                "name" => "Punjab"
+            ],
+            [
+                "id" => 22,
+                "name" => "Rajasthan"
+            ],
+            [
+                "id" => 23,
+                "name" => "Sikkim"
+            ],
+            [
+                "id" => 24,
+                "name" => "Tamil Nadu"
+            ],
+            [
+                "id" => 25,
+                "name" => "Telangana"
+            ],
+            [
+                "id" => 26,
+                "name" => "Tripura"
+            ],
+            [
+                "id" => 27,
+                "name" => "Uttarakhand"
+            ],
+            [
+                "id" => 28,
+                "name" => "Uttar Pradesh"
+            ],
+            [
+                "id" => 29,
+                "name" => "West Bengal"
+            ]
         ];
+
+        State::truncate();
 
         foreach ($states as $state) {
             $exist = State::where('name', $state['name'])->first();
 
             if (!$exist) {
                 $newState = new State();
+                $newState->id = $state['id'];
                 $newState->name = $state['name'];
                 $newState->save();
             }

@@ -6,12 +6,7 @@
 
 @section('content')
     <div class="main-container-bg main-container">
-        <div class="d-flex align-style align-items-center secondary-container fixed-position">
-            <div class="d-flex align-items-center" style="column-gap: 6px">
-                <img src="{{ asset('frontAssets/imgs/logo.svg') }}" alt="logo">
-                <p class="m-0 bjp-text">BHARATIYA JANATA PARTY</p>
-            </div>
-        </div>
+        @include('front.layouts.header')
 
         <form action="{{ route('login') }}" method="post">
             @csrf
@@ -56,7 +51,7 @@
                     <button type="submit" class="btn-container" id="btnLogin" disabled>
                         <div></div>
 
-                        Get Verification Code
+                        Login / Register
 
                         <div class="arrow-div">
                             <svg width="6" height="11" viewBox="0 0 6 11" fill="none"

@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('assembly_constituencies', function (Blueprint $table) {
+        Schema::create('mandals', function (Blueprint $table) {
             $table->id();
-            $table->integer('state_id');
+            $table->integer('zilla_id');
             $table->string('name');
-            $table->integer('number');
             $table->integer('status')->default(1)->comment('0 => InActive 1 => Active');
             $table->timestamps();
             $table->softDeletes();
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('assembly_constituencies');
+        Schema::dropIfExists('mandals');
     }
 };
