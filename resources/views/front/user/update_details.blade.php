@@ -579,7 +579,7 @@
         </div>
 
         <div class="update-next-btn-container" id="btnSubmit">
-            <div class="form-update-btn form-update-dark-btn" id="divSubmit" style="width: 50%;">Update & Next</div>
+            <div class="form-update-btn form-update-dark-btn" id="divSubmit" style="width: 50%; font-size:16px">Update & Next</div>
         </div>
     </div>
 

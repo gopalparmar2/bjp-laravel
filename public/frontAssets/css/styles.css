@@ -10,6 +10,10 @@
     transform: translate3d(0, 0, 0);
 }
 
+body{
+    background-color: #ffffff;
+}
+
 a {
     text-decoration: none;
     color: black;
@@ -2114,6 +2118,9 @@ input[type="number"] {
 }
 
 .update-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #fd9a01;
     color: white;
     height: 48px;
@@ -2123,7 +2130,7 @@ input[type="number"] {
     border-radius: 11px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    display: inline-block;
+   
     padding: 10px 20px;
     position: relative;
     overflow: hidden;
