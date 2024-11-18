@@ -12,7 +12,7 @@ use App\Models\Profession;
 use App\Models\Education;
 use App\Models\Religion;
 use App\Models\Category;
-use App\Models\Mandal;
+use App\Models\Booth;
 use Validator;
 use Session;
 use File;
@@ -378,19 +378,6 @@ class HomeController extends Controller
             Session::flash('alert-class','error');
 
             return redirect()->back();
-        }
-    }
-
-    public function storeScrapData(Request $request) {
-        try {
-            dd(count($request->data));
-            $batchSize = 500;
-
-            foreach (array_chunk($request->data, $batchSize) as $data) {
-                Mandal::insert($data);
-            }
-        } catch (\Exception $e) {
-            dd($e->getMessage());
         }
     }
 }

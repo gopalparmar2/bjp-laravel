@@ -480,7 +480,7 @@
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
                             <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
-                                <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divDistrictName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input  css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                                <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divDistrictName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input  css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input" data-dropdown="district">
                                     {{ $user->district ? $user->district->name : '' }}
                                 </div>
 
@@ -496,7 +496,7 @@
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
                             <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
-                                <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divAssemblyName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                                <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divAssemblyName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input" data-dropdown="assembly">
                                     {{ $user->assemblyConstituency ? $user->assemblyConstituency->name : '' }}
                                 </div>
 
@@ -632,6 +632,34 @@
 
         <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 180px 172.588px;">
             <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="zilaUl" style="padding-right: 0px; width: calc(100% + 0px);">
+
+            </ul>
+        </div>
+
+        <div tabindex="0" data-testid="sentinelEnd"></div>
+    </div>
+
+    <div role="presentation" id="menu-mandal" class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none"  style="display: flex; align-items: center; justify-content: center;">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+
+        <div tabindex="0" data-testid="sentinelStart"></div>
+
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 180px 172.588px;">
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="mandalUl" style="padding-right: 0px; width: calc(100% + 0px);">
+
+            </ul>
+        </div>
+
+        <div tabindex="0" data-testid="sentinelEnd"></div>
+    </div>
+
+    <div role="presentation" id="menu-booth" class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none"  style="display: flex; align-items: center; justify-content: center;">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+
+        <div tabindex="0" data-testid="sentinelStart"></div>
+
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 180px 172.588px;">
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="boothUl" style="padding-right: 0px; width: calc(100% + 0px);">
 
             </ul>
         </div>
@@ -887,9 +915,14 @@
             $(document).on('click', '#divZilaName', function() {
                 const stateId = $('#state').val();
 
+                if (!stateId) {
+                    Toast.fire({ icon: 'error', title: 'Please select state first!' });
+                    return
+                }
+
                 $.ajax({
                     type: "POST",
-                    url: "{!! route('ajax.get_zils') !!}",
+                    url: "{!! route('ajax.get_zilas') !!}",
                     data: {
                         '_token': '{{ csrf_token() }}',
                         stateId: stateId
@@ -913,6 +946,45 @@
 
                 $('#menu-zila').addClass('d-none');
                 $('#zila_id').addClass('d-none');
+
+                $('#divMandalName').html('');
+                $('#mandal_id').val('');
+            });
+
+            $(document).on('click', '#divMandalName', function() {
+                const zilaId = $('#zila_id').val();
+
+                if (!zilaId) {
+                    Toast.fire({ icon: 'error', title: 'Please select zila first!' });
+                    return
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "{!! route('ajax.get_mandals') !!}",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "zilaId": zilaId
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.success) {
+                            $('#mandalUl').html(response.html);
+                            $('#menu-mandal').removeClass('d-none');
+                        }
+                    }
+                });
+            });
+
+            $(document).on('click', '.mandalLi', function() {
+                const mandalId = $(this).data('id');
+                const mandalName = $(this).data('name');
+
+                $('#mandal_id').val(mandalId);
+                $('#divMandalName').html(mandalName);
+
+                $('#menu-mandal').addClass('d-none');
+                $('#mandal_id').addClass('d-none');
             });
 
             $(document).on('click', '.update-details-tab', function() {
@@ -1285,25 +1357,72 @@
             });
 
             $(document).on('click', '#divDistrictName, #divAssemblyName', function() {
-                const districtList = $('#districtUl').children("li").length;
+                const dropdownName = $(this).data('dropdown');
+                const stateId = $('#state').val();
 
-                if (districtList == 0) {
-                    $.ajax({
-                        type: "POST",
-                        url: "{!! route('ajax.get_districts_and_assemblies') !!}",
-                        data: {
-                            "_token": $('meta[name="csrf-token"]').attr('content'),
-                            "stateId": $('#state').val()
-                        },
-                        dataType: "json",
-                        success: function(response) {
-                            if (response.success) {
-                                $('#districtUl').html(response.districtHtml);
-                                $('#assemblyUl').html(response.assemblyHtml);
-                            }
-                        }
-                    });
+                if (!stateId) {
+                    Toast.fire("Failed!", "Please select state first!", "error");
+                    return
                 }
+
+                $.ajax({
+                    type: "POST",
+                    url: "{!! route('ajax.get_districts_and_assemblies') !!}",
+                    data: {
+                        "_token": $('meta[name="csrf-token"]').attr('content'),
+                        "stateId": stateId
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.success) {
+                            $('#districtUl').html(response.districtHtml);
+                            $('#assemblyUl').html(response.assemblyHtml);
+                        }
+                    },
+                    complete: function() {
+                        if (dropdownName == 'district') {
+                            $('#menu-district').removeClass('d-none');
+                        } else if (dropdownName == 'assembly') {
+                            $('#menu-assembly').removeClass('d-none');
+                        }
+                    }
+                });
+            });
+
+            $(document).on('click', '#divBoothName', function() {
+                const assemblyId = $('#assembly_constituency').val();
+
+                if (!assemblyId) {
+                    Toast.fire("Failed!", "Please select assembly constituency (AC) first!", "error");
+                    return
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: "{!! route('ajax.get_booths') !!}",
+                    data: {
+                        "_token": $('meta[name="csrf-token"]').attr('content'),
+                        "assemblyId": assemblyId
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        if (response.success) {
+                            $('#boothUl').html(response.html);
+                            $('#menu-booth').removeClass('d-none');
+                        }
+                    }
+                });
+            });
+
+            $(document).on('click', '.boothLi', function() {
+                const boothId = $(this).data('id');
+                const boothName = $(this).data('name');
+
+                $('#booth_id').val(boothId);
+                $('#divBoothName').html(boothName);
+
+                $('#menu-booth').addClass('d-none');
+                $('#booth_id').addClass('d-none');
             });
         </script>
     @endsection

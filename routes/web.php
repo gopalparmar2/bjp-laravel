@@ -28,7 +28,9 @@ Route::controller(AjaxController::class)->group(function () {
         Route::post('/get-districts-and-assemblies', 'getDistrictAndAssemblies')->name('get_districts_and_assemblies');
         Route::post('/get-pincode-details', 'getPincodeDetails')->name('get_pincode_details');
         Route::post('/check-referral-code', 'checkReferralCode')->name('check.referral.code');
-        Route::post('/get-zilas', 'getZilas')->name('get_zils');
+        Route::post('/get-zilas', 'getZilas')->name('get_zilas');
+        Route::post('/get-mandals', 'getMandals')->name('get_mandals');
+        Route::post('/get-booths', 'getBooths')->name('get_booths');
     });
 });
 
@@ -174,7 +176,6 @@ Route::group(['as' => 'front.'], function () {
     Route::controller(FrontHomeController::class)->group(function () {
         Route::group(['middleware' => ['auth', 'checkProfileCompletion']], function () {
             Route::get('/', 'index')->name('index');
-            Route::post('/store-scrap-data', 'storeScrapData')->name('store.scrap.data');
 
             Route::get('/verify-otp', 'showVerifyOtpForm')->name('show.verify.otp.form');
             Route::post('/verify-otp', 'verifyOtp')->name('verify.otp');

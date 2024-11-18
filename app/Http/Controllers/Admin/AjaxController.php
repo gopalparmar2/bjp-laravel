@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\AssemblyConstituency;
 use App\Models\District;
 use App\Models\Pincode;
+use App\Models\Mandal;
 use App\Models\State;
-use App\Models\User;
 use App\Models\Zilla;
+use App\Models\Booth;
+use App\Models\User;
 
 class AjaxController extends Controller
 {
@@ -68,6 +70,48 @@ class AjaxController extends Controller
 
             foreach ($zilas as $zila) {
                 $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root zilaLi" tabindex="0" role="option" aria-selected="false" data-id="'.$zila->id.'" data-name="'.$zila->name.'"> '.$zila->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+            }
+
+            $response['success'] = true;
+            $response['html'] = $resHtml;
+
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $response['success'] = false;
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response);
+        }
+    }
+
+    public function getMandals(Request $request) {
+        try {
+            $mandals = Mandal::where('zilla_id', $request->zilaId)->whereStatus(1)->orderBy('name', 'asc')->get();
+            $resHtml = '';
+
+            foreach ($mandals as $mandal) {
+                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root mandalLi" tabindex="0" role="option" aria-selected="false" data-id="'.$mandal->id.'" data-name="'.$mandal->name.'"> '.$mandal->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+            }
+
+            $response['success'] = true;
+            $response['html'] = $resHtml;
+
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $response['success'] = false;
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response);
+        }
+    }
+
+    public function getBooths(Request $request) {
+        try {
+            $booths = Booth::where('assembly_id', $request->assemblyId)->whereStatus(1)->orderBy('name', 'asc')->get();
+            $resHtml = '';
+
+            foreach ($booths as $booth) {
+                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root boothLi" tabindex="0" role="option" aria-selected="false" data-id="'.$booth->id.'" data-name="'.$booth->name.'"> '.$booth->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             $response['success'] = true;
