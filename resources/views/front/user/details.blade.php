@@ -263,9 +263,7 @@
                                 class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
                                 <div
                                     class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input type="tel" name="pincode" id="pincode" maxlength="6"
-                                        class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                        placeholder="Pincode" value="">
+                                    <input type="tel" name="pincode" id="pincode" maxlength="6" class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input numbers_only" placeholder="Pincode" value="" data-url="{{ route('ajax.get_pincode_details') }}">
                                 </div>
                             </div>
                         </div>
@@ -540,7 +538,7 @@
                         </div>
                     </div>
 
-                    <button class="width-btn btn-container" id="btnUploadImage">
+                    <button class="width-btn btn-container" id="btnUploadImage" data-img-upload-url="{{ route('front.update.user.image') }}">
                         <div></div>
 
                         <p class="m-0"> Upload</p>
@@ -564,121 +562,6 @@
     @parent
 
     <script>
-        $(document).on('click', '.chip', function() {
-            $(".chip").removeClass("selected");
-            $(this).addClass('selected');
-
-            const gender = $(this).data('value');
-            $('#gender').val(gender);
-            checkFormValues();
-        });
-
-        $(document).on('click', '.pp-upload-btn', function() {
-            $('#uploadProfilePicPopup').removeClass('d-none');
-        });
-
-        $(document).on('click', '.cancel-label', function() {
-            $('#uploadProfilePicPopup').addClass('d-none');
-        });
-
-        $(document).on('click', '#btnPreviewCancel', function() {
-            $('#profile-img').attr('src', '');
-            $('#previewUploadedImg').addClass('d-none');
-            $('#uploadProfilePicPopup').removeClass('d-none');
-        });
-
-        $(document).on('change', '#file-upload-gallery', function() {
-            if (this.files && this.files[0]) {
-                $('#uploadProfilePicPopup').addClass('d-none');
-
-                var reader = new FileReader();
-
-                reader.onload = function(e) {
-                    $('#profile-img').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(this.files[0]);
-
-                $('#previewUploadedImg').removeClass('d-none');
-            }
-        });
-
-        $(document).on('click', '#btnUploadImage', function() {
-            let formData = new FormData();
-            formData.append('image', $('#file-upload-gallery')[0].files[0]);
-
-            $.ajax({
-                type: "POST",
-                url: "{!! route('front.update.user.image') !!}",
-                data: formData,
-                processData: false,
-                contentType: false,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Include CSRF token
-                },
-                dataType: "json",
-                success: function(response) {
-                    if (response.success) {
-                        let imgHrml =
-                            '<div class="MuiAvatar-root MuiAvatar-circular css-11fq0lf-MuiAvatar-root"> <img src="' +
-                            response.image +
-                            '" alt="Profile Image" class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"> </div>';
-
-                        $('.profile-pic-container').html(imgHrml);
-                        $('#profilePhotoLabel').html('Profile Photo');
-                    } else {
-                        setTimeout(function() {
-                            Toast.fire("Failed!", response.message, "error");
-                        }, 2000);
-                    }
-
-                    $('#profile-img').attr('src', '');
-                    $('#previewUploadedImg').addClass('d-none');
-                }
-            });
-        });
-
-        $(document).on('click', '.dropdown', function() {
-            isClicked = $(this).find('svg').hasClass('css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
-
-            if (isClicked) {
-                $(this).find('svg').removeClass('css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
-                $(this).find('svg').addClass('MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
-
-                $(this).prev('label').removeClass('css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
-                $(this).prev('label').addClass(
-                    'MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root');
-
-                $(this).addClass('Mui-focused');
-            } else {
-                $(this).find('svg').removeClass('MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
-                $(this).find('svg').addClass('css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
-
-                $(this).prev('label').removeClass(
-                    'MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root');
-                $(this).prev('label').addClass('css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
-                $(this).removeClass('Mui-focused');
-            }
-        });
-
-        $('.MuiFilledInput-input').on('focus', function() {
-            const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
-            const inputParentDiv = $(this).closest('.MuiInputBase-root');
-
-            label.addClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
-                .removeClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
-            inputParentDiv.addClass('Mui-focused');
-        });
-
-        $('.MuiFilledInput-input').on('blur', function() {
-            const label = $(this).closest('.MuiFormControl-root').find('.MuiFormLabel-root');
-            const inputParentDiv = $(this).closest('.MuiInputBase-root');
-
-            label.removeClass('MuiInputLabel-shrink Mui-focused css-o943dk-MuiFormLabel-root-MuiInputLabel-root')
-                .addClass('css-e4w4as-MuiFormLabel-root-MuiInputLabel-root');
-            inputParentDiv.removeClass('Mui-focused');
-        });
-
         $(document).on('click', '#divStateName', function() {
             $.ajax({
                 type: "GET",
@@ -769,77 +652,6 @@
 
             checkFormValues();
         });
-
-        $(document).on('keyup', '#pincode', function() {
-            const pincode = $(this).val();
-
-            if (pincode.length == 6) {
-                $.ajax({
-                    type: "POST",
-                    url: "{!! route('ajax.get_pincode_details') !!}",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "pincode": pincode
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.success) {
-                            $('.stateOrDistrict').find('svg').removeClass(
-                                'css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
-                            $('.stateOrDistrict').find('svg').addClass(
-                                'MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
-
-                            $('.stateOrDistrict').prev('label').removeClass(
-                                'css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
-                            $('.stateOrDistrict').prev('label').addClass(
-                                'MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root'
-                                );
-
-                            $('.stateOrDistrict').addClass('Mui-focused');
-
-                            $('#state').val(response.stateId);
-                            $('#divStateName').html(response.stateName);
-
-                            $('#district').val(response.districtId);
-                            $('#divDistrictName').html(response.districtName);
-
-                            $('#assembly_constituency').val('');
-                            $('#assembly_constituency').removeClass('d-none');
-                            $('#divAssemblyName').html('');
-
-                            $('#districtUl').html(response.districtHtml);
-                            $('#assemblyUl').html(response.assemblyHtml);
-
-                            checkFormValues();
-                        }
-                    }
-                });
-            }
-        });
-
-        $(document).on('keyup change', '#email', function() {
-            const emailErr = $('#emailErr').hasClass('d-none');
-            const email = $(this).val();
-
-            if (email == '' && !emailErr) {
-                $('#emailErr').addClass('d-none');
-            }
-
-            if (email != '') {
-                if (isValidEmail(email)) {
-                    $('#emailErr').addClass('d-none');
-                } else {
-                    $('#emailErr').removeClass('d-none');
-                }
-            }
-
-            checkFormValues();
-        });
-
-        function isValidEmail(email) {
-            var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            return emailPattern.test(email);
-        }
 
         $(document).on('change', '#name, #dob, #isPledge', function() {
             checkFormValues();

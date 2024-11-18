@@ -12,6 +12,10 @@ const Toast = Swal.mixin({
 
 const currentUrl = window.location.href;
 
+$('.numbers_only').keyup(function () {
+    this.value = this.value.replace(/[^0-9\.]/g, '');
+});
+
 $(document).on('click', '.chip', function() {
     $(".chip").removeClass("selected");
     $(this).addClass('selected');
@@ -47,110 +51,6 @@ $(document).on('click', '.dropdown', function() {
     }
 });
 
-$(document).on('click', '#divStateName', function() {
-    const url =$(this).data('url');
-
-    $.ajax({
-        type: "GET",
-        url: url,
-        dataType: "json",
-        success: function(response) {
-            if (response.success) {
-                $('#stateUl').html(response.html);
-                $('#menu-state').removeClass('d-none');
-            }
-        }
-    });
-});
-
-$(document).on('click', '.stateLi', function() {
-    const stateId = $(this).data('id');
-    const stateName = $(this).data('name');
-    const url = $(this).data('assembly-url');
-
-    $('#state').val(stateId);
-    $('#divStateName').html(stateName);
-
-    $('#district').val('');
-    $('#district').removeClass('d-none');
-    $('#divDistrictName').html('');
-
-    $('#assembly_constituency').val('');
-    $('#assembly_constituency').removeClass('d-none');
-    $('#divAssemblyName').html('');
-
-    $('#menu-state').addClass('d-none');
-    $('#state').addClass('d-none');
-
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: {
-            "_token": $('meta[name="csrf-token"]').attr('content'),
-            "stateId": stateId
-        },
-        dataType: "json",
-        success: function(response) {
-            if (response.success) {
-                $('#districtUl').html(response.districtHtml);
-                $('#assemblyUl').html(response.assemblyHtml);
-
-                if (currentUrl.includes("update-details")) {
-                    $('#zilaUl').html(response.zilaHtml);
-                }
-
-                if (currentUrl.includes("user-details")) {
-                    checkFormValues();
-                }
-            }
-        }
-    });
-});
-
-$(document).on('click', '#divDistrictName', function() {
-    const stateId = $('#state').val();
-
-    if (stateId != '') {
-        $('#menu-district').removeClass('d-none');
-    }
-});
-
-$(document).on('click', '.districtLi', function() {
-    const districtId = $(this).data('id');
-    const districtName = $(this).data('name');
-
-    $('#district').val(districtId);
-    $('#divDistrictName').html(districtName);
-    $('#menu-district').addClass('d-none');
-    $('#district').addClass('d-none');
-
-    if (currentUrl.includes("user-details")) {
-        checkFormValues();
-    }
-});
-
-$(document).on('click', '#divAssemblyName', function() {
-    const stateId = $('#state').val();
-
-    if (stateId != '') {
-        $('#menu-assembly').removeClass('d-none');
-    }
-});
-
-$(document).on('click', '.assemblyLi', function() {
-    const assemblyId = $(this).data('id');
-    const assemblyName = $(this).data('name');
-
-    $('#assembly_constituency').val(assemblyId);
-    $('#divAssemblyName').html(assemblyName);
-    $('#menu-assembly').addClass('d-none');
-    $('#assembly_constituency').addClass('d-none');
-
-    if (currentUrl.includes("user-details")) {
-        checkFormValues();
-    }
-});
-
 $(document).on('keyup', '#pincode', function() {
     const pincode = $(this).val();
     const url = $(this).data('url');
@@ -166,26 +66,21 @@ $(document).on('keyup', '#pincode', function() {
             dataType: "json",
             success: function(response) {
                 if (response.success) {
-                    $('.stateOrDistrict').find('svg').removeClass(
-                        'css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
-                    $('.stateOrDistrict').find('svg').addClass(
-                        'MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
+                    $('.stateOrDistrict').find('svg').removeClass('css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
+                    $('.stateOrDistrict').find('svg').addClass('MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
 
-                    $('.stateOrDistrict').prev('label').removeClass(
-                        'css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
-                    $('.stateOrDistrict').prev('label').addClass(
-                        'MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root'
-                        );
+                    $('.stateOrDistrict').prev('label').removeClass('css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
+                    $('.stateOrDistrict').prev('label').addClass('MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root');
 
                     $('.stateOrDistrict').addClass('Mui-focused');
 
                     $('#state').val(response.stateId);
-                    $('#state').addClass('d-none');
                     $('#divStateName').html(response.stateName);
+                    $('#state').addClass('d-none');
 
                     $('#district').val(response.districtId);
-                    $('#district').addClass('d-none');
                     $('#divDistrictName').html(response.districtName);
+                    $('#district').addClass('d-none');
 
                     $('#assembly_constituency').val('');
                     $('#assembly_constituency').removeClass('d-none');
@@ -323,7 +218,7 @@ $(document).on('click', '#btnUploadImage', function() {
                 $('#profilePhotoLabel').html('Profile Photo');
             } else {
                 setTimeout(function() {
-                    Toast.fire("Failed!", response.message, "error");
+                    Toast.fire({ icon: 'error', title: response.message });
                 }, 2000);
             }
 

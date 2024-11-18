@@ -186,9 +186,12 @@ Route::group(['as' => 'front.'], function () {
 
             Route::get('/update-details', 'showUpdateDetailsForm')->name('show.update.details.form');
             Route::post('/update-details', 'updateDetails')->name('update.details');
+
             Route::post('/store-family-member-details', 'storeFamilyMemberDetails')->name('store.family.member.details');
             Route::post('/delete-family-member', 'deleteFamilyMember')->name('delete.family.member');
             Route::post('/get-family-member', 'getFamilyMember')->name('get.family.member');
+
+            Route::post('/store-contact-details', 'storeContactDetails')->name('store.contact.details');
 
             Route::get('/referral', 'referral')->name('refferal');
             Route::get('/thank-you', 'thankYou')->name('thankyou');

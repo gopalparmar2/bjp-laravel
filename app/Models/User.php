@@ -83,4 +83,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function reffered_user() {
         return $this->belongsTo(User::class, 'referred_user_id');
     }
+
+    public function zila() {
+        return $this->belongsTo(Zilla::class);
+    }
+
+    public function mandal() {
+        return $this->belongsTo(Mandal::class);
+    }
+
+    public function booth() {
+        return $this->belongsTo(Booth::class);
+    }
 }

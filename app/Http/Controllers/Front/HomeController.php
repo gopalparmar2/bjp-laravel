@@ -165,7 +165,7 @@ class HomeController extends Controller
             $user->state_id = $request->state;
             $user->district_id = $request->district;
             $user->assembly_id = $request->assembly_constituency;
-            $user->referred_user_id = $request->referred_user_id;
+            $user->referred_user_id = $request->referral_user_id;
             $user->is_details_filled = 1;
 
             if ($user->membership_number == null) {
@@ -342,6 +342,38 @@ class HomeController extends Controller
                 $response['dob'] = date('m/d/Y', strtotime($familyMember->dob));
                 $response['age'] = $familyMember->age;
                 $response['mobile_number'] = $familyMember->mobile_number;
+            }
+
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $response['success'] = false;
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response);
+        }
+    }
+
+    public function storeContactDetails(Request $request) {
+        try {
+            $user = Auth::user();
+
+            $user->address = $request->address;
+            $user->pincode = $request->pincode;
+            $user->state_id = $request->state;
+            $user->district_id = $request->district;
+            $user->assembly_id = $request->assembly_constituency;
+            $user->zila_id = $request->zila_id;
+            $user->mandal_id = $request->mandal_id;
+            $user->booth_id = $request->booth_id;
+            $user->landline_number = $request->landline_number;
+            $user->ward_name = $request->ward_name;
+
+            if ($user->save()) {
+                $response['success'] = true;
+                $response['message'] = 'Contact details updated successfully.';
+            } else {
+                $response['success'] = false;
+                $response['message'] = 'Something went wrong.';
             }
 
             return response()->json($response);

@@ -455,7 +455,7 @@
                         <div class="input-container">
                             <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
                                 <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input type="tel" name="pincode" id="pincode" maxlength="6" class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Pincode" value="{{ old('pincode', $user->pincode) }}" data-url="{{ route('ajax.get_pincode_details') }}">
+                                    <input type="tel" name="pincode" id="pincode" maxlength="6" class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input numbers_only" placeholder="Pincode" value="{{ old('pincode', $user->pincode) }}" data-url="{{ route('ajax.get_pincode_details') }}">
                                 </div>
                             </div>
                         </div>
@@ -1111,7 +1111,7 @@
                     const assembly_constituency = $('#assembly_constituency').val();
                     const zila_id = $('#zila_id').val();
                     const mandal_id = $('#mandal_id').val();
-                    const booth_id = $('#mandal_id').val();
+                    const booth_id = $('#booth_id').val();
                     const landline_number = $('#landline_number').val();
                     const ward_name = $('#ward_name').val();
 
@@ -1135,14 +1135,9 @@
                         return false;
                     }
 
-                    if (zila_id == '' && mandal_id == '' && booth_id == '' && landline_number == '' && ward_name == '') {
-                        Toast.fire({ icon: 'success', title: "Contact details updated successfully." });
-                        window.location.href = "{!! route('front.index') !!}";
-                    }
-
                     $.ajax({
                         type: "POST",
-                        url: "{!! route('front.update.details') !!}",
+                        url: "{!! route('front.store.contact.details') !!}",
                         data: {
                             '_token': '{{ csrf_token() }}',
                             address: address,
