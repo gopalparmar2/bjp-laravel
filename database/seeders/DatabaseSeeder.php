@@ -21,5 +21,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AssemblyConstituencySeeder::class);
         $this->call(PincodeSeeder::class);
         $this->call(MandalSeeder::class);
+        $this->call(BoothSeeder::class);
     }
 }
