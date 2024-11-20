@@ -19,14 +19,6 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="mb-3 controls">
-                                <label for="state_id" class="form-label">State</label>
-                                <select name="state_id" id="state_id" class="select2 form-select">
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div class="mb-3 controls">
                                 <label for="fltStatus" class="form-label">Status</label>
                                 <select class="form-control select2" name="fltStatus" id="fltStatus">
                                     <option value="">Select Status</option>
@@ -65,12 +57,10 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>STATE</th>
-                                        <th>ASSEMBLY CONSTITUENCY</th>
-                                        <th>NUMBER</th>
+                                        <th>RELATIONSHIP</th>
                                         <th>STATUS</th>
                                         <th>CREATED AT</th>
-                                        @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
+                                        @if (auth()->user()->can('relationship-edit') || auth()->user()->can('relationship-delete'))
                                             <th>ACTION</th>
                                         @endif
                                     </tr>
@@ -94,45 +84,26 @@
     <script>
         $(document).ready(function() {
             let table;
-            let url = "{!! route('admin.assemblyConstituency.datatable') !!}";
+            let url = "{!! route('admin.relationship.datatable') !!}";
 
             customDateRangePicker('#date');
 
             let columns = [
                 { data: 'id', name: 'id' },
-                { data: 'state_name', name: 'state_name' },
                 { data: 'name', name: 'name' },
-                { data: 'number', name: 'number' },
                 { data: 'status', name: 'status' },
                 { data: 'created_at', name: 'created_at' },
-                @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
+                @if (auth()->user()->can('relationship-edit') || auth()->user()->can('relationship-delete'))
                     { data: 'action', name: 'action' },
                 @endif
             ];
 
             let sortingFalse = [];
-            @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
-                sortingFalse = [6];
+            @if (auth()->user()->can('relationship-edit') || auth()->user()->can('relationship-delete'))
+                sortingFalse = [4];
             @endif
 
-            createDataTable(url, columns, ['state_id', 'fltStatus', 'date'], sortingFalse);
-        });
-
-        $('#state_id').select2({
-            allowClear: true,
-            ajax: {
-                url: "{!! route('ajax.get_states') !!}",
-                dataType: 'json',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        search: params.term,
-                        page: params.page || 1,
-                        type: 'state'
-                    };
-                },
-            },
-            placeholder: 'Select State',
-        });
+            createDataTable(url, columns, ['fltStatus', 'date'], sortingFalse);
+        })
     </script>
 @endsection

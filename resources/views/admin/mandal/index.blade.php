@@ -27,6 +27,14 @@
 
                         <div class="col-lg-4">
                             <div class="mb-3 controls">
+                                <label for="zilla_id" class="form-label">Zila</label>
+                                <select name="zilla_id" id="zilla_id" class="select2 form-select">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mb-3 controls">
                                 <label for="fltStatus" class="form-label">Status</label>
                                 <select class="form-control select2" name="fltStatus" id="fltStatus">
                                     <option value="">Select Status</option>
@@ -39,15 +47,18 @@
                         <div class="col-lg-4">
                             <div class="mb-3">
                                 <label for="date" class="form-label">Date</label>
-                                <input type="text" class="form-control date" name="date" id="date" autocomplete="off">
+                                <input type="text" class="form-control date" name="date" id="date"
+                                    autocomplete="off">
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <button type="submit" class="btn btn-primary w-md button-responsive" onclick="createDataTable()">Filter</button>
-                            <button type="submit" class="btn btn-secondary w-md button-responsive" onclick="resetFilter()">Clear</button>
+                            <button type="submit" class="btn btn-primary w-md button-responsive"
+                                onclick="createDataTable()">Filter</button>
+                            <button type="submit" class="btn btn-secondary w-md button-responsive"
+                                onclick="resetFilter()">Clear</button>
                         </div>
                     </div>
                 </div>
@@ -66,11 +77,11 @@
                                     <tr>
                                         <th>#</th>
                                         <th>STATE</th>
-                                        <th>ASSEMBLY CONSTITUENCY</th>
-                                        <th>NUMBER</th>
+                                        <th>ZILA</th>
+                                        <th>MANDAL</th>
                                         <th>STATUS</th>
                                         <th>CREATED AT</th>
-                                        @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
+                                        @if (auth()->user()->can('mandal-edit') || auth()->user()->can('mandal-delete'))
                                             <th>ACTION</th>
                                         @endif
                                     </tr>
@@ -94,28 +105,28 @@
     <script>
         $(document).ready(function() {
             let table;
-            let url = "{!! route('admin.assemblyConstituency.datatable') !!}";
+            let url = "{!! route('admin.mandal.datatable') !!}";
 
             customDateRangePicker('#date');
 
             let columns = [
                 { data: 'id', name: 'id' },
                 { data: 'state_name', name: 'state_name' },
+                { data: 'zila_name', name: 'zila_name' },
                 { data: 'name', name: 'name' },
-                { data: 'number', name: 'number' },
                 { data: 'status', name: 'status' },
                 { data: 'created_at', name: 'created_at' },
-                @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
+                @if (auth()->user()->can('mandal-edit') || auth()->user()->can('mandal-delete'))
                     { data: 'action', name: 'action' },
                 @endif
             ];
 
             let sortingFalse = [];
-            @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
+            @if (auth()->user()->can('mandal-edit') || auth()->user()->can('mandal-delete'))
                 sortingFalse = [6];
             @endif
 
-            createDataTable(url, columns, ['state_id', 'fltStatus', 'date'], sortingFalse);
+            createDataTable(url, columns, ['state_id', 'zilla_id', 'fltStatus', 'date'], sortingFalse);
         });
 
         $('#state_id').select2({
@@ -128,11 +139,37 @@
                     return {
                         search: params.term,
                         page: params.page || 1,
-                        type: 'state'
                     };
                 },
             },
             placeholder: 'Select State',
+        });
+
+        $('#state_id').on('change', function(e) {
+            let optionSelected = $("option:selected", this);
+            $('#zilla_id').attr('disabled', true);
+            $("#zilla_id").val(null).trigger("change");
+
+            if (this.value) {
+                $('#zilla_id').attr('disabled', false);
+            }
+        });
+
+        $('#zilla_id').select2({
+            allowClear: true,
+            ajax: {
+                url: "{!! route('ajax.get_zilas') !!}",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1,
+                        stateId: $('#state_id').find(":selected").val()
+                    };
+                },
+            },
+            placeholder: 'Select Zila',
         });
     </script>
 @endsection

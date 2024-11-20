@@ -60,7 +60,7 @@
                                         <th>CATEGORY</th>
                                         <th>STATUS</th>
                                         <th>CREATED AT</th>
-                                        @if (auth()->user()->can('profession-edit') || auth()->user()->can('profession-delete'))
+                                        @if (auth()->user()->can('category-edit') || auth()->user()->can('category-delete'))
                                             <th>ACTION</th>
                                         @endif
                                     </tr>

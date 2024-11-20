@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\ProfileController;
@@ -13,9 +14,14 @@ use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\AssemblyConstituencyController;
 use App\Http\Controllers\Admin\ProfessionController;
-use App\Http\Controllers\Admin\QualificationController;
+use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ReligionController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BoothController;
+use App\Http\Controllers\Admin\MandalController;
+use App\Http\Controllers\Admin\PincodeController;
+use App\Http\Controllers\Admin\ZilaController;
+use App\Http\Controllers\Admin\RelationshipController;
 
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 
@@ -31,6 +37,10 @@ Route::controller(AjaxController::class)->group(function () {
         Route::post('/get-zilas', 'getZilas')->name('get_zilas');
         Route::post('/get-mandals', 'getMandals')->name('get_mandals');
         Route::post('/get-booths', 'getBooths')->name('get_booths');
+
+        Route::get('/get-assembly', 'getAssemblaies')->name('get_assembly');
+        Route::get('/get-zilas', 'getZilasDD')->name('get_zilas');
+        Route::get('/get-districts', 'getDistricts')->name('get_districts');
     });
 });
 
@@ -110,8 +120,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             });
         });
 
-        Route::controller(QualificationController::class)->group(function () {
-            Route::group(['as' => 'qualification.', 'prefix' => 'qualification'], function() {
+        Route::controller(EducationController::class)->group(function () {
+            Route::group(['as' => 'education.', 'prefix' => 'education'], function() {
                 Route::get('/', 'index')->name('index');
                 Route::post('/datatable', 'datatable')->name('datatable');
                 Route::get('/create', 'create')->name('create');
@@ -160,6 +170,66 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         Route::controller(AssemblyConstituencyController::class)->group(function () {
             Route::group(['as' => 'assemblyConstituency.', 'prefix' => 'assembly-constituency'], function() {
+                Route::get('/', 'index')->name('index');
+                Route::post('/datatable', 'datatable')->name('datatable');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/destroy', 'destroy')->name('destroy');
+                Route::post('/change_status', 'change_status')->name('change.status');
+            });
+        });
+
+        Route::controller(BoothController::class)->group(function () {
+            Route::group(['as' => 'booth.', 'prefix' => 'booth'], function() {
+                Route::get('/', 'index')->name('index');
+                Route::post('/datatable', 'datatable')->name('datatable');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/destroy', 'destroy')->name('destroy');
+                Route::post('/change_status', 'change_status')->name('change.status');
+            });
+        });
+
+        Route::controller(MandalController::class)->group(function () {
+            Route::group(['as' => 'mandal.', 'prefix' => 'mandal'], function() {
+                Route::get('/', 'index')->name('index');
+                Route::post('/datatable', 'datatable')->name('datatable');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/destroy', 'destroy')->name('destroy');
+                Route::post('/change_status', 'change_status')->name('change.status');
+            });
+        });
+
+        Route::controller(PincodeController::class)->group(function () {
+            Route::group(['as' => 'pincode.', 'prefix' => 'pincode'], function() {
+                Route::get('/', 'index')->name('index');
+                Route::post('/datatable', 'datatable')->name('datatable');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/destroy', 'destroy')->name('destroy');
+                Route::post('/change_status', 'change_status')->name('change.status');
+            });
+        });
+
+        Route::controller(ZilaController::class)->group(function () {
+            Route::group(['as' => 'zila.', 'prefix' => 'zila'], function() {
+                Route::get('/', 'index')->name('index');
+                Route::post('/datatable', 'datatable')->name('datatable');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/destroy', 'destroy')->name('destroy');
+                Route::post('/change_status', 'change_status')->name('change.status');
+            });
+        });
+
+        Route::controller(RelationshipController::class)->group(function () {
+            Route::group(['as' => 'relationship.', 'prefix' => 'relationship'], function() {
                 Route::get('/', 'index')->name('index');
                 Route::post('/datatable', 'datatable')->name('datatable');
                 Route::get('/create', 'create')->name('create');

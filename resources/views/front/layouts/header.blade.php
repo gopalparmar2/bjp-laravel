@@ -2,7 +2,7 @@
     <div class="d-flex align-items-center " style="column-gap: 6px;">
         <img src="{{ asset('frontAssets/imgs/logo.svg') }}" alt="logo">
 
-        <p class="m-0 bjp-text">BHARATIYA JANATA PARTY</p>
+        <p class="m-0 bjp-text">{{ strtoupper(config('app.name')) }}</p>
     </div>
 
     @if (auth()->user())

@@ -15,12 +15,12 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.assemblyConstituency.store') }}" name="addfrm" id="addfrm" method="POST"
+                    <form action="{{ route('admin.pincode.store') }}" name="addfrm" id="addfrm" method="POST"
                         enctype="multipart/form-data" autocomplete="off">
                         @csrf
 
-                        @isset($assemblyConstituency)
-                            <input type="hidden" name="assembly_constituency_id" id="assembly_constituency_id" value="{{ $assemblyConstituency->id }}">
+                        @isset($pincode)
+                            <input type="hidden" name="pincode_id" id="pincode_id" value="{{ $pincode->id }}">
                         @endisset
 
                         <div class="row">
@@ -28,10 +28,11 @@
                                 <div class="mb-3 controls">
                                     <label class="form-label">Select State <span class="text-danger">*</span></label>
                                     <select class="form-control select2" name="state_id" id="state_id">
-                                        @if (isset($assemblyConstituency) && isset($assemblyConstituency->state))
-                                            <option value="{{ $assemblyConstituency->state->id }}" selected>{{ $assemblyConstituency->state->name }}</option>
+                                        @if (isset($pincode) && isset($pincode->state))
+                                            <option value="{{ $pincode->state->id }}" selected>{{ $pincode->state->name }}</option>
                                         @endif
                                     </select>
+
                                     @error('state_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -41,10 +42,21 @@
                             </div>
 
                             <div class="col-md-6">
+                                <div class="mb-3 controls">
+                                    <label class="form-label">Select District <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" name="district_id" id="district_id">
+                                        @if (isset($pincode) && isset($pincode->district))
+                                            <option value="{{ $pincode->district->id }}" selected>{{ $pincode->district->name }}</option>
+                                        @endif
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label @error('name') is-invalid @enderror">Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name', isset($assemblyConstituency) ? $assemblyConstituency->name : '') }}">
-                                    @error('name')
+                                    <label class="form-label @error('office_name') is-invalid @enderror">Office Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="office_name" id="office_name" value="{{ old('office_name', isset($pincode) ? $pincode->office_name : '') }}">
+                                    @error('office_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -54,9 +66,21 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label @error('number') is-invalid @enderror">Number <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control numbers_only" name="number" id="number" value="{{ old('number', isset($assemblyConstituency) ? $assemblyConstituency->number : '') }}">
-                                    @error('number')
+                                    <label class="form-label @error('taluka') is-invalid @enderror">Taluka <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="taluka" id="taluka" value="{{ old('taluka', isset($pincode) ? $pincode->taluka : '') }}">
+                                    @error('taluka')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label @error('pincode') is-invalid @enderror">Pincode <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control numbers_only" name="pincode" id="pincode" value="{{ old('pincode', isset($pincode) ? $pincode->pincode : '') }}" maxlength="6">
+                                    @error('pincode')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -68,7 +92,7 @@
                                 <div class="mb-3 controls">
                                     <label class="form-label">Status</label>
                                     <div class="form-check form-switch form-switch-md mb-3" dir="ltr">
-                                        <input type="checkbox" name="status" class="form-check-input" {{ isset($assemblyConstituency) && $assemblyConstituency->status === 1 ? 'checked' : '' }}>
+                                        <input type="checkbox" name="status" class="form-check-input" {{ isset($pincode) && $pincode->status === 1 ? 'checked' : '' }}>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +100,7 @@
 
                         <div>
                             <button type="submit" class="btn btn-primary w-md button-responsive">Submit</button>
-                            <a href="{{ route('admin.assemblyConstituency.index') }}" class="btn btn-secondary w-md button-responsive">Cancel</a>
+                            <a href="{{ route('admin.pincode.index') }}" class="btn btn-secondary w-md button-responsive">Cancel</a>
                         </div>
                     </form>
                 </div>
@@ -116,10 +140,16 @@
                     state_id: {
                         required: true
                     },
-                    name: {
+                    district_id: {
                         required: true
                     },
-                    number: {
+                    office_name: {
+                        required: true
+                    },
+                    taluka: {
+                        required: true
+                    },
+                    pincode: {
                         required: true
                     }
                 },
@@ -127,12 +157,18 @@
                     state_id: {
                         required: 'The state field is required.'
                     },
-                    name: {
-                        required: 'The name field is required.'
+                    district_id: {
+                        required: 'The district field is required.'
                     },
-                    number: {
-                        required: 'The number field is required.'
-                    }
+                    office_name: {
+                        required: 'The office name field is required.'
+                    },
+                    taluka: {
+                        required: 'The taluka field is required.'
+                    },
+                    pincode: {
+                        required: 'The pincode field is required.'
+                    },
                 }
             })
         });
@@ -151,6 +187,33 @@
                 },
             },
             placeholder: 'Select State',
+        });
+
+        $('#state_id').on('change', function(e) {
+            let optionSelected = $("option:selected", this);
+            $('#district_id').attr('disabled', true);
+            $("#district_id").val(null).trigger("change");
+
+            if (this.value) {
+                $('#district_id').attr('disabled', false);
+            }
+        });
+
+        $('#district_id').select2({
+            allowClear: true,
+            ajax: {
+                url: "{!! route('ajax.get_districts') !!}",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1,
+                        stateId: $('#state_id').find(":selected").val()
+                    };
+                },
+            },
+            placeholder: 'Select District',
         });
     </script>
 @endsection

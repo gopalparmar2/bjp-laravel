@@ -22,7 +22,7 @@ class AjaxController extends Controller
             $query = $query->where('name', 'like', '%' .$request->search. '%');
         }
 
-        $query = $query->simplePaginate(50);
+        $query = $query->orderBy('name', 'asc')->simplePaginate(50);
 
         $no = 0;
         $data = array();
@@ -211,9 +211,6 @@ class AjaxController extends Controller
 
     public function checkReferralCode(Request $request) {
         try {
-            $value = $request->input('value');
-            $request->type = $request->input('type');
-
             if ($request->type == 'referral') {
                 $user = User::whereStatus(1)->where('referral_code', $request->value)->first();
             } elseif ($request->type == 'mobile') {
@@ -237,5 +234,89 @@ class AjaxController extends Controller
 
             return response()->json($response);
         }
+    }
+
+    public function getAssemblaies(Request $request) {
+        $no = 0;
+        $data = array();
+        $page = false;
+
+        if ($request->has('stateId')) {
+            $query = AssemblyConstituency::whereStatus(1)->where('state_id', $request->stateId);
+
+            if ($request->search) {
+                $query = $query->where('name', 'like', '%' .$request->search. '%');
+            }
+
+            $query = $query->orderBy('name', 'asc')->simplePaginate(50);
+
+            foreach($query as $item) {
+                $data[$no]['id'] = $item->id;
+                $data[$no]['text'] = $item->name;
+                $no++;
+            }
+
+            if (!empty($query->nextPageUrl())) {
+                $page = true;
+            }
+        }
+
+        return ['results' => $data, 'pagination' => ['more' => $page]];
+    }
+
+    public function getZilasDD(Request $request) {
+        $no = 0;
+        $data = array();
+        $page = false;
+
+        if ($request->has('stateId')) {
+            $query = Zilla::whereStatus(1)->where('state_id', $request->stateId);
+
+            if ($request->search) {
+                $query = $query->where('name', 'like', '%' .$request->search. '%');
+            }
+
+            $query = $query->orderBy('name', 'asc')->simplePaginate(50);
+
+            foreach($query as $item) {
+                $data[$no]['id'] = $item->id;
+                $data[$no]['text'] = $item->name;
+                $no++;
+            }
+
+            if (!empty($query->nextPageUrl())) {
+                $page = true;
+            }
+        }
+
+        return ['results' => $data, 'pagination' => ['more' => $page]];
+    }
+
+    public function getDistricts(Request $request) {
+        $no = 0;
+        $data = array();
+        $page = false;
+
+        if ($request->has('stateId')) {
+            $query = District::whereStatus(1)->where('state_id', $request->stateId);
+
+            if ($request->search) {
+                $query = $query->where('name', 'like', '%' .$request->search. '%');
+            }
+
+            $query = $query->orderBy('name', 'asc')->simplePaginate(50);
+
+            foreach($query as $item) {
+                $data[$no]['id'] = $item->id;
+                $data[$no]['text'] = $item->name;
+                $no++;
+            }
+
+            if (!empty($query->nextPageUrl())) {
+                $page = true;
+            }
+        }
+
+        return ['results' => $data, 'pagination' => ['more' => $page]];
     }
 }

@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Qualification;
 use App\Models\Relationship;
 use App\Models\Profession;
 use App\Models\Religion;
@@ -36,26 +35,6 @@ class BasicDataSeeder extends Seeder
                 $newReligion = new Religion();
                 $newReligion->name = $religion['name'];
                 $newReligion->save();
-            }
-        }
-
-        $qualifications = [
-            [ "name" => "Less than 10th" ],
-            [ "name" => "10th Pass" ],
-            [ "name" => "Diploma/ITI" ],
-            [ "name" => "12th Pass" ],
-            [ "name" => "Graduate" ],
-            [ "name" => "Post Graduate" ],
-            [ "name" => "PhD and Above" ]
-        ];
-
-        foreach ($qualifications as $qualification) {
-            $exist = Qualification::where('name', $qualification['name'])->first();
-
-            if (!$exist) {
-                $newQualification = new Qualification();
-                $newQualification->name = $qualification['name'];
-                $newQualification->save();
             }
         }
 

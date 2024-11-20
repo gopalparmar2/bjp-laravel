@@ -27,6 +27,14 @@
 
                         <div class="col-lg-4">
                             <div class="mb-3 controls">
+                                <label for="district_id" class="form-label">District</label>
+                                <select name="district_id" id="district_id" class="select2 form-select">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mb-3 controls">
                                 <label for="fltStatus" class="form-label">Status</label>
                                 <select class="form-control select2" name="fltStatus" id="fltStatus">
                                     <option value="">Select Status</option>
@@ -39,15 +47,18 @@
                         <div class="col-lg-4">
                             <div class="mb-3">
                                 <label for="date" class="form-label">Date</label>
-                                <input type="text" class="form-control date" name="date" id="date" autocomplete="off">
+                                <input type="text" class="form-control date" name="date" id="date"
+                                    autocomplete="off">
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-lg-6">
-                            <button type="submit" class="btn btn-primary w-md button-responsive" onclick="createDataTable()">Filter</button>
-                            <button type="submit" class="btn btn-secondary w-md button-responsive" onclick="resetFilter()">Clear</button>
+                            <button type="submit" class="btn btn-primary w-md button-responsive"
+                                onclick="createDataTable()">Filter</button>
+                            <button type="submit" class="btn btn-secondary w-md button-responsive"
+                                onclick="resetFilter()">Clear</button>
                         </div>
                     </div>
                 </div>
@@ -66,11 +77,13 @@
                                     <tr>
                                         <th>#</th>
                                         <th>STATE</th>
-                                        <th>ASSEMBLY CONSTITUENCY</th>
-                                        <th>NUMBER</th>
+                                        <th>DISTRICT</th>
+                                        <th>PINCODE</th>
+                                        <th>OFFICE NAME</th>
+                                        <th>TALUKA</th>
                                         <th>STATUS</th>
                                         <th>CREATED AT</th>
-                                        @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
+                                        @if (auth()->user()->can('pincode-edit') || auth()->user()->can('pincode-delete'))
                                             <th>ACTION</th>
                                         @endif
                                     </tr>
@@ -94,28 +107,30 @@
     <script>
         $(document).ready(function() {
             let table;
-            let url = "{!! route('admin.assemblyConstituency.datatable') !!}";
+            let url = "{!! route('admin.pincode.datatable') !!}";
 
             customDateRangePicker('#date');
 
             let columns = [
                 { data: 'id', name: 'id' },
-                { data: 'state_name', name: 'state_name' },
-                { data: 'name', name: 'name' },
-                { data: 'number', name: 'number' },
+                { data: 'state', name: 'state' },
+                { data: 'district', name: 'district' },
+                { data: 'pincode', name: 'pincode' },
+                { data: 'office_name', name: 'office_name' },
+                { data: 'taluka', name: 'taluka' },
                 { data: 'status', name: 'status' },
                 { data: 'created_at', name: 'created_at' },
-                @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
+                @if (auth()->user()->can('pincode-edit') || auth()->user()->can('pincode-delete'))
                     { data: 'action', name: 'action' },
                 @endif
             ];
 
             let sortingFalse = [];
-            @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
-                sortingFalse = [6];
+            @if (auth()->user()->can('pincode-edit') || auth()->user()->can('pincode-delete'))
+                sortingFalse = [8];
             @endif
 
-            createDataTable(url, columns, ['state_id', 'fltStatus', 'date'], sortingFalse);
+            createDataTable(url, columns, ['state_id', 'district_id', 'fltStatus', 'date'], sortingFalse);
         });
 
         $('#state_id').select2({
@@ -128,11 +143,37 @@
                     return {
                         search: params.term,
                         page: params.page || 1,
-                        type: 'state'
                     };
                 },
             },
             placeholder: 'Select State',
+        });
+
+        $('#state_id').on('change', function(e) {
+            let optionSelected = $("option:selected", this);
+            $('#district_id').attr('disabled', true);
+            $("#district_id").val(null).trigger("change");
+
+            if (this.value) {
+                $('#district_id').attr('disabled', false);
+            }
+        });
+
+        $('#district_id').select2({
+            allowClear: true,
+            ajax: {
+                url: "{!! route('ajax.get_districts') !!}",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1,
+                        stateId: $('#state_id').find(":selected").val()
+                    };
+                },
+            },
+            placeholder: 'Select District',
         });
     </script>
 @endsection

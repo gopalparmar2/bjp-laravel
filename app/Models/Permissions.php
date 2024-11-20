@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Permissions extends Model
 {
-    protected $table = 'permissions';
-
     use HasFactory, SoftDeletes;
+
+    protected $table = 'permissions';
 }

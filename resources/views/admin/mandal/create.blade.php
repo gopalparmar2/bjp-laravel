@@ -15,12 +15,12 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.assemblyConstituency.store') }}" name="addfrm" id="addfrm" method="POST"
+                    <form action="{{ route('admin.mandal.store') }}" name="addfrm" id="addfrm" method="POST"
                         enctype="multipart/form-data" autocomplete="off">
                         @csrf
 
-                        @isset($assemblyConstituency)
-                            <input type="hidden" name="assembly_constituency_id" id="assembly_constituency_id" value="{{ $assemblyConstituency->id }}">
+                        @isset($mandal)
+                            <input type="hidden" name="mandal_id" id="mandal_id" value="{{ $mandal->id }}">
                         @endisset
 
                         <div class="row">
@@ -28,10 +28,11 @@
                                 <div class="mb-3 controls">
                                     <label class="form-label">Select State <span class="text-danger">*</span></label>
                                     <select class="form-control select2" name="state_id" id="state_id">
-                                        @if (isset($assemblyConstituency) && isset($assemblyConstituency->state))
-                                            <option value="{{ $assemblyConstituency->state->id }}" selected>{{ $assemblyConstituency->state->name }}</option>
+                                        @if (isset($mandal) && isset($mandal->zila) && isset($mandal->zila->state))
+                                            <option value="{{ $mandal->zila->state->id }}" selected>{{ $mandal->zila->state->name }}</option>
                                         @endif
                                     </select>
+
                                     @error('state_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -41,22 +42,21 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label @error('name') is-invalid @enderror">Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name', isset($assemblyConstituency) ? $assemblyConstituency->name : '') }}">
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                <div class="mb-3 controls">
+                                    <label class="form-label">Select Zila <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" name="zilla_id" id="zila_id">
+                                        @if (isset($mandal) && isset($mandal->zila))
+                                            <option value="{{ $mandal->zila->id }}" selected>{{ $mandal->zila->name }}</option>
+                                        @endif
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label @error('number') is-invalid @enderror">Number <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control numbers_only" name="number" id="number" value="{{ old('number', isset($assemblyConstituency) ? $assemblyConstituency->number : '') }}">
-                                    @error('number')
+                                    <label class="form-label @error('name') is-invalid @enderror">Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name', isset($mandal) ? $mandal->name : '') }}">
+                                    @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -68,7 +68,7 @@
                                 <div class="mb-3 controls">
                                     <label class="form-label">Status</label>
                                     <div class="form-check form-switch form-switch-md mb-3" dir="ltr">
-                                        <input type="checkbox" name="status" class="form-check-input" {{ isset($assemblyConstituency) && $assemblyConstituency->status === 1 ? 'checked' : '' }}>
+                                        <input type="checkbox" name="status" class="form-check-input" {{ isset($mandal) && $mandal->status === 1 ? 'checked' : '' }}>
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
 
                         <div>
                             <button type="submit" class="btn btn-primary w-md button-responsive">Submit</button>
-                            <a href="{{ route('admin.assemblyConstituency.index') }}" class="btn btn-secondary w-md button-responsive">Cancel</a>
+                            <a href="{{ route('admin.mandal.index') }}" class="btn btn-secondary w-md button-responsive">Cancel</a>
                         </div>
                     </form>
                 </div>
@@ -116,10 +116,10 @@
                     state_id: {
                         required: true
                     },
-                    name: {
+                    zilla_id: {
                         required: true
                     },
-                    number: {
+                    name: {
                         required: true
                     }
                 },
@@ -127,11 +127,11 @@
                     state_id: {
                         required: 'The state field is required.'
                     },
+                    zilla_id: {
+                        required: 'The zila field is required.'
+                    },
                     name: {
                         required: 'The name field is required.'
-                    },
-                    number: {
-                        required: 'The number field is required.'
                     }
                 }
             })
@@ -151,6 +151,33 @@
                 },
             },
             placeholder: 'Select State',
+        });
+
+        $('#state_id').on('change', function(e) {
+            let optionSelected = $("option:selected", this);
+            $('#zila_id').attr('disabled', true);
+            $("#zila_id").val(null).trigger("change");
+
+            if (this.value) {
+                $('#zila_id').attr('disabled', false);
+            }
+        });
+
+        $('#zila_id').select2({
+            allowClear: true,
+            ajax: {
+                url: "{!! route('ajax.get_zilas') !!}",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1,
+                        stateId: $('#state_id').find(":selected").val()
+                    };
+                },
+            },
+            placeholder: 'Select Zila',
         });
     </script>
 @endsection

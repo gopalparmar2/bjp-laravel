@@ -19,6 +19,22 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="mb-3 controls">
+                                <label for="state_id" class="form-label">State</label>
+                                <select name="state_id" id="state_id" class="select2 form-select">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mb-3 controls">
+                                <label for="assembly_id" class="form-label">Assembly Constituencies</label>
+                                <select name="assembly_id" id="assembly_id" class="select2 form-select">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="mb-3 controls">
                                 <label for="fltStatus" class="form-label">Status</label>
                                 <select class="form-control select2" name="fltStatus" id="fltStatus">
                                     <option value="">Select Status</option>
@@ -57,10 +73,12 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>QUALIFICATION</th>
+                                        <th>STATE</th>
+                                        <th>AASEMBLY CONSTITUENCIES</th>
+                                        <th>BOOTH</th>
                                         <th>STATUS</th>
                                         <th>CREATED AT</th>
-                                        @if (auth()->user()->can('qualification-edit') || auth()->user()->can('qualification-delete'))
+                                        @if (auth()->user()->can('booth-edit') || auth()->user()->can('booth-delete'))
                                             <th>ACTION</th>
                                         @endif
                                     </tr>
@@ -84,26 +102,72 @@
     <script>
         $(document).ready(function() {
             let table;
-            let url = "{!! route('admin.qualification.datatable') !!}";
+            let url = "{!! route('admin.booth.datatable') !!}";
 
             customDateRangePicker('#date');
 
             let columns = [
                 { data: 'id', name: 'id' },
+                { data: 'state_name', name: 'state_name' },
+                { data: 'assembly_constituencies', name: 'assembly_constituencies' },
                 { data: 'name', name: 'name' },
                 { data: 'status', name: 'status' },
                 { data: 'created_at', name: 'created_at' },
-                @if (auth()->user()->can('qualification-edit') || auth()->user()->can('qualification-delete'))
+                @if (auth()->user()->can('booth-edit') || auth()->user()->can('booth-delete'))
                     { data: 'action', name: 'action' },
                 @endif
             ];
 
             let sortingFalse = [];
-            @if (auth()->user()->can('qualification-edit') || auth()->user()->can('qualification-delete'))
-                sortingFalse = [4];
+            @if (auth()->user()->can('booth-edit') || auth()->user()->can('booth-delete'))
+                sortingFalse = [6];
             @endif
 
-            createDataTable(url, columns, ['fltStatus', 'date'], sortingFalse);
-        })
+            createDataTable(url, columns, ['state_id', 'assembly_id', 'fltStatus', 'date'], sortingFalse);
+        });
+
+        $('#state_id').select2({
+            allowClear: true,
+            ajax: {
+                url: "{!! route('ajax.get_states') !!}",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1,
+                        type: 'state'
+                    };
+                },
+            },
+            placeholder: 'Select State',
+        });
+
+        $('#state_id').on('change', function(e) {
+            let optionSelected = $("option:selected", this);
+            $('#assembly_id').attr('disabled', true);
+            $("#assembly_id").val(null).trigger("change");
+
+            if (this.value) {
+                $('#assembly_id').attr('disabled', false);
+            }
+        });
+
+        $('#assembly_id').select2({
+            allowClear: true,
+            ajax: {
+                url: '{{ route('ajax.get_assembly') }}',
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1,
+                        stateId: $('#state_id').find(":selected").val()
+                    };
+                },
+            },
+            placeholder: 'Select Assembly Constituency',
+        });
     </script>
 @endsection

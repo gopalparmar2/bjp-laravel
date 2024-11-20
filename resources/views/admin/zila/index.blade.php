@@ -66,11 +66,10 @@
                                     <tr>
                                         <th>#</th>
                                         <th>STATE</th>
-                                        <th>ASSEMBLY CONSTITUENCY</th>
-                                        <th>NUMBER</th>
+                                        <th>ZILA</th>
                                         <th>STATUS</th>
                                         <th>CREATED AT</th>
-                                        @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
+                                        @if (auth()->user()->can('zila-edit') || auth()->user()->can('zila-delete'))
                                             <th>ACTION</th>
                                         @endif
                                     </tr>
@@ -94,7 +93,7 @@
     <script>
         $(document).ready(function() {
             let table;
-            let url = "{!! route('admin.assemblyConstituency.datatable') !!}";
+            let url = "{!! route('admin.zila.datatable') !!}";
 
             customDateRangePicker('#date');
 
@@ -102,17 +101,16 @@
                 { data: 'id', name: 'id' },
                 { data: 'state_name', name: 'state_name' },
                 { data: 'name', name: 'name' },
-                { data: 'number', name: 'number' },
                 { data: 'status', name: 'status' },
                 { data: 'created_at', name: 'created_at' },
-                @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
+                @if (auth()->user()->can('zila-edit') || auth()->user()->can('zila-delete'))
                     { data: 'action', name: 'action' },
                 @endif
             ];
 
             let sortingFalse = [];
-            @if (auth()->user()->can('assembly-constituency-edit') || auth()->user()->can('assembly-constituency-delete'))
-                sortingFalse = [6];
+            @if (auth()->user()->can('zila-edit') || auth()->user()->can('zila-delete'))
+                sortingFalse = [5];
             @endif
 
             createDataTable(url, columns, ['state_id', 'fltStatus', 'date'], sortingFalse);

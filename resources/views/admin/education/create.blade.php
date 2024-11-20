@@ -15,19 +15,19 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.qualification.store') }}" name="addfrm" id="addfrm" method="POST"
+                    <form action="{{ route('admin.education.store') }}" name="addfrm" id="addfrm" method="POST"
                         enctype="multipart/form-data" autocomplete="off">
                         @csrf
 
-                        @isset($qualification)
-                            <input type="hidden" name="qualification_id" id="qualification_id" value="{{ $qualification->id }}">
+                        @isset($education)
+                            <input type="hidden" name="education_id" id="education_id" value="{{ $education->id }}">
                         @endisset
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label @error('name') is-invalid @enderror">Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name', isset($qualification) ? $qualification->name : '') }}">
+                                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name', isset($education) ? $education->name : '') }}">
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                                 <div class="mb-3 controls">
                                     <label class="form-label">Status</label>
                                     <div class="form-check form-switch form-switch-md mb-3" dir="ltr">
-                                        <input type="checkbox" name="status" class="form-check-input" {{ isset($qualification) && $qualification->status === 1 ? 'checked' : '' }}>
+                                        <input type="checkbox" name="status" class="form-check-input" {{ isset($education) && $education->status === 1 ? 'checked' : '' }}>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
 
                         <div>
                             <button type="submit" class="btn btn-primary w-md button-responsive">Submit</button>
-                            <a href="{{ route('admin.qualification.index') }}" class="btn btn-secondary w-md button-responsive">Cancel</a>
+                            <a href="{{ route('admin.education.index') }}" class="btn btn-secondary w-md button-responsive">Cancel</a>
                         </div>
                     </form>
                 </div>

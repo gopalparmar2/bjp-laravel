@@ -61,9 +61,14 @@ class UserSeeder extends Seeder
                 'District List', 'District Add', 'District Edit', 'District Delete',
                 'Assembly Constituency List', 'Assembly Constituency Add', 'Assembly Constituency Edit', 'Assembly Constituency Delete',
                 'Profession List', 'Profession Add', 'Profession Edit', 'Profession Delete',
-                'Qualification List', 'Qualification Add', 'Qualification Edit', 'Qualification Delete',
                 'Religion List', 'Religion Add', 'Religion Edit', 'Religion Delete',
                 'Category List', 'Category Add', 'Category Edit', 'Category Delete',
+                'Booth List', 'Booth Add', 'Booth Edit', 'Booth Delete',
+                'Education List', 'Education Add', 'Education Edit', 'Education Delete',
+                'Mandal List', 'Mandal Add', 'Mandal Edit', 'Mandal Delete',
+                'Pincode List', 'Pincode Add', 'Pincode Edit', 'Pincode Delete',
+                'Relationship List', 'Relationship Add', 'Relationship Edit', 'Relationship Delete',
+                'Zila List', 'Zila Add', 'Zila Edit', 'Zila Delete',
             ];
 
             if (!empty($permissionsArr)) {

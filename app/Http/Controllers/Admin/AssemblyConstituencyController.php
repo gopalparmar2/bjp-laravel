@@ -152,11 +152,13 @@ class AssemblyConstituencyController extends Controller
             $rules = [
                 'name' => 'required',
                 'state_id' => 'required',
+                'number' => 'required|integer',
             ];
 
             $messages = [
                 'name.required' => 'The name field is required.',
                 'state_id.required' => 'The state field is required.',
+                'number.required' => 'The number field is required.',
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -182,6 +184,7 @@ class AssemblyConstituencyController extends Controller
 
                 $assemblyConstituency->name = $request->name;
                 $assemblyConstituency->state_id = $request->state_id;
+                $assemblyConstituency->number = $request->number;
                 $assemblyConstituency->status = ($request->has('status') && $request->status == 'on') ? 1 : 0;
 
                 if ($assemblyConstituency->save()) {

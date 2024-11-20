@@ -40,7 +40,7 @@
                     </li>
                 @endcanany
 
-                @canany(['category-list', 'profession-list', 'qualification-list', 'religion-list', 'state-list', 'district-list', 'assembly-constituency-list'])
+                @canany(['category-list', 'profession-list', 'education-list', 'religion-list', 'state-list', 'district-list', 'assembly-constituency-list'])
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-grid-alt"></i>
@@ -48,45 +48,75 @@
                         </a>
 
                         <ul class="sub-menu" aria-expanded="true">
-                            @can('role-list')
+                            @can('category-list')
                                 <li {{ (\Route::is('admin.category.index') || \Route::is('admin.category.edit') || \Route::is('admin.category.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.category.index') }}" key="t-light-sidebar"> Category </a>
                                 </li>
                             @endcan
 
-                            @can('role-list')
+                            @can('profession-list')
                                 <li {{ (\Route::is('admin.profession.index') || \Route::is('admin.profession.edit') || \Route::is('admin.profession.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.profession.index') }}" key="t-light-sidebar"> Profession </a>
                                 </li>
                             @endcan
 
-                            @can('role-list')
-                                <li {{ (\Route::is('admin.qualification.index') || \Route::is('admin.qualification.edit') || \Route::is('admin.qualification.create')) ? 'class=mm-active' : '' }}>
-                                    <a href="{{ route('admin.qualification.index') }}" key="t-light-sidebar"> Qualification </a>
+                            @can('education-list')
+                                <li {{ (\Route::is('admin.education.index') || \Route::is('admin.education.edit') || \Route::is('admin.education.create')) ? 'class=mm-active' : '' }}>
+                                    <a href="{{ route('admin.education.index') }}" key="t-light-sidebar"> Education </a>
                                 </li>
                             @endcan
 
-                            @can('role-list')
+                            @can('religion-list')
                                 <li {{ (\Route::is('admin.religion.index') || \Route::is('admin.religion.edit') || \Route::is('admin.religion.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.religion.index') }}" key="t-light-sidebar"> Religion </a>
                                 </li>
                             @endcan
 
-                            @can('role-list')
+                            @can('state-list')
                                 <li {{ (\Route::is('admin.state.index') || \Route::is('admin.state.edit') || \Route::is('admin.state.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.state.index') }}" key="t-light-sidebar"> State </a>
                                 </li>
                             @endcan
 
-                            @can('role-list')
+                            @can('district-list')
                                 <li {{ (\Route::is('admin.district.index') || \Route::is('admin.district.edit') || \Route::is('admin.district.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.district.index') }}" key="t-light-sidebar"> District </a>
                                 </li>
                             @endcan
 
-                            @can('role-list')
+                            @can('assembly-constituency-list')
                                 <li {{ (\Route::is('admin.assemblyConstituency.index') || \Route::is('admin.assemblyConstituency.edit') || \Route::is('admin.assemblyConstituency.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.assemblyConstituency.index') }}" key="t-light-sidebar"> Assembly Constituency </a>
+                                </li>
+                            @endcan
+
+                            @can('booth-list')
+                                <li {{ (\Route::is('admin.booth.index') || \Route::is('admin.booth.edit') || \Route::is('admin.booth.create')) ? 'class=mm-active' : '' }}>
+                                    <a href="{{ route('admin.booth.index') }}" key="t-light-sidebar"> Booth </a>
+                                </li>
+                            @endcan
+
+                            @can('mandal-list')
+                                <li {{ (\Route::is('admin.mandal.index') || \Route::is('admin.mandal.edit') || \Route::is('admin.mandal.create')) ? 'class=mm-active' : '' }}>
+                                    <a href="{{ route('admin.mandal.index') }}" key="t-light-sidebar"> Mandal </a>
+                                </li>
+                            @endcan
+
+                            @can('pincode-list')
+                                <li {{ (\Route::is('admin.pincode.index') || \Route::is('admin.pincode.edit') || \Route::is('admin.pincode.create')) ? 'class=mm-active' : '' }}>
+                                    <a href="{{ route('admin.pincode.index') }}" key="t-light-sidebar"> Pincode </a>
+                                </li>
+                            @endcan
+
+                            @can('zila-list')
+                                <li {{ (\Route::is('admin.zila.index') || \Route::is('admin.zila.edit') || \Route::is('admin.zila.create')) ? 'class=mm-active' : '' }}>
+                                    <a href="{{ route('admin.zila.index') }}" key="t-light-sidebar"> Zila </a>
+                                </li>
+                            @endcan
+
+                            @can('relationship-list')
+                                <li {{ (\Route::is('admin.relationship.index') || \Route::is('admin.relationship.edit') || \Route::is('admin.relationship.create')) ? 'class=mm-active' : '' }}>
+                                    <a href="{{ route('admin.relationship.index') }}" key="t-light-sidebar"> Relationship </a>
                                 </li>
                             @endcan
                         </ul>
