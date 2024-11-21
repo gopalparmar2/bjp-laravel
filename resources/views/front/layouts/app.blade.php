@@ -12,10 +12,10 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&amp;display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="assets/libs/datepicker/bootstrap-datepicker.min.css">
 
-        <link rel="stylesheet" href="{{ asset('frontassets/css/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/libs/datepicker/bootstrap-datepicker.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontAssets/css/styles.css') }}">
 
         <style>
             .swal2-popup.swal2-toast {
