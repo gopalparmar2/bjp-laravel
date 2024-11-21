@@ -165,7 +165,7 @@ class HomeController extends Controller
             $user->state_id = $request->state;
             $user->district_id = $request->district;
             $user->assembly_id = $request->assembly_constituency;
-            $user->referred_user_id = $request->referral_user_id;
+            $user->referred_user_id = $request->referred_user_id;
             $user->is_details_filled = 1;
 
             if ($user->membership_number == null) {

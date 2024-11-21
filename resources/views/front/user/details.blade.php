@@ -12,37 +12,7 @@
 
 @section('content')
     <div class="bg-white main-container">
-        <div class="d-flex align-style align-items-center secondary-container fixed-position">
-            <div class="d-flex align-items-center " style="column-gap: 6px;">
-                <img src="{{ asset('frontAssets/imgs/logo.svg') }}" alt="logo">
-
-                <p class="m-0 bjp-text">BHARATIYA JANATA PARTY</p>
-            </div>
-
-            <div class="header-wrapper">
-                <div class="dropdown-container">
-                    <button class="css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root" tabindex="0" type="button"
-                        aria-haspopup="true" aria-label="Change Language" data-mui-internal-clone-element="true">
-                        <span class="css-8je8zh-MuiTouchRipple-root"></span>
-                    </button>
-
-                    <p class="selected-language">en</p>
-                </div>
-
-                <div class="logout-icon" onclick="event.preventDefault(); document.getElementById('frmLogout').submit();">
-                    <svg class="css-i4bv87-MuiSvgIcon-root" focusable="false" aria-hidden="true" viewBox="0 0 24 24"
-                        data-testid="LogoutIcon">
-                        <path
-                            d="m17 7-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4z">
-                        </path>
-                    </svg>
-                </div>
-
-                <form id="frmLogout" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-            </div>
-        </div>
+        @include('front.layouts.header')
 
         <div class="margin-second d-flex align-items-center pd-heading" style="padding: 0px 25px;">
             <div style="width: 18px;"></div>
@@ -52,16 +22,12 @@
             <div></div>
         </div>
 
-        <div class="Toastify"></div>
-
         <div class="position-relative bg-white"></div>
 
         <div class="pp-main-container">
             <div class="pp-sub-contt">
                 <div class="profile-pic-container">
-                    @if (isset(auth()->user()->image) &&
-                            auth()->user()->image != '' &&
-                            \File::exists(public_path('uploads/users/' . auth()->user()->image)))
+                    @if (isset(auth()->user()->image) && auth()->user()->image != '' && \File::exists(public_path('uploads/users/' . auth()->user()->image)))
                         <div class="MuiAvatar-root MuiAvatar-circular css-11fq0lf-MuiAvatar-root">
                             <img src="{{ asset('uploads/users/' . auth()->user()->image) }}" alt="Profile Image"
                                 class="MuiAvatar-img css-1pqm26d-MuiAvatar-img">
@@ -88,9 +54,7 @@
                 </button>
             </div>
 
-            @if (isset(auth()->user()->image) &&
-                    auth()->user()->image != '' &&
-                    \File::exists(public_path('uploads/users/' . auth()->user()->image)))
+            @if (isset(auth()->user()->image) && auth()->user()->image != '' && \File::exists(public_path('uploads/users/' . auth()->user()->image)))
                 <div class="profile-photo-label" id="profilePhotoLabel">Profile Photo</div>
             @else
                 <div class="profile-photo-label" id="profilePhotoLabel">Upload Photo</div>
@@ -105,18 +69,9 @@
 
                 <div>
                     <div class="input-container">
-                        <div class="css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                            <label
-                                class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled MuiFormLabel-colorPrimary Mui-disabled MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeMedium MuiInputLabel-filled css-o943dk-MuiFormLabel-root-MuiInputLabel-root"
-                                data-shrink="true">
-                                Mobile number
-                            </label>
-
-                            <div
-                                class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                <input type="text" name="mobile_number"
-                                    class="MuiInputBase-input MuiFilledInput-input Mui-disabled css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                    value="{{ auth()->user()->mobile_number }}" disabled>
+                        <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
+                            <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary Mui-disabled MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                <input type="text" name="mobile_number" id="mobile_number" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Mobile number" value="{{ auth()->user()->mobile_number }}" disabled>
                             </div>
                         </div>
                     </div>
@@ -128,9 +83,9 @@
                     <div class="dfw-contt-one">
                         <select class="select-input" name="salutation">
                             <option value="">Title</option>
-                            <option class="option-select-input" value="mrs">Mrs</option>
-                            <option class="option-select-input" value="mr">Mr</option>
-                            <option class="option-select-input" value="ms">Ms</option>
+                            <option class="option-select-input" value="mrs" {{ (old('salutation') == 'mrs') ? 'selected' : '' }}>Mrs</option>
+                            <option class="option-select-input" value="mr" {{ (old('salutation') == 'mr') ? 'selected' : '' }}>Mr</option>
+                            <option class="option-select-input" value="ms" {{ (old('salutation') == 'ms') ? 'selected' : '' }}>Ms</option>
                         </select>
                     </div>
 
@@ -141,7 +96,7 @@
                             <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
                                 <div
                                     class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input type="text" name="name" id="name" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Name *">
+                                    <input type="text" name="name" id="name" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Name *" value="{{ old('name') }}">
                                 </div>
                             </div>
                         </div>
@@ -158,12 +113,9 @@
                                     class="MuiFormControl-root MuiTextField-root css-r0ibox-MuiFormControl-root-MuiTextField-root">
                                     <div
                                         class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd Mui-readOnly MuiInputBase-readOnly css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root">
-                                        <input type="text" name="dob" id="dob"
-                                            class="!outline-0 focus:border-0 MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd Mui-readOnly MuiInputBase-readOnly css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                            placeholder="DD-MM-YYYY" autocomplete="off">
+                                        <input type="text" name="dob" id="dob" class="!outline-0 focus:border-0 MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd Mui-readOnly MuiInputBase-readOnly css-nxo287-MuiInputBase-input-MuiOutlinedInput-input" placeholder="MM/DD/YYYY" autocomplete="off">
 
-                                        <fieldset aria-hidden="true"
-                                            class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline">
+                                        <fieldset aria-hidden="true" class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline">
                                             <legend class="css-ihdtdm">
                                                 <span class="notranslate">&ZeroWidthSpace;</span>
                                             </legend>
@@ -172,22 +124,13 @@
                                 </div>
 
                                 <div style="position: absolute; z-index: 0; margin-right: 10px;">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M8 2V5" stroke="#F15600" stroke-width="1.5" stroke-miterlimit="10"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M16 2V5" stroke="#F15600" stroke-width="1.5" stroke-miterlimit="10"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path
-                                            d="M16 3.5C19.33 3.68 21 4.95 21 9.65V15.83C21 19.95 20 22.01 15 22.01H9C4 22.01 3 19.95 3 15.83V9.65C3 4.95 4.67 3.69 8 3.5H16Z"
-                                            stroke="#F15600" stroke-width="1.5" stroke-miterlimit="10"
-                                            stroke-linecap="round" stroke-linejoin="round"></path>
-                                        <path d="M20.75 17.5996H3.25" stroke="#F15600" stroke-width="1.5"
-                                            stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8 2V5" stroke="#F15600" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M16 2V5" stroke="#F15600" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M16 3.5C19.33 3.68 21 4.95 21 9.65V15.83C21 19.95 20 22.01 15 22.01H9C4 22.01 3 19.95 3 15.83V9.65C3 4.95 4.67 3.69 8 3.5H16Z" stroke="#F15600" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M20.75 17.5996H3.25" stroke="#F15600" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round">
                                         </path>
-                                        <path
-                                            d="M12 8.25C10.77 8.25 9.73 8.92 9.73 10.22C9.73 10.84 10.02 11.31 10.46 11.61C9.85 11.97 9.5 12.55 9.5 13.23C9.5 14.47 10.45 15.24 12 15.24C13.54 15.24 14.5 14.47 14.5 13.23C14.5 12.55 14.15 11.96 13.53 11.61C13.98 11.3 14.26 10.84 14.26 10.22C14.26 8.92 13.23 8.25 12 8.25ZM12 11.09C11.48 11.09 11.1 10.78 11.1 10.29C11.1 9.79 11.48 9.5 12 9.5C12.52 9.5 12.9 9.79 12.9 10.29C12.9 10.78 12.52 11.09 12 11.09ZM12 14C11.34 14 10.86 13.67 10.86 13.07C10.86 12.47 11.34 12.15 12 12.15C12.66 12.15 13.14 12.48 13.14 13.07C13.14 13.67 12.66 14 12 14Z"
-                                            fill="#F15600"></path>
+                                        <path d="M12 8.25C10.77 8.25 9.73 8.92 9.73 10.22C9.73 10.84 10.02 11.31 10.46 11.61C9.85 11.97 9.5 12.55 9.5 13.23C9.5 14.47 10.45 15.24 12 15.24C13.54 15.24 14.5 14.47 14.5 13.23C14.5 12.55 14.15 11.96 13.53 11.61C13.98 11.3 14.26 10.84 14.26 10.22C14.26 8.92 13.23 8.25 12 8.25ZM12 11.09C11.48 11.09 11.1 10.78 11.1 10.29C11.1 9.79 11.48 9.5 12 9.5C12.52 9.5 12.9 9.79 12.9 10.29C12.9 10.78 12.52 11.09 12 11.09ZM12 14C11.34 14 10.86 13.67 10.86 13.07C10.86 12.47 11.34 12.15 12 12.15C12.66 12.15 13.14 12.48 13.14 13.07C13.14 13.67 12.66 14 12 14Z" fill="#F15600"></path>
                                     </svg>
                                 </div>
                             </div>
@@ -195,15 +138,10 @@
 
                         <div class="dob-field-two">
                             <div style="font-size: 16px; color: transparent;">Age</div>
-                            <div
-                                class="MuiFormControl-root MuiTextField-root age-input css-1rd8emk-MuiFormControl-root-MuiTextField-root">
-                                <div
-                                    class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl Mui-readOnly MuiInputBase-readOnly css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root">
-                                    <input type="text" name="age" id="age" placeholder="Age"
-                                        class="MuiInputBase-input MuiOutlinedInput-input Mui-readOnly MuiInputBase-readOnly css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
-                                        readonly>
-                                    <fieldset aria-hidden="true"
-                                        class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline">
+                            <div class="MuiFormControl-root MuiTextField-root age-input css-1rd8emk-MuiFormControl-root-MuiTextField-root">
+                                <div class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl Mui-readOnly MuiInputBase-readOnly css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root">
+                                    <input type="text" name="age" id="age" placeholder="Age" class="MuiInputBase-input MuiOutlinedInput-input Mui-readOnly MuiInputBase-readOnly css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input" readonly>
+                                    <fieldset aria-hidden="true" class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline">
                                         <legend class="css-ihdtdm">
                                             <span class="notranslate">&ZeroWidthSpace;</span>
                                         </legend>
@@ -216,9 +154,9 @@
                     <div class="gender-label" style="margin-top: 10px;">Gender *</div>
                     <input type="hidden" name="gender" id="gender" value="">
                     <div class="chip-container">
-                        <div class="chip" data-value="1">Female</div>
-                        <div class="chip" data-value="2">Male</div>
-                        <div class="chip" data-value="3">Other</div>
+                        <div class="chip" data-value="1" {{ old('gender') == 1 ? 'selected' : '' }}>Female</div>
+                        <div class="chip" data-value="2" {{ old('gender') == 2 ? 'selected' : '' }}>Male</div>
+                        <div class="chip" data-value="3" {{ old('gender') == 3 ? 'selected' : '' }}>Other</div>
                     </div>
                 </div>
 
@@ -227,7 +165,7 @@
                         <div class="input-container">
                             <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
                                 <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input type="text" name="email" id="email" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Email Id" value="">
+                                    <input type="text" name="email" id="email" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Email Id" value="{{ old('email') }}">
                                 </div>
                             </div>
                         </div>
@@ -244,14 +182,9 @@
 
                     <div>
                         <div class="input-container">
-                            <div
-                                class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                <div
-                                    class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input id=":r8:" placeholder="Address (House / Flat / Floor No.)" name="address"
-                                        type="text" maxlength="100"
-                                        class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                        value="">
+                            <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
+                                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                    <input type="text" name="address" id="address" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Address (House / Flat / Floor No.)" maxlength="100" value="{{ old('address') }}">
                                 </div>
                             </div>
                         </div>
@@ -259,11 +192,9 @@
 
                     <div>
                         <div class="input-container">
-                            <div
-                                class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                <div
-                                    class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input type="tel" name="pincode" id="pincode" maxlength="6" class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input numbers_only" placeholder="Pincode" value="" data-url="{{ route('ajax.get_pincode_details') }}">
+                            <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
+                                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                    <input type="tel" name="pincode" id="pincode" maxlength="6" class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Pincode" value="{{ old('pincode') }}" data-url="{{ route('ajax.get_pincode_details') }}">
                                 </div>
                             </div>
                         </div>
@@ -271,13 +202,8 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div
-                                class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
-                                <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false"
-                                    aria-haspopup="listbox"
-                                    aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
-                                    id="divStateName"
-                                    class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
+                                <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divStateName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input" data-url="{{ route('ajax.get_all_states') }}">
                                 </div>
 
                                 <input name="state" placeholder="State *" id="state" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
@@ -291,20 +217,13 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div
-                                class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
-                                <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false"
-                                    aria-haspopup="listbox"
-                                    aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
-                                    id="divDistrictName"
-                                    class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input  css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
+                                <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divDistrictName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input  css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
                                 </div>
 
                                 <input name="district" placeholder="District *" id="district" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
 
-                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon"
-                                    focusable="false" aria-hidden="true" viewBox="0 0 24 24"
-                                    data-testid="ArrowDropDownIcon">
+                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
                                     <path d="M7 10l5 5 5-5z"></path>
                                 </svg>
                             </div>
@@ -313,13 +232,8 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div
-                                class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
-                                <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false"
-                                    aria-haspopup="listbox"
-                                    aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard"
-                                    id="divAssemblyName"
-                                    class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
+                                <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divAssemblyName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
                                 </div>
 
                                 <input name="assembly_constituency" placeholder="Assembly constituency (AC)" id="assembly_constituency" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
@@ -337,7 +251,7 @@
                 <div class="add-address-label">Referral (only a Primary Member can refer)</div>
 
                 <div>
-                    <input type="hidden" name="referral_user_id" id="referral_user_id">
+                    <input type="hidden" name="referred_user_id" id="referred_user_id">
 
                     <div>
                         <div class="input-container">
@@ -655,7 +569,7 @@
 
         $(document).on('change', '#name, #dob, #isPledge', function() {
             checkFormValues();
-        })
+        });
 
         function checkFormValues() {
             const name = $('#name').val();
@@ -665,12 +579,13 @@
             const district = $('#district').val();
             const assembly = $('#assembly_constituency').val();
             const isPledgeChecked = $('#isPledge').is(':checked');
+            const isReferralValid = $('#errReferral').hasClass('d-none');
 
             const isSaveBtnDisabled = $('#btnSave').is(':disabled');
             let isValidValues = false;
 
             if (name != '' && dob != '' && gender != '' && state != '' && district != '' && assembly != '' &&
-                isPledgeChecked) {
+            isReferralValid && isPledgeChecked) {
                 isValidValues = true;
             }
 
@@ -683,6 +598,11 @@
 
         $(document).on('keyup, change, input', '#referral_code', function() {
             const input = $(this).val();
+
+            if (input == '') {
+                $('#errReferral').addClass('d-none');
+                checkFormValues();
+            }
 
             if (isNaN(input)) {
                 $(this).val(input.toUpperCase().substring(0, 6));
@@ -700,11 +620,11 @@
                 }
             }
 
-            const referral_user_id = $('#referral_user_id').val();
+            const referred_user_id = $('#referred_user_id').val();
             const referred_name = $('#referred_name').val();
 
-            if (referral_user_id != '') {
-                $('#referral_user_id').val('');
+            if (referred_user_id != '') {
+                $('#referred_user_id').val('');
             }
             if (referred_name != '') {
                 $('#referred_name').val('');
@@ -727,12 +647,14 @@
                 },
                 success: function(response) {
                     if (response.success) {
-                        $('#referral_user_id').val(response.user_id);
+                        $('#referred_user_id').val(response.user_id);
                         $('#referred_name').val(response.referred_name);
                         $('#divReferredName').removeClass('d-none');
                     } else {
                         $('#errReferral').removeClass('d-none');
                     }
+
+                    checkFormValues()
                 }
             });
         }
