@@ -1,3 +1,9 @@
+@if ($familyMembers->count() == 1)
+<p class="family-list-header">Added</p>
+
+<div class="family-details" id="divFamilyMemberDetails">
+@endif
+
 @foreach ($familyMembers as $familyMember)
     <div class="family-list-item-container" id="divFamilyMemberContiner_{{ $familyMember->id }}">
         <div class="row-item">
@@ -38,3 +44,7 @@
         </div>
     </div>
 @endforeach
+
+@if ($familyMembers->count() == 1)
+</div>
+@endif

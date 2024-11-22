@@ -285,6 +285,7 @@ class HomeController extends Controller
                 $response['success'] = true;
                 $response['message'] = $resMessage;
                 $response['memberDetailsHtml'] = $memberDetailsHtml;
+                $response['membersCount'] = $user->familyMembers->count();
             } else {
                 $response['success'] = false;
                 $response['message'] = 'Something went wrong.';

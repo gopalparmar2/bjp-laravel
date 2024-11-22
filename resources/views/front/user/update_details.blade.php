@@ -1213,8 +1213,20 @@
                                     $('#divFamilyMemberList').removeClass('d-none');
                                 }
 
-                                $('#divFamilyMemberDetails').html('');
-                                $('#divFamilyMemberDetails').html(response.memberDetailsHtml);
+                                if (response.membersCount == 1) {
+                                    $('#divFamilyMemberList').html('');
+                                    $('#divFamilyMemberList').html(response.memberDetailsHtml);
+                                } else {
+                                    $('#divFamilyMemberDetails').html('');
+                                    $('#divFamilyMemberDetails').html(response.memberDetailsHtml);
+                                }
+
+                                $('#member_name').val('');
+                                $('#relationship_id').val('');
+                                $('#divRelationshipName').html('');
+                                $('#member_dob').val('');
+                                $('#member_age').val('');
+                                $('#member_mobile_number').val('');
                             }
 
                             Toast.fire({ icon: 'success', title: response.message });
@@ -1290,6 +1302,7 @@
                     dataType: "json",
                     success: function (response) {
                         if (response.success) {
+                            $('#btnAddFamilyMember').html('Update');
                             $('#familyMemberId').val(id);
                             $('#member_name').val(response.name);
                             $('#relationship_id').addClass('d-none');
