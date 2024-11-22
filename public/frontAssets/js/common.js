@@ -196,6 +196,8 @@ $(document).on('click', '#btnUploadImage', function() {
     let formData = new FormData();
     formData.append('image', $('#file-upload-gallery')[0].files[0]);
     const imgUploadUrl = $(this).data('img-upload-url');
+    $('#uploadImgSvg').addClass('d-none');
+    $('#uploadImgBtnLoader').removeClass('d-none');
 
     $.ajax({
         type: "POST",
@@ -224,6 +226,9 @@ $(document).on('click', '#btnUploadImage', function() {
 
             $('#profile-img').attr('src', '');
             $('#previewUploadedImg').addClass('d-none');
+
+            $('#uploadImgSvg').removeClass('d-none');
+            $('#uploadImgBtnLoader').addClass('d-none');
         }
     });
 });
