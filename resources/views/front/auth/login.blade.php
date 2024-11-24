@@ -15,15 +15,14 @@
                 <div class="auth-text-container">
                     <img src="{{ asset('frontAssets/imgs/img2.png') }}" alt="not_found"
                         style="width: 100%; border-radius: 8px">
-                    <p class="auth-text">भाजपा सदस्यता अभियान - 2024</p>
+                    <p class="auth-text">भाजपा सदस्यता अभियान - {{ date('Y') }}</p>
                 </div>
 
                 <div class="d-flex flex-column" style="margin: 0px 26px; row-gap: 13px">
                     <p class="m-0 enter-mobile">Enter your mobile number</p>
                     <div class="d-flex number-container bg-white input-container-border">
                         <p class="input-p m-0 input-number-country-code">+91</p>
-                        <input type="tel" name="mobileNumber" class="input-number w-100 bg-white editable-num"
-                            maxlength="10" value="{{ auth()->user() ? auth()->user()->mobile_number : '' }}">
+                        <input type="tel" name="mobileNumber" class="input-number w-100 bg-white editable-num" maxlength="10" value="">
 
                         <div class="padding-top-number" style="margin-right: 10px"></div>
                     </div>

@@ -39,8 +39,11 @@ Route::controller(AjaxController::class)->group(function () {
         Route::post('/get-booths', 'getBooths')->name('get_booths');
 
         Route::get('/get-assembly', 'getAssemblaies')->name('get_assembly');
-        Route::get('/get-zilas', 'getZilasDD')->name('get_zilas');
+        Route::get('/get-zilas', 'getZilasDD')->name('get_zila_dd');
+        Route::get('/get-mandals', 'getMandalDD')->name('get_mandal_dd');
         Route::get('/get-districts', 'getDistricts')->name('get_districts');
+        Route::get('/get-booths', 'getBoothDD')->name('get_booth_dd');
+        Route::post('/get-pincode-data', 'getPincodeData')->name('get_pincode_data');
     });
 });
 
@@ -89,6 +92,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::post('/datatable', 'datatable')->name('datatable');
                 Route::get('/create', 'create')->name('create');
                 Route::post('/store', 'store')->name('store');
+                Route::get('/view/{id}', 'view')->name('view');
                 Route::get('/edit/{id}', 'edit')->name('edit');
                 Route::post('/destroy', 'destroy')->name('destroy');
                 Route::post('/change_status', 'change_status')->name('change.status');

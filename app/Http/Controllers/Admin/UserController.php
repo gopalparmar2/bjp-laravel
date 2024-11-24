@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Hash;
 use Spatie\Image\Enums\ImageDriver;
 use Spatie\Image\Image;
 use Spatie\Permission\Models\Role;
+use App\Models\FamilyMember;
+use App\Models\Relationship;
+use App\Models\Profession;
+use App\Models\Education;
+use App\Models\Religion;
+use App\Models\Category;
 use App\Models\Roles;
 use App\Models\User;
 use DataTables;
@@ -55,17 +61,13 @@ class UserController extends Controller
     }
 
     public function datatable(Request $request) {
-        $user = User::with('roles')->whereHas('roles', function ($q) {
-            $q->where('id', '!=', 1);
-        })->where('id', '!=', Auth::id());
+        $user = User::where('id', '!=', Auth::id());
 
         if ($request->has('filter')) {
-            if (isset($request->filter['role_ids']) && $request->filter['role_ids'] != '') {
-                $role_ids = $request->filter['role_ids'];
+            if (isset($request->filter['mobile_number']) && $request->filter['mobile_number'] != '') {
+                $mobile_number = $request->filter['mobile_number'];
 
-                $user->whereHas('roles', function ($q) use($role_ids) {
-                    $q->whereIn('id', $role_ids);
-                });
+                $user->where('mobile_number', $mobile_number);
             }
 
             if ($request->filter['fltStatus'] != '') {
@@ -88,6 +90,10 @@ class UserController extends Controller
         return DataTables::eloquent($user)
             ->addColumn('action', function ($user) {
                 $action = '';
+                if (Auth::user()->can('user-list')) {
+                    $action .= '<a href="'.route('admin.user.view', $user->id).'" class="btn btn-outline-secondary btn-sm" title="View"><i class="fas fa-eye"></i></a>&nbsp;';
+                }
+
                 if (Auth::user()->can('user-edit')) {
                     $action .= '<a href="'.route('admin.user.edit', $user->id).'" class="btn btn-outline-secondary btn-sm" title="Edit"><i class="fas fa-pencil-alt"></i></a>&nbsp;';
                 }
@@ -98,23 +104,41 @@ class UserController extends Controller
 
                 return $action;
             })
-            ->addColumn('roles', function ($user) {
-                $roles = '';
-                $last_key = count($user->roles) - 1;
+            ->addColumn('full_name', function ($user) {
+                $fullName = $user->name;
 
-                foreach ($user->roles as $key => $role) {
-                    $comma = ($last_key != $key) ? ', ' : '';
-                    $roles .= $role->display_name.$comma;
+                if ($user->salutation != '') {
+                    $fullName = ucfirst($user->salutation).'. '.$user->name;
                 }
 
-                return $roles;
+                return $fullName;
+            })
+            ->editColumn('dob', function ($user) {
+                return $user->dob ? date('d/m/Y', strtotime($user->dob)) : '';
+            })
+            ->editColumn('age', function ($user) {
+                return $user->age ? $user->age.' Yrs' : '';
+            })
+            ->editColumn('gender', function ($user) {
+                $gender = '';
+
+                if ($user->gender == 1) {
+                    $gender = 'Female';
+                } elseif ($user->gender == 2) {
+                    $gender = 'Male';
+                } elseif ($user->gender == 3) {
+                    $gender = 'Other';
+                }
+
+                return $gender;
             })
             ->editColumn('image', function ($user) {
+                $image = '';
+
                 if ($user->image != '' && File::exists(public_path('uploads/users/' . $user->image))) {
                     $image = '<img src="' . asset('uploads/users/' . $user->image) . '" id="users" class="rounded-circle header-profile-user" alt="Avatar">';
-                } else {
-                    $image = '-';
                 }
+
                 return $image;
             })
             ->editColumn('status', function ($user) {
@@ -171,7 +195,11 @@ class UserController extends Controller
                 'title' => 'Add User'
             );
 
-            $data['roles'] = Roles::whereStatus(1)->get();
+            $data['religions'] = Religion::select('id', 'name')->whereStatus(1)->get();
+            $data['categories'] = Category::select('id', 'name')->whereStatus(1)->get();
+            $data['educations'] = Education::select('id', 'name')->whereStatus(1)->get();
+            $data['professions'] = Profession::select('id', 'name')->whereStatus(1)->get();
+            $data['relationships'] = Relationship::select('id', 'name')->whereStatus(1)->get();
 
             return view('admin.user.create', $data);
         } catch (\Exception $e) {
@@ -182,21 +210,34 @@ class UserController extends Controller
     public function store(Request $request) {
         try {
             $rules = [
-                'role_id' => 'required',
+                'salutation' => 'required',
                 'name'    => 'required',
+                'dob'    => 'required',
+                'gender'    => 'required',
+                'address'    => 'required',
+                'pincode'    => 'required',
+                'state_id'    => 'required',
+                'district_id'    => 'required',
+                'assembly_id'    => 'required',
+                'religion_id'    => 'required',
+                'category_id'    => 'required',
+                'caste'    => 'required',
+                'education_id'    => 'required',
+                'profession_id'    => 'required',
             ];
 
-            if ($request->has('user_id') && $request->user_id == '') {
+            if ($request->has('user_id') && $request->user_id != '') {
+                if ($request->has('email') && $request->email != '') {
+                    $rules['email'] = 'required|unique:users,email,'.$request->user_id;
+                }
+
+                $rules['mobile_number'] = 'required|unique:users,mobile_number,'.$request->user_id;
+            } else {
                 if ($request->has('email') && $request->email != '') {
                     $rules['email'] = 'required|unique:users,email';
                 }
 
-                $rules['password'] = 'required|confirmed';
-                $rules['password_confirmation'] = 'required';
-            } else {
-                if ($request->has('email') && $request->email != '') {
-                    $rules['email'] = 'required|unique:users,email,'.$request->user_id;
-                }
+                $rules['mobile_number'] = 'required|unique:users,mobile_number';
             }
 
             if ($request->has('image')) {
@@ -204,21 +245,33 @@ class UserController extends Controller
             }
 
             $messages = [
-                'role_id.required'          => 'The role ids field is required.',
-                'name.required'             => 'The name field is required.',
-                'password.required'         => 'The password field is required.',
-                'mobile_number.required'    => 'The mobile number field is required.',
-                'mobile_number.unique'      => 'The mobile number already exists.',
-                'email.unique'              => 'The email already exists.',
-                'image.required'            => 'The image field is required.',
-                'image.mimes'               => 'Please insert image only.',
-                'image.max'                 => 'Image should be less than 4 MB.',
+                'salutation.required'      => 'The salutation field is required.',
+                'name.required'            => 'The name field is required.',
+                'email.required'           => 'The email field is required.',
+                'email.unique'             => 'The email already exists.',
+                'mobile_number.required'   => 'The mobile number field is required.',
+                'mobile_number.unique'     => 'The mobile number already exists.',
+                'dob.required'             => 'The dob field is required.',
+                'gender.required'          => 'The gender field is required.',
+                'address.required'         => 'The address field is required.',
+                'pincode.required'         => 'The pincode field is required.',
+                'state_id.required'        => 'The state field is required.',
+                'district_id.required'     => 'The district field is required.',
+                'assembly_id.required'     => 'The assembly field is required.',
+                'religion_id.required'     => 'The religion field is required.',
+                'category_id.required'     => 'The category field is required.',
+                'caste.required'           => 'The caste field is required.',
+                'education_id.required'    => 'The education field is required.',
+                'profession_id.required'   => 'The profession field is required.',
+                'image.required'           => 'The image field is required.',
+                'image.mimes'              => 'Please insert image only.',
+                'image.max'                => 'Image should be less than 4 MB.',
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
 
             if ($validator->fails()) {
-                if ($request->user_id != '') {
+                if ($request->has('user_id') && $request->user_id != '') {
                     return redirect()->route('admin.user.edit', $request->user_id)
                                 ->withErrors($validator)
                                 ->withInput();
@@ -228,21 +281,49 @@ class UserController extends Controller
                                 ->withInput();
                 }
             } else {
-                if ($request->user_id != '') {
+                if ($request->has('user_id') && $request->user_id != '') {
                     $user = User::where('id', $request->user_id)->first();
                     $action = 'updated';
                 } else {
                     $user = new User();
                     $action = 'added';
+
+                    $user->is_details_filled = 1;
+                    $user->referral_code = generateMyReferralCode() ;
+                    $user->membership_number = generateMembershipNumber();
                 }
 
+                $user->salutation = $request->salutation;
                 $user->name = $request->name;
                 $user->email = $request->email;
-                $user->status = ($request->has('status') && $request->status == 'on') ? 1 : 0;
+                $user->mobile_number = $request->mobile_number;
 
-                if ($request->has('password') && $request->password != '') {
-                    $user->password = Hash::make($request->password);
+                if ($request->dob != '') {
+                    $explededDob = explode('/', $request->dob);
+                    $userDob = $explededDob[2].'-'.$explededDob[1].'-'.$explededDob[0];
+                    $user->dob = $userDob;
                 }
+
+                $user->age = $request->age;
+                $user->gender = $request->gender;
+                $user->address = $request->address;
+                $user->pincode = $request->pincode;
+                $user->state_id = $request->state_id;
+                $user->district_id = $request->district_id;
+                $user->assembly_id = $request->assembly_id;
+                $user->religion_id = $request->religion_id;
+                $user->category_id = $request->category_id;
+                $user->caste = $request->caste;
+                $user->education_id = $request->education_id;
+                $user->profession_id = $request->profession_id;
+                $user->whatsapp_number = $request->whatsapp_number;
+                $user->relationship_name = $request->relationship_name;
+                $user->referred_user_id = $request->referred_user_id;
+                $user->landline_number = $request->landline_number;
+                $user->zila_id = $request->zila_id;
+                $user->mandal_id = $request->mandal_id;
+                $user->ward_name = $request->ward_name;
+                $user->booth_id = $request->booth_id;
 
                 if ($image = $request->file('image')) {
                     $userFolderPath = public_path('uploads/users/');
@@ -264,8 +345,28 @@ class UserController extends Controller
                 }
 
                 if ($user->save()) {
-                    $role = Role::where('id', $request->role_id)->first();
-                    $user->assignRole($role->name);
+                    if (count($request->familyMembers) > 0) {
+                        if ($request->user_id != '') {
+                            FamilyMember::where('user_id', $request->user_id)->delete();
+                        }
+
+                        foreach ($request->familyMembers as $member) {
+                            $familyMember = new FamilyMember();
+                            $familyMember->user_id = $user->id;
+                            $familyMember->relationship_id = $member['relationship_id'];
+                            $familyMember->name = $member['name'];
+                            $familyMember->mobile_number = $member['mobile_number'];
+                            $familyMember->age = $member['age'];
+
+                            if ($member['dob'] != '') {
+                                $explededMemberDob = explode('/', $member['dob']);
+                                $memberDob = $explededMemberDob[2].'-'.$explededMemberDob[1].'-'.$explededMemberDob[0];
+                                $familyMember->dob = $memberDob;
+                            }
+
+                            $familyMember->save();
+                        }
+                    }
 
                     Session::flash('alert-message', "User ".$action." successfully.");
                     Session::flash('alert-class','success');
@@ -275,7 +376,7 @@ class UserController extends Controller
                     Session::flash('alert-message', "User not ".$action.".");
                     Session::flash('alert-class','error');
 
-                    if ($request->user_id != '') {
+                    if ($request->has('user_id') && $request->user_id != '') {
                         return redirect()->route('admin.user.edit', $request->user_id);
                     } else {
                         return redirect()->route('admin.user.create');
@@ -286,7 +387,7 @@ class UserController extends Controller
             Session::flash('alert-message', $e->getMessage());
             Session::flash('alert-class','error');
 
-            if ($request->has('user_id')) {
+            if ($request->has('user_id') && $request->user_id != '') {
                 return redirect()->route('admin.user.edit', $request->user_id);
             } else {
                 return redirect()->route('admin.user.create');
@@ -316,18 +417,50 @@ class UserController extends Controller
 
             $user = User::find($id);
 
-
             if ($user) {
-                $data['roles'] = Role::where('id', '!=', 1)->get();
                 $data['user'] = $user;
-
-                $role_ids = [];
-                foreach ($user->roles as $role) {
-                    $role_ids[] = $role->id;
-                }
-                $data['role_ids'] = $role_ids;
+                $data['religions'] = Religion::select('id', 'name')->whereStatus(1)->get();
+                $data['categories'] = Category::select('id', 'name')->whereStatus(1)->get();
+                $data['educations'] = Education::select('id', 'name')->whereStatus(1)->get();
+                $data['professions'] = Profession::select('id', 'name')->whereStatus(1)->get();
+                $data['relationships'] = Relationship::select('id', 'name')->whereStatus(1)->get();
 
                 return view('admin.user.create', $data);
+            } else {
+                return abort(404);
+            }
+        } catch (\Exception $e) {
+            return abort(404);
+        }
+    }
+
+    public function view($id) {
+        try {
+            $data['page_title'] = 'View User';
+
+            $data['breadcrumb'][] = array(
+                'link' => route('admin.index'),
+                'title' => 'Dashboard'
+            );
+
+            if (Auth::user()->can('user-list')) {
+                $data['breadcrumb'][] = array(
+                    'link' => route('admin.user.index'),
+                    'title' => 'User List'
+                );
+            }
+
+            $data['breadcrumb'][] = array(
+                'title' => 'View User'
+            );
+
+            $user = User::find($id);
+
+
+            if ($user) {
+                $data['user'] = $user;
+
+                return view('admin.user.view', $data);
             } else {
                 return abort(404);
             }

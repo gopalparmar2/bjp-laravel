@@ -164,7 +164,7 @@ class AjaxController extends Controller
     public function getPincodeDetails(Request $request) {
         try {
             $pincode = Pincode::whereStatus(1)->where('pincode', $request->pincode)->first();
-            $response['status'] = false;
+            $response['success'] = false;
 
             if (isset($pincode)) {
                 $response['success'] = true;
@@ -318,5 +318,89 @@ class AjaxController extends Controller
         }
 
         return ['results' => $data, 'pagination' => ['more' => $page]];
+    }
+
+    public function getBoothDD(Request $request) {
+        $no = 0;
+        $data = array();
+        $page = false;
+
+        if ($request->has('assemblyId')) {
+            $query = Booth::whereStatus(1)->where('assembly_id', $request->assemblyId);
+
+            if ($request->search) {
+                $query = $query->where('name', 'like', '%' .$request->search. '%');
+            }
+
+            $query = $query->orderBy('name', 'asc')->simplePaginate(50);
+
+            foreach($query as $item) {
+                $data[$no]['id'] = $item->id;
+                $data[$no]['text'] = $item->name;
+                $no++;
+            }
+
+            if (!empty($query->nextPageUrl())) {
+                $page = true;
+            }
+        }
+
+        return ['results' => $data, 'pagination' => ['more' => $page]];
+    }
+
+    public function getMandalDD(Request $request) {
+        $no = 0;
+        $data = array();
+        $page = false;
+
+        if ($request->has('zilaId')) {
+            $query = Mandal::whereStatus(1)->where('zilla_id', $request->zilaId);
+
+            if ($request->search) {
+                $query = $query->where('name', 'like', '%' .$request->search. '%');
+            }
+
+            $query = $query->orderBy('name', 'asc')->simplePaginate(50);
+
+            foreach($query as $item) {
+                $data[$no]['id'] = $item->id;
+                $data[$no]['text'] = $item->name;
+                $no++;
+            }
+
+            if (!empty($query->nextPageUrl())) {
+                $page = true;
+            }
+        }
+
+        return ['results' => $data, 'pagination' => ['more' => $page]];
+    }
+
+    public function getPincodeData(Request $request) {
+        try {
+            $pincode = Pincode::whereStatus(1)->where('pincode', $request->pincode)->first();
+            $response['success'] = false;
+
+            if ($pincode) {
+                $response['success'] = true;
+                $response['stateId'] = null;
+                $response['districtId'] = null;
+
+                if ($pincode->state) {
+                    $response['stateId'] = $pincode->state->id;
+                }
+
+                if ($pincode->district) {
+                    $response['districtId'] = $pincode->district->id;
+                }
+            }
+
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $response['success'] = false;
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response);
+        }
     }
 }

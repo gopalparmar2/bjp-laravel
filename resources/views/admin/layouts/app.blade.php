@@ -12,6 +12,9 @@
             <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
             <link href="{{ asset('assets/libs/select2/select2.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
             <link href="{{ asset('assets/libs/datepickerrange/daterangepicker.css') }}" rel="stylesheet">
+            <link rel="stylesheet" href="{{ asset('assets/libs/datepicker/bootstrap-datepicker.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/libs/datepicker/datepicker.min.css') }}">
+
 
             <style>
                 .btn-reset_btn {
@@ -137,6 +140,8 @@
             <script src="{{ asset('assets/libs/datepickerrange/moment.min.js') }}"></script>
             <script src="{{ asset('assets/libs/datepickerrange/daterangepicker.min.js') }}"></script>
             <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+            <script src="{{ asset('assets/libs/datepicker/bootstrap-datepicker.min.js') }}"></script>
+            <script src="{{ asset('assets/libs/datepicker/datepicker.min.js') }}"></script>
             <script src="{{ asset('assets/common/common.js') }}"></script>
 
             @if (Session::has('alert-message'))

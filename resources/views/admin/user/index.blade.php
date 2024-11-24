@@ -19,14 +19,8 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="mb-3 controls">
-                                <label for="role_ids" class="form-label">Roles</label>
-                                <select name="role_ids" id="role_ids" class="select2 form-select" multiple>
-                                    @isset($roles)
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->id }}">{{ $role->display_name }}</option>
-                                        @endforeach
-                                    @endisset
-                                </select>
+                                <label for="role_ids" class="form-label">Mobile Number</label>
+                                <input type="text" class="form-control numbers_only" name="mobile_number" id="mobile_number" maxlength="10" autocomplete="off">
                             </div>
                         </div>
 
@@ -70,10 +64,13 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>NAME</th>
-                                        <th>ROLES</th>
-                                        <th>EMAIL</th>
                                         <th>IMAGE</th>
+                                        <th>FULL NAME</th>
+                                        <th>EMAIL</th>
+                                        <th>MOBILE NUMBER</th>
+                                        <th>D.O.B</th>
+                                        <th>AGE</th>
+                                        <th>GENDER</th>
                                         <th>STATUS</th>
                                         <th>CREATED AT</th>
                                         @if (auth()->user()->can('user-edit') || auth()->user()->can('user-delete'))
@@ -106,10 +103,13 @@
 
             let columns = [
                 { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },
-                { data: 'roles', name: 'roles' },
-                { data: 'email', name: 'email' },
                 { data: 'image', name: 'image' },
+                { data: 'full_name', name: 'full_name' },
+                { data: 'email', name: 'email' },
+                { data: 'mobile_number', name: 'mobile_number' },
+                { data: 'dob', name: 'dob' },
+                { data: 'age', name: 'age' },
+                { data: 'gender', name: 'gender' },
                 { data: 'status', name: 'status' },
                 { data: 'created_at', name: 'created_at' },
                 @if (auth()->user()->can('user-edit') || auth()->user()->can('user-delete'))
@@ -117,12 +117,12 @@
                 @endif
             ];
 
-            let sortingFalse = [2, 4];
+            let sortingFalse = [1];
             @if (auth()->user()->can('user-edit') || auth()->user()->can('user-delete'))
-                sortingFalse = [2, 4, 7];
+                sortingFalse = [1, 6];
             @endif
 
-            createDataTable(url, columns, ['role_ids', 'fltStatus', 'date'], sortingFalse);
+            createDataTable(url, columns, ['mobile_number', 'fltStatus', 'date'], sortingFalse);
         });
     </script>
 @endsection

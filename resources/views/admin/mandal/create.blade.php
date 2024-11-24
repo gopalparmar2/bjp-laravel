@@ -166,7 +166,7 @@
         $('#zila_id').select2({
             allowClear: true,
             ajax: {
-                url: "{!! route('ajax.get_zilas') !!}",
+                url: "{!! route('ajax.get_zila_dd') !!}",
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
