@@ -58,7 +58,7 @@
   </head>
 
   <body>
-    <div id="app">
+    <div id="app" style="background-image: linear-gradient(#fff0dd, #eef5ed) !important; ">
         @yield('content')
     </div>
 
