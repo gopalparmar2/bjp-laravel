@@ -24,7 +24,7 @@ a {
     flex-direction: column;
     align-items: stretch;
     justify-content: stretch;
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
 }
 
@@ -40,7 +40,7 @@ a {
     max-width: 421px;
     margin-left: auto;
     margin-right: auto;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
     flex-flow: column;
     width: 100%;
@@ -2130,7 +2130,7 @@ input[type="number"] {
     border-radius: 11px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-   
+
     padding: 10px 20px;
     position: relative;
     overflow: hidden;
