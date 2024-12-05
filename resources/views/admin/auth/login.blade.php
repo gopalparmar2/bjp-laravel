@@ -8,20 +8,6 @@
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
-        <style>
-            .boxHeader {
-                background-color: #ffd6b9;
-            }
-
-            .textPrimary {
-                color: #f26522;
-            }
-
-            .btn-primary {
-                background-color: #f26522 !important;
-                border-color: #f26522 !important;
-            }
-        </style>
     </head>
 
     <body>
@@ -30,11 +16,11 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div class="card overflow-hidden">
-                            <div class="boxHeader">
+                            <div class="bg-primary bg-soft">
                                 <div class="row">
                                     <div class="col-7">
-                                        <div class="textPrimary p-4">
-                                            <h5 class="textPrimary">Welcome Back !</h5>
+                                        <div class="text-primary p-4">
+                                            <h5 class="text-primary">Welcome Back !</h5>
                                             <p>Sign in to continue to {{ config('app.name') }}.</p>
                                         </div>
                                     </div>
