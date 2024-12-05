@@ -2,13 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Relationship;
 use App\Models\Profession;
 use App\Models\Religion;
 use App\Models\Category;
 use App\Models\Education;
+use App\Models\Caste;
 
 class BasicDataSeeder extends Seeder
 {
@@ -138,6 +138,36 @@ class BasicDataSeeder extends Seeder
                 $newRelationship = new Relationship();
                 $newRelationship->name = $relationship['name'];
                 $newRelationship->save();
+            }
+        }
+
+        $castes = [
+            [ "name" => "Leva Patel" ],
+            [ "name" => "Khat Rajput" ],
+            [ "name" => "Koli" ],
+            [ "name" => "Bharvad / Rabari" ],
+            [ "name" => "Sagar" ],
+            [ "name" => "Brahman" ],
+            [ "name" => "Dalit" ],
+            [ "name" => "Bavaji" ],
+            [ "name" => "Devipujak" ],
+            [ "name" => "Sindhi" ],
+            [ "name" => "Vanand" ],
+            [ "name" => "Darbar / Kshatriya" ],
+            [ "name" => "Luhar / Mistri" ],
+            [ "name" => "Gadhvi" ],
+            [ "name" => "Kadva Patel" ],
+            [ "name" => "Darji" ],
+            [ "name" => "Other" ],
+        ];
+
+        foreach ($castes as $caste) {
+            $exist = Caste::where('name', $caste['name'])->first();
+
+            if (!$exist) {
+                $newCaste = new Caste();
+                $newCaste->name = $caste['name'];
+                $newCaste->save();
             }
         }
     }

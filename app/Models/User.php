@@ -69,6 +69,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsTo(Category::class);
     }
 
+    public function caste() {
+        return $this->belongsTo(Caste::class);
+    }
+
     public function education() {
         return $this->belongsTo(Education::class);
     }
@@ -78,7 +82,11 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function familyMembers() {
-        return $this->hasMany(FamilyMember::class);
+        return $this->hasMany(User::class, 'parent_id');
+    }
+
+    public function relationship() {
+        return $this->belongsTo(Relationship::class);
     }
 
     public function reffered_user() {
