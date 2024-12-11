@@ -79,24 +79,39 @@
 
                 <div class="divider-div"></div>
 
-                <div class="double-field-wrapper">
-                    <div class="dfw-contt-one">
-                        <select class="select-input" name="salutation">
-                            <option value="">Title</option>
-                            <option class="option-select-input" value="mrs" {{ (old('salutation') == 'mrs') ? 'selected' : '' }}>Mrs</option>
-                            <option class="option-select-input" value="mr" {{ (old('salutation') == 'mr') ? 'selected' : '' }}>Mr</option>
-                            <option class="option-select-input" value="ms" {{ (old('salutation') == 'ms') ? 'selected' : '' }}>Ms</option>
-                        </select>
+                <div class="primary-dropdown-container">
+                    <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
+                        <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
+                            <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divSalutationName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                            </div>
+
+                            <input name="salutation" placeholder="Title *" id="salutation" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
+
+                            <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
+                                <path d="M7 10l5 5 5-5z"></path>
+                            </svg>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="separate"></div>
-
-                    <div class="dfw-contt-two">
-                        <div class="input-name">
+                <div>
+                    <div>
+                        <div class="input-container">
                             <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                <div
-                                    class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input type="text" name="name" id="name" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Name *" value="{{ old('name') }}">
+                                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                    <input type="text" name="first_name" id="first_name" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="First Name *" value="{{ old('first_name') }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div>
+                        <div class="input-container">
+                            <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
+                                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
+                                    <input type="text" name="last_name" id="last_name" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Last Name *" value="{{ old('last_name') }}">
                                 </div>
                             </div>
                         </div>
@@ -257,7 +272,7 @@
                         <div class="input-container">
                             <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root" inputmode="text">
                                 <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                    <input type="text" name="referral_code" id="referral_code" class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Mobile number / Referral code" maxlength="10" value="">
+                                    <input type="text" name="referral_code" id="referral_code" class="MuiInputBase-input-box MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Mobile number" maxlength="10" value="">
                                 </div>
                             </div>
                         </div>
@@ -480,10 +495,42 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
+    <div role="presentation" id="menu-salutation" class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+
+        <div tabindex="0" data-testid="sentinelStart"></div>
+
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1);  transform-origin: 180px 172.588px;">
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="salutationUl" style="padding-right: 0px; width: calc(100% + 0px);">
+                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root salutationLi" tabindex="0" role="option" aria-selected="false" data-id="mrs" data-name="Mrs"> Mrs <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>
+                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root salutationLi" tabindex="0" role="option" aria-selected="false" data-id="mr" data-name="Mr"> Mr <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>
+                <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root salutationLi" tabindex="0" role="option" aria-selected="false" data-id="ms" data-name="Ms"> Ms <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>
+            </ul>
+        </div>
+
+        <div tabindex="0" data-testid="sentinelEnd"></div>
+    </div>
+
 @section('scripts')
     @parent
 
     <script>
+        $(document).on('click', '#divSalutationName', function() {
+            $('#menu-salutation').removeClass('d-none');
+        });
+
+        $(document).on('click', '.salutationLi', function() {
+            const salutationId = $(this).data('id');
+            const salutationName = $(this).data('name');
+
+            $('#salutation').val(salutationId);
+            $('#divSalutationName').html(salutationName);
+            $('#menu-salutation').addClass('d-none');
+            $('#salutation').addClass('d-none');
+
+            checkFormValues();
+        });
+
         $(document).on('click', '#divStateName', function() {
             $.ajax({
                 type: "GET",
@@ -575,12 +622,14 @@
             checkFormValues();
         });
 
-        $(document).on('change', '#name, #dob, #isPledge', function() {
+        $(document).on('change', '#first_name, #last_name, #dob, #isPledge', function() {
             checkFormValues();
         });
 
         function checkFormValues() {
-            const name = $('#name').val();
+            const salutation = $('#salutation').val();
+            const first_name = $('#first_name').val();
+            const last_name = $('#last_name').val();
             const dob = $('#dob').val();
             const gender = $('#gender').val();
             const state = $('#state').val();
@@ -592,7 +641,7 @@
             const isSaveBtnDisabled = $('#btnSave').is(':disabled');
             let isValidValues = false;
 
-            if (name != '' && dob != '' && gender != '' && state != '' && district != '' && assembly != '' &&
+            if (salutation != '' && first_name != '' && last_name != '' && dob != '' && gender != '' && state != '' && district != '' && assembly != '' &&
             isReferralValid && isPledgeChecked) {
                 isValidValues = true;
             }
@@ -604,7 +653,7 @@
             }
         }
 
-        $(document).on('keyup, change, input', '#referral_code', function() {
+        $(document).on('keyup, change', '#referral_code', function() {
             const input = $(this).val();
 
             if (input == '') {

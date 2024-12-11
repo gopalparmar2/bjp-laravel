@@ -6,17 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Image\Enums\ImageDriver;
 use Spatie\Image\Image;
-use App\Models\FamilyMember;
 use App\Models\Relationship;
 use App\Models\Profession;
-use App\Models\Education;
 use App\Models\Religion;
 use App\Models\Category;
-use App\Models\Booth;
+use App\Models\Caste;
+use App\Models\User;
 use Validator;
 use Session;
 use File;
 use Auth;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -155,7 +155,9 @@ class HomeController extends Controller
             $user = Auth::user();
 
             $user->salutation = $request->salutation;
-            $user->name = $request->name;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->name = $request->first_name.' '.$request->last_name;
             $user->email = $request->email;
             $user->dob = date('Y-m-d', strtotime($request->dob));
             $user->age = str_replace(' Yrs', '', $request->age);
@@ -206,7 +208,7 @@ class HomeController extends Controller
             $data['user'] = $user;
             $data['religions'] = Religion::whereStatus(1)->get();
             $data['categories'] = Category::whereStatus(1)->get();
-            $data['educations'] = Education::whereStatus(1)->get();
+            $data['castes'] = Caste::whereStatus(1)->get();
             $data['professions'] = Profession::whereStatus(1)->get();
             $data['relationships'] = Relationship::whereStatus(1)->get();
 
@@ -224,15 +226,18 @@ class HomeController extends Controller
             $user = Auth::user();
 
             $user->salutation = $request->salutation;
-            $user->name = $request->name;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->name = $request->first_name.' '.$request->last_name;
             $user->dob = date('Y-m-d', strtotime($request->dob));
             $user->age = str_replace(' Yrs', '', $request->age);
             $user->gender = $request->gender;
             $user->email = $request->email;
+            $user->blood_group = $request->blood_group;
+            $user->color_id = $request->color_id;
             $user->religion_id = $request->religion_id;
             $user->category_id = $request->category_id;
-            $user->caste = $request->caste;
-            $user->education_id = $request->education_id;
+            $user->caste_id = $request->caste_id;
             $user->profession_id = $request->profession_id;
             $user->whatsapp_number = $request->whatsapp_number;
             $user->relationship_name = $request->relationship_name;
@@ -259,16 +264,18 @@ class HomeController extends Controller
             $user = Auth::user();
 
             if ($request->familyMemberId != null) {
-                $familyMember = FamilyMember::find($request->familyMemberId);
+                $familyMember = User::find($request->familyMemberId);
                 $resMessage = 'Family member updated sucessfully.';
             } else {
-                $familyMember = new FamilyMember();
+                $familyMember = new User();
                 $resMessage = 'Family member added sucessfully.';
             }
 
-            $familyMember->user_id = $user->id;
+            $familyMember->parent_id = $user->id;
             $familyMember->relationship_id = $request->relationship_id;
-            $familyMember->name = $request->name;
+            $familyMember->first_name = $request->first_name;
+            $familyMember->last_name = $request->last_name;
+            $familyMember->name = $request->first_name.' '.$request->last_name;
             $familyMember->mobile_number = $request->mobile_number;
             $familyMember->dob = date('Y-m-d', strtotime($request->dob));
             $familyMember->age = str_replace(' Yrs', '', $request->age);
@@ -302,7 +309,7 @@ class HomeController extends Controller
 
     public function deleteFamilyMember(Request $request) {
         try {
-            $familyMember = FamilyMember::find($request->id);
+            $familyMember = User::find($request->id);
 
             if (!$familyMember) {
                 $response['success'] = false;
@@ -328,16 +335,17 @@ class HomeController extends Controller
 
     public function getFamilyMember(Request $request) {
         try {
-            $familyMember = FamilyMember::find($request->id);
+            $familyMember = User::find($request->id);
 
             if (!$familyMember) {
                 $response['success'] = false;
                 $response['message'] = 'Family member not found.';
             } else {
                 $response['success'] = true;
-                $response['message'] = 'Family member removed successfully.';
+                $response['message'] = 'Family member details fetched successfully.';
 
-                $response['name'] = $familyMember->name;
+                $response['first_name'] = $familyMember->first_name;
+                $response['last_name'] = $familyMember->last_name;
                 $response['relationship_id'] = $familyMember->relationship_id;
                 $response['relationship_name'] = $familyMember->relationship ? $familyMember->relationship->name : '';
                 $response['dob'] = date('m/d/Y', strtotime($familyMember->dob));
