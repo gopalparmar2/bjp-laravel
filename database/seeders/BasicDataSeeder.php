@@ -9,6 +9,8 @@ use App\Models\Religion;
 use App\Models\Category;
 use App\Models\Education;
 use App\Models\Caste;
+use App\Models\City;
+use App\Models\District;
 
 class BasicDataSeeder extends Seeder
 {
@@ -168,6 +170,68 @@ class BasicDataSeeder extends Seeder
                 $newCaste = new Caste();
                 $newCaste->name = $caste['name'];
                 $newCaste->save();
+            }
+        }
+
+        $cities = [
+            ["name" => "Akala" ],
+            ["name" => "Amarnagar" ],
+            ["name" => "Amrapar" ],
+            ["name" => "Arab Timbdi" ],
+            ["name" => "Bava Pipaliya" ],
+            ["name" => "Bheda Pipaliya" ],
+            ["name" => "Bordi Samadhiyala" ],
+            ["name" => "Champrajpur" ],
+            ["name" => "Charan Samadhiyala" ],
+            ["name" => "Charaniya" ],
+            ["name" => "Dedarva" ],
+            ["name" => "Derdi" ],
+            ["name" => "Devki Galol" ],
+            ["name" => "Haripar" ],
+            ["name" => "Jambudi" ],
+            ["name" => "Jepur" ],
+            ["name" => "Juni Sankali" ],
+            ["name" => "Kagvad" ],
+            ["name" => "Kerali" ],
+            ["name" => "Khajuri Gundala" ],
+            ["name" => "Kharachiya" ],
+            ["name" => "Khirsara" ],
+            ["name" => "Lunagara" ],
+            ["name" => "Lunagiri" ],
+            ["name" => "Mandlikpur" ],
+            ["name" => "Mevasa" ],
+            ["name" => "Monpar" ],
+            ["name" => "Mota Gundala" ],
+            ["name" => "Navi Sankali" ],
+            ["name" => "Panchpipla" ],
+            ["name" => "Pedhla" ],
+            ["name" => "Pipalva" ],
+            ["name" => "Pithadiya" ],
+            ["name" => "Premgadh" ],
+            ["name" => "Rabarika" ],
+            ["name" => "Reshamdi Galol" ],
+            ["name" => "Rupavati" ],
+            ["name" => "Sardharpur" ],
+            ["name" => "Seluka" ],
+            ["name" => "Station Vavdi" ],
+            ["name" => "Thana Galol" ],
+            ["name" => "Thorala" ],
+            ["name" => "Umrali" ],
+            ["name" => "Vadasada" ],
+            ["name" => "Valadungra" ],
+            ["name" => "Virpur" ]
+        ];
+
+        $district = District::where('name', 'Rajkot')->first();
+
+        foreach ($cities as $city) {
+            $exist = City::where('name', $city['name'])->first();
+
+            if (!$exist) {
+                $newCity = new City();
+                $newCity->district_id = $district->id;
+                $newCity->name = $city['name'];
+                $newCity->save();
             }
         }
     }

@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Image\Enums\ImageDriver;
 use Spatie\Image\Image;
-use Spatie\Permission\Models\Role;
-use App\Models\FamilyMember;
+use App\Models\Caste;
 use App\Models\Relationship;
 use App\Models\Profession;
 use App\Models\Education;
@@ -16,11 +19,6 @@ use App\Models\Religion;
 use App\Models\Category;
 use App\Models\Roles;
 use App\Models\User;
-use DataTables;
-use Validator;
-use Session;
-use File;
-use Auth;
 
 class UserController extends Controller
 {
@@ -54,6 +52,8 @@ class UserController extends Controller
 
             $data['roles'] = Roles::whereStatus(1)->get();
 
+            $data['castes'] = Caste::whereStatus(1)->get();
+
             return view('admin.user.index', $data);
         } catch (\Exception $e) {
             return abort(404);
@@ -64,6 +64,33 @@ class UserController extends Controller
         $user = User::where('id', '!=', Auth::id());
 
         if ($request->has('filter')) {
+            if (isset($request->filter['name']) && $request->filter['name'] != '') {
+                $name = $request->filter['name'];
+                $user->where('name', 'like', '%'.$name.'%');
+            }
+
+            if (isset($request->filter['village']) && $request->filter['village'] != '') {
+                // $village = $request->filter['village'];
+                // $user->where('village', 'like', '%'.$village.'%');
+            }
+
+            if (isset($request->filter['caste_id']) && $request->filter['caste_id'] != '') {
+                $caste_id = $request->filter['caste_id'];
+                $user->where('caste_id', $caste_id);
+            }
+
+            if (isset($request->filter['last_name']) && $request->filter['last_name'] != '') {
+                $last_name = $request->filter['last_name'];
+                $user->where('last_name', 'like', '%'.$last_name.'%');
+            }
+
+            if (isset($request->filter['business_name']) && $request->filter['business_name'] != '') {
+                $business_name = $request->filter['business_name'];
+                $user->whereHas('profession', function ($query) use ($business_name) {
+                    $query->where('name', 'like', '%'.$business_name.'%');
+                });
+            }
+
             if (isset($request->filter['mobile_number']) && $request->filter['mobile_number'] != '') {
                 $mobile_number = $request->filter['mobile_number'];
 
@@ -85,21 +112,31 @@ class UserController extends Controller
                     $user->whereBetween('created_at', [$from_date, $to_date]);
                 }
             }
+
+            if ($request->filter['is_mobile_number'] != '') {
+                if ($request->filter['is_mobile_number'] == 1) {
+                    $user->whereNotNull('mobile_number');
+                } else {
+                    $user->whereNull('mobile_number');
+                }
+            }
         }
 
         return DataTables::eloquent($user)
             ->addColumn('action', function ($user) {
                 $action = '';
-                if (Auth::user()->can('user-list')) {
-                    $action .= '<a href="'.route('admin.user.view', $user->id).'" class="btn btn-outline-secondary btn-sm" title="View"><i class="fas fa-eye"></i></a>&nbsp;';
-                }
+                if ($user->parent_id == null) {
+                    if (Auth::user()->can('user-list')) {
+                        $action .= '<a href="'.route('admin.user.view', $user->id).'" class="btn btn-outline-secondary btn-sm" title="View"><i class="fas fa-eye"></i></a>&nbsp;';
+                    }
 
-                if (Auth::user()->can('user-edit')) {
-                    $action .= '<a href="'.route('admin.user.edit', $user->id).'" class="btn btn-outline-secondary btn-sm" title="Edit"><i class="fas fa-pencil-alt"></i></a>&nbsp;';
-                }
+                    if (Auth::user()->can('user-edit')) {
+                        $action .= '<a href="'.route('admin.user.edit', $user->id).'" class="btn btn-outline-secondary btn-sm" title="Edit"><i class="fas fa-pencil-alt"></i></a>&nbsp;';
+                    }
 
-                if (Auth::user()->can('user-delete')) {
-                    $action .= '<a class="btn btn-outline-secondary btn-sm btnDelete" data-url="'.route('admin.user.destroy').'" data-id="'.$user->id.'" title="Delete"><i class="fas fa-trash-alt"></i></a>';
+                    if (Auth::user()->can('user-delete')) {
+                        $action .= '<a class="btn btn-outline-secondary btn-sm btnDelete" data-url="'.route('admin.user.destroy').'" data-id="'.$user->id.'" title="Delete"><i class="fas fa-trash-alt"></i></a>';
+                    }
                 }
 
                 return $action;
@@ -144,14 +181,24 @@ class UserController extends Controller
             ->editColumn('status', function ($user) {
                 $status = '';
 
-                if (Auth::user()->can('user-edit')) {
-                    $checkedAttr = $user->status == 1 ? 'checked' : '';
-                    $status = '<div class="form-check form-switch form-switch-md mb-3" dir="ltr"> <input class="form-check-input js-switch" type="checkbox" data-id="' . $user->id . '" data-url="' . route('admin.user.change.status') . '" ' . $checkedAttr . '> </div>';
+                if ($user->parent_id == null) {
+                    if (Auth::user()->can('user-edit')) {
+                        $checkedAttr = $user->status == 1 ? 'checked' : '';
+                        $status = '<div class="form-check form-switch form-switch-md mb-3" dir="ltr"> <input class="form-check-input js-switch" type="checkbox" data-id="' . $user->id . '" data-url="' . route('admin.user.change.status') . '" ' . $checkedAttr . '> </div>';
+                    } else {
+                        $status = ($user->status == 1) ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">InActive</span>';
+                    }
                 } else {
                     $status = ($user->status == 1) ? '<span class="badge bg-success">Active</span>' : '<span class="badge bg-danger">InActive</span>';
                 }
 
                 return $status;
+            })
+            ->addColumn('caste', function ($user) {
+                return $user->caste ? $user->caste->name : '';
+            })
+            ->editColumn('business_name', function ($user) {
+                return $user->profession ? $user->profession->name : '';
             })
             ->editColumn('created_at', function($user) {
                 return date('d/m/Y h:i A', strtotime($user->created_at));
@@ -197,9 +244,9 @@ class UserController extends Controller
 
             $data['religions'] = Religion::select('id', 'name')->whereStatus(1)->get();
             $data['categories'] = Category::select('id', 'name')->whereStatus(1)->get();
-            $data['educations'] = Education::select('id', 'name')->whereStatus(1)->get();
             $data['professions'] = Profession::select('id', 'name')->whereStatus(1)->get();
             $data['relationships'] = Relationship::select('id', 'name')->whereStatus(1)->get();
+            $data['castes'] = Caste::select('id', 'name')->whereStatus(1)->get();
 
             return view('admin.user.create', $data);
         } catch (\Exception $e) {
@@ -211,7 +258,8 @@ class UserController extends Controller
         try {
             $rules = [
                 'salutation' => 'required',
-                'name'    => 'required',
+                'first_name'    => 'required',
+                'last_name'    => 'required',
                 'dob'    => 'required',
                 'gender'    => 'required',
                 'address'    => 'required',
@@ -221,8 +269,8 @@ class UserController extends Controller
                 'assembly_id'    => 'required',
                 'religion_id'    => 'required',
                 'category_id'    => 'required',
-                'caste'    => 'required',
-                'education_id'    => 'required',
+                'caste_id'    => 'required',
+                // 'education_id'    => 'required',
                 'profession_id'    => 'required',
             ];
 
@@ -246,7 +294,8 @@ class UserController extends Controller
 
             $messages = [
                 'salutation.required'      => 'The salutation field is required.',
-                'name.required'            => 'The name field is required.',
+                'first_name.required'    => 'The first name field is required.',
+                'last_name.required'     => 'The last name field is required.',
                 'email.required'           => 'The email field is required.',
                 'email.unique'             => 'The email already exists.',
                 'mobile_number.required'   => 'The mobile number field is required.',
@@ -260,7 +309,7 @@ class UserController extends Controller
                 'assembly_id.required'     => 'The assembly field is required.',
                 'religion_id.required'     => 'The religion field is required.',
                 'category_id.required'     => 'The category field is required.',
-                'caste.required'           => 'The caste field is required.',
+                'caste_id.required'        => 'The caste field is required.',
                 'education_id.required'    => 'The education field is required.',
                 'profession_id.required'   => 'The profession field is required.',
                 'image.required'           => 'The image field is required.',
@@ -294,7 +343,9 @@ class UserController extends Controller
                 }
 
                 $user->salutation = $request->salutation;
-                $user->name = $request->name;
+                $user->name = $request->first_name.' '.$request->last_name;
+                $user->first_name = $request->first_name;
+                $user->last_name = $request->last_name;
                 $user->email = $request->email;
                 $user->mobile_number = $request->mobile_number;
 
@@ -313,8 +364,8 @@ class UserController extends Controller
                 $user->assembly_id = $request->assembly_id;
                 $user->religion_id = $request->religion_id;
                 $user->category_id = $request->category_id;
-                $user->caste = $request->caste;
-                $user->education_id = $request->education_id;
+                $user->caste_id = $request->caste_id;
+                // $user->education_id = $request->education_id;
                 $user->profession_id = $request->profession_id;
                 $user->whatsapp_number = $request->whatsapp_number;
                 $user->relationship_name = $request->relationship_name;
@@ -322,7 +373,7 @@ class UserController extends Controller
                 $user->landline_number = $request->landline_number;
                 $user->zila_id = $request->zila_id;
                 $user->mandal_id = $request->mandal_id;
-                $user->ward_name = $request->ward_name;
+                $user->ward_id = $request->ward_id;
                 $user->booth_id = $request->booth_id;
 
                 if ($image = $request->file('image')) {
@@ -346,15 +397,21 @@ class UserController extends Controller
 
                 if ($user->save()) {
                     if (count($request->familyMembers) > 0) {
-                        if ($request->user_id != '') {
-                            FamilyMember::where('user_id', $request->user_id)->delete();
+                        if ($request->has('user_id') && $request->user_id != '') {
+                            $parentUser = User::where('id', $request->user_id)->first();
+
+                            if ($parentUser->familyMembers->count() > 0) {
+                                User::where('parent_id', $request->user_id)->delete();
+                            }
                         }
 
                         foreach ($request->familyMembers as $member) {
-                            $familyMember = new FamilyMember();
-                            $familyMember->user_id = $user->id;
+                            $familyMember = new User();
+                            $familyMember->parent_id = $user->id;
                             $familyMember->relationship_id = $member['relationship_id'];
-                            $familyMember->name = $member['name'];
+                            $familyMember->name = $member['first_name'].' '.$member['last_name'];
+                            $familyMember->first_name = $member['first_name'];
+                            $familyMember->last_name = $member['last_name'];
                             $familyMember->mobile_number = $member['mobile_number'];
                             $familyMember->age = $member['age'];
 
@@ -424,6 +481,7 @@ class UserController extends Controller
                 $data['educations'] = Education::select('id', 'name')->whereStatus(1)->get();
                 $data['professions'] = Profession::select('id', 'name')->whereStatus(1)->get();
                 $data['relationships'] = Relationship::select('id', 'name')->whereStatus(1)->get();
+                $data['castes'] = Caste::select('id', 'name')->whereStatus(1)->get();
 
                 return view('admin.user.create', $data);
             } else {

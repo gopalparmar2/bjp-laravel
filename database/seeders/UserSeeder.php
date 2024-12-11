@@ -55,6 +55,7 @@ class UserSeeder extends Seeder
 
             $permissionsArr = [
                 'User List', 'User Add', 'User Edit', 'User Delete',
+                'Caste List', 'Caste Add', 'Caste Edit', 'Caste Delete',
                 'Role List', 'Role Add', 'Role Edit', 'Role Delete',
                 'Permission List', 'Permission Add', 'Permission Edit', 'Permission Delete',
                 'State List', 'State Add', 'State Edit', 'State Delete',

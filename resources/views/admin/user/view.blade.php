@@ -66,12 +66,12 @@
                                     </tr>
                                     <tr>
                                         <th class="th-width">Caste</th>
-                                        <td>{{ $user->caste ?? '-' }}</td>
+                                        <td>{{ $user->caste ? $user->caste->name : '-' }}</td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <th class="th-width">Education</th>
                                         <td>{{ $user->education ? $user->education->name : '-' }}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <th class="th-width">Profession</th>
                                         <td>{{ $user->profession ? $user->profession->name : '-' }}</td>
@@ -134,7 +134,7 @@
                                     </tr>
                                     <tr>
                                         <th class="th-width">Ward Name</th>
-                                        <td>{{ $user->ward_name ?? '-' }}</td>
+                                        <td>{{ $user->ward_id ? 'Ward '.$user->ward_id : '-' }}</td>
                                     </tr>
                                     <tr>
                                         <th class="th-width">Booth</th>
@@ -152,7 +152,7 @@
                                             <th class="text-center" colspan="2" style="font-weight: bold;">Family Member Details {{ $key + 1 }}</th>
                                             <tr>
                                                 <th class="th-width">Full Name</th>
-                                                <td>{{ $familyMember->name ?? '-' }}</td>
+                                                <td>{{ $familyMember->first_name.' '.$familyMember->last_name }}</td>
                                             </tr>
                                             <tr>
                                                 <th class="th-width">Relationship</th>

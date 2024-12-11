@@ -1285,7 +1285,7 @@
                     const mandal_id = $('#mandal_id').val();
                     const booth_id = $('#booth_id').val();
                     const landline_number = $('#landline_number').val();
-                    const ward_name = $('#ward_name').val();
+                    const ward_id = $('#ward_id').val();
 
                     if (address == '' && pincode == '' && state == '' && district == '' && assembly_constituency == '') {
                         if (address == '') {
@@ -1321,7 +1321,7 @@
                             mandal_id: mandal_id,
                             booth_id: booth_id,
                             landline_number: landline_number,
-                            ward_name: ward_name,
+                            ward_id: ward_id,
                         },
                         dataType: "json",
                         success: function (response) {

@@ -28,7 +28,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-2">
                                 <div class="mb-3 controls">
                                     <label class="form-label @error('salutation') is-invalid @enderror">Select Salutation <span class="text-danger">*</span></label>
                                     <select class="form-control select2" name="salutation" id="salutation">
@@ -46,12 +46,25 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <div class="mb-3">
-                                    <label class="form-label @error('name') is-invalid @enderror">Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name', isset($user) ? $user->name : '') }}" placeholder="Enter full name">
+                                    <label class="form-label @error('first_name') is-invalid @enderror">First Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="first_name" id="first_name" value="{{ old('first_name', isset($user) ? $user->first_name : '') }}" placeholder="Enter first name">
 
-                                    @error('name')
+                                    @error('first_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-5">
+                                <div class="mb-3">
+                                    <label class="form-label @error('last_name') is-invalid @enderror">Last Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="last_name" id="last_name" value="{{ old('last_name', isset($user) ? $user->last_name : '') }}" placeholder="Enter last name">
+
+                                    @error('last_name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -93,7 +106,7 @@
                                 <div class="mb-3 controls">
                                     <label class="form-label @error('dob') is-invalid @enderror">Select D.O.B <span class="text-danger">*</span></label>
                                     <div class="input-group" id="dobdatepicker">
-                                        <input type="text" name="dob" id="dob" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" data-date-container='#dobdatepicker' data-provide="datepicker" data-date-autoclose="true" value="{{ old('dob', isset($user) ? date('d/m/Y', strtotime($user->dob)) : '') }}">
+                                        <input type="text" name="dob" id="dob" class="form-control" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" data-date-container='#dobdatepicker' data-provide="datepicker" data-date-autoclose="true" value="{{ (isset($user) && $user->dob != '') ? date('d/m/Y', strtotime($user->dob)) : '' }}">
 
                                         <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                     </div>
@@ -248,11 +261,16 @@
                             </div>
 
                             <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label @error('caste') is-invalid @enderror">Caste <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="caste" id="caste" value="{{ old('caste', isset($user) ? $user->caste : '') }}" placeholder="Enter caste">
+                                <div class="mb-3 controls">
+                                    <label class="form-label">Select Caste <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" name="caste_id" id="caste_id">
+                                        <option value="">Select Caste</option>
+                                        @foreach ($castes as $caste)
+                                            <option value="{{ $caste->id }}" {{ (isset($user) && $user->caste_id != '' && $user->caste_id == $caste->id) ? 'selected' : '' }}>{{ $caste->name }}</option>
+                                        @endforeach
+                                    </select>
 
-                                    @error('caste')
+                                    @error('caste_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -262,7 +280,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="mb-3 controls">
                                     <label class="form-label">Select Education <span class="text-danger">*</span></label>
                                     <select class="form-control select2" name="education_id" id="education_id">
@@ -278,7 +296,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-6">
                                 <div class="mb-3 controls">
@@ -297,16 +315,16 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label @error('whatsapp_number') is-invalid @enderror">Whatsapp / Alternative number</label>
                                     <input type="text" class="form-control numbers_only" name="whatsapp_number" id="whatsapp_number" value="{{ old('whatsapp_number', isset($user) ? $user->whatsapp_number : '') }}" maxlength="10" placeholder="Enter whatsapp / alternative number">
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label @error('relationship_name') is-invalid @enderror">Father / Spouse name</label>
@@ -403,10 +421,15 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="ward_name" class="form-label">Ward Name</label>
-                                    <input type="text" class="form-control" name="ward_name" id="ward_name" value="{{ old('ward_name', isset($user) ? $user->ward_name : '') }}" placeholder="Ward Name">
+                            <div class="col-md-6">
+                                <div class="mb-3 controls">
+                                    <label class="form-label">Select Ward</label>
+                                    <select class="form-control select2" name="ward_id" id="ward_id">
+                                        <option value="">Select Ward</option>
+                                        @for ($i = 1; $i <= 20; $i++)
+                                            <option value="{{ $i }}" {{ (isset($user) && $user->ward_id != '' && $user->ward_id == $i) ? 'selected' : '' }}>{{ 'Ward '.$i }}</option>
+                                        @endfor
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -434,12 +457,25 @@
                             @if (isset($user) && isset($user->familyMembers) && $user->familyMembers->count() > 0)
                                 @foreach ($user->familyMembers as $key => $userFamilyMembers)
                                     <div class="row row_user_family_members">
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-2">
                                             <div class="mb-3">
-                                                <label for="name_{{ $key }}" class="form-label">Full Name</label>
-                                                <input type="text" name="familyMembers[{{ $key }}][name]" class="form-control" id="name_{{ $key }}" data-key="{{ $key }}" value="{{ $userFamilyMembers->name }}" placeholder="Enter full name">
+                                                <label for="first_name_{{ $key }}" class="form-label">First Name</label>
+                                                <input type="text" name="familyMembers[{{ $key }}][first_name]" class="form-control" id="first_name_{{ $key }}" data-key="{{ $key }}" value="{{ $userFamilyMembers->first_name }}" placeholder="Enter first name">
 
-                                                @error('familyMembers[{{ $key }}][name]')
+                                                @error('familyMembers[{{ $key }}][first_name]')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-2">
+                                            <div class="mb-3">
+                                                <label for="last_name_{{ $key }}" class="form-label">Last Name</label>
+                                                <input type="text" name="familyMembers[{{ $key }}][last_name]" class="form-control" id="last_name_{{ $key }}" data-key="{{ $key }}" value="{{ $userFamilyMembers->last_name }}" placeholder="Enter last name">
+
+                                                @error('familyMembers[{{ $key }}][last_name]')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
@@ -469,7 +505,7 @@
                                             <div class="mb-3 controls">
                                                 <label class="form-label">Select D.O.B</label>
                                                 <div class="input-group" id="div_dob_{{ $key }}">
-                                                    <input type="text" name="familyMembers[{{ $key }}][dob]" id="dob_{{ $key }}" class="form-control multipleDate" placeholder="dd/mm/yyyy" data-key="{{ $key }}" data-date-format="dd/mm/yyyy" data-date-container='#div_dob_{{ $key }}' data-provide="datepicker" data-date-autoclose="true" value="{{ date('d/m/Y', strtotime($userFamilyMembers->dob)) }}">
+                                                    <input type="text" name="familyMembers[{{ $key }}][dob]" id="dob_{{ $key }}" class="form-control multipleDate" placeholder="dd/mm/yyyy" data-key="{{ $key }}" data-date-format="dd/mm/yyyy" data-date-container='#div_dob_{{ $key }}' data-provide="datepicker" data-date-autoclose="true" value="{{ (isset($userFamilyMembers->dob) && $userFamilyMembers->dob != '') ? date('d/m/Y', strtotime($userFamilyMembers->dob)) : '' }}">
 
                                                     <span class="input-group-text"><i class="mdi mdi-calendar"></i></span>
                                                 </div>
@@ -482,7 +518,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-2">
+                                        <div class="col-md-1">
                                             <div class="mb-3">
                                                 <label class="form-label">Age</label>
                                                 <input type="text" class="form-control" name="familyMembers[{{ $key }}][age]" id="age_{{ $key }}" value="{{ $userFamilyMembers->age }}" placeholder="Age" readonly>
@@ -517,12 +553,25 @@
                                 @endforeach
                             @else
                                 <div class="row row_user_family_members">
-                                    <div class="col-lg-3">
+                                    <div class="col-lg-2">
                                         <div class="mb-3">
-                                            <label for="name_0" class="form-label">Full Name</label>
-                                            <input type="text" name="familyMembers[0][name]" class="form-control" id="name_0" data-key="0" value="{{ old('familyMembers[0][name]') }}" placeholder="Enter full name">
+                                            <label for="first_name_0" class="form-label">First Name</label>
+                                            <input type="text" name="familyMembers[0][first_name]" class="form-control" id="first_name_0" data-key="0" value="{{ old('familyMembers[0][first_name]') }}" placeholder="Enter first name">
 
-                                            @error('familyMembers[0][name]')
+                                            @error('familyMembers[0][first_name]')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2">
+                                        <div class="mb-3">
+                                            <label for="last_name_0" class="form-label">Last Name</label>
+                                            <input type="text" name="familyMembers[0][last_name]" class="form-control" id="last_name_0" data-key="0" value="{{ old('familyMembers[0][last_name]') }}" placeholder="Enter last name">
+
+                                            @error('familyMembers[0][last_name]')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -565,7 +614,7 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-2">
+                                    <div class="col-md-1">
                                         <div class="mb-3">
                                             <label class="form-label">Age</label>
                                             <input type="text" class="form-control" name="familyMembers[0][age]" id="age_0" value="{{ old('familyMembers[0][age]') }}" placeholder="Age" readonly>
@@ -641,7 +690,10 @@
                     salutation: {
                         required: true
                     },
-                    name: {
+                    first_name: {
+                        required: true
+                    },
+                    last_name: {
                         required: true
                     },
                     email: {
@@ -689,9 +741,9 @@
                     caste: {
                         required: true
                     },
-                    education_id: {
-                        required: true
-                    },
+                    // education_id: {
+                    //     required: true
+                    // },
                     profession_id: {
                         required: true
                     },
@@ -703,8 +755,11 @@
                     salutation: {
                         required: "The salutation field is required."
                     },
-                    name: {
-                        required: "The name field is required."
+                    first_name: {
+                        required: "The first name field is required."
+                    },
+                    last_name: {
+                        required: "The last name field is required."
                     },
                     email: {
                         required: "The email field is required.",
@@ -743,9 +798,9 @@
                     caste: {
                         required: "The caste field is required."
                     },
-                    education_id: {
-                        required: "The education field is required."
-                    },
+                    // education_id: {
+                    //     required: "The education field is required."
+                    // },
                     profession_id: {
                         required: "The profession field is required."
                     },
@@ -994,7 +1049,7 @@
         $(document).on('click', '#btn_add_more', function() {
             ++i;
 
-            $('#div_add_more').append('<div class="row row_user_family_members"> <div class="col-lg-3"> <div class="mb-3"> <label for="name_'+i+'" class="form-label">Full Name</label> <input type="text" name="familyMembers['+i+'][name]" class="form-control" id="name_'+i+'" data-key="'+i+'" value="" placeholder="Enter full name"> @error("familyMembers['+i+'][name]") <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror </div> </div> <div class="col-md-2"> <div class="mb-3 controls"> <label class="form-label">Select Relationship</label> <select class="form-control select2" name="familyMembers['+i+'][relationship_id]"  id="relationship_id_'+i+'" data-key="'+i+'"> <option value="">Select Salutation</option> @foreach ($relationships as $relationship) <option value="{{ $relationship->id }}">{{ $relationship->name }}</option> @endforeach </select> @error("familyMembers['+i+'][relationship_id]") <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror </div> </div> <div class="col-md-2"> <div class="mb-3 controls"> <label class="form-label">Select D.O.B</label> <div class="input-group" id="div_dob_'+i+'"> <input type="text" name="familyMembers['+i+'][dob]" id="dob_'+i+'" data-key="'+i+'" class="form-control multipleDate" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" data-date-container="#div_dob_'+i+'" data-provide="datepicker" data-date-autoclose="true"> <span class="input-group-text"><i class="mdi mdi-calendar"></i></span> </div> @error("familyMembers['+i+'][dob]") <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror </div> </div> <div class="col-md-2"> <div class="mb-3"> <label class="form-label">Age</label> <input type="text" class="form-control" name="familyMembers['+i+'][age]" id="age_'+i+'" data-key="'+i+'" value="" placeholder="Age" readonly> </div> </div> <div class="col-md-2"> <div class="mb-3"> <label class="form-label">Mobile Number</label> <input type="text" class="form-control numbers_only" name="familyMembers['+i+'][mobile_number]" id="mobile_number_'+i+'" data-key="'+i+'" value="" minlength="10" maxlength="10" placeholder="Enter mobile number"> @error("familyMembers['+i+'][mobile_number]") <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror </div> </div> <div class="col-lg-1"> <button type="button" class="btn btn-danger btn_remove"> <i class="bx bx-x"></i> </button> </div> </div>');
+            $('#div_add_more').append('<div class="row row_user_family_members"> <div class="col-lg-2"> <div class="mb-3"> <label for="first_name_'+i+'" class="form-label">First Name</label> <input type="text" name="familyMembers['+i+'][first_name]" class="form-control" id="first_name_'+i+'" data-key="'+i+'" value="" placeholder="Enter first name"> @error("familyMembers['+i+'][first_name]") <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror </div> </div> <div class="col-lg-2"> <div class="mb-3"> <label for="last_name_'+i+'" class="form-label">Last Name</label> <input type="text" name="familyMembers['+i+'][last_name]" class="form-control" id="last_name_'+i+'" data-key="'+i+'" value="" placeholder="Enter last name"> @error("familyMembers['+i+'][last_name]") <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror </div> </div> <div class="col-md-2"> <div class="mb-3 controls"> <label class="form-label">Select Relationship</label> <select class="form-control select2" name="familyMembers['+i+'][relationship_id]"  id="relationship_id_'+i+'" data-key="'+i+'"> <option value="">Select Salutation</option> @foreach ($relationships as $relationship) <option value="{{ $relationship->id }}">{{ $relationship->name }}</option> @endforeach </select> @error("familyMembers['+i+'][relationship_id]") <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror </div> </div> <div class="col-md-2"> <div class="mb-3 controls"> <label class="form-label">Select D.O.B</label> <div class="input-group" id="div_dob_'+i+'"> <input type="text" name="familyMembers['+i+'][dob]" id="dob_'+i+'" data-key="'+i+'" class="form-control multipleDate" placeholder="dd/mm/yyyy" data-date-format="dd/mm/yyyy" data-date-container="#div_dob_'+i+'" data-provide="datepicker" data-date-autoclose="true"> <span class="input-group-text"><i class="mdi mdi-calendar"></i></span> </div> @error("familyMembers['+i+'][dob]") <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror </div> </div> <div class="col-md-1"> <div class="mb-3"> <label class="form-label">Age</label> <input type="text" class="form-control" name="familyMembers['+i+'][age]" id="age_'+i+'" data-key="'+i+'" value="" placeholder="Age" readonly> </div> </div> <div class="col-md-2"> <div class="mb-3"> <label class="form-label">Mobile Number</label> <input type="text" class="form-control numbers_only" name="familyMembers['+i+'][mobile_number]" id="mobile_number_'+i+'" data-key="'+i+'" value="" minlength="10" maxlength="10" placeholder="Enter mobile number"> @error("familyMembers['+i+'][mobile_number]") <span class="invalid-feedback" role="alert"> <strong>{{ $message }}</strong> </span> @enderror </div> </div> <div class="col-lg-1"> <button type="button" class="btn btn-danger btn_remove"> <i class="bx bx-x"></i> </button> </div> </div>');
 
             $('.select2').select2();
         });

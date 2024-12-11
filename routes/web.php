@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\MandalController;
 use App\Http\Controllers\Admin\PincodeController;
 use App\Http\Controllers\Admin\ZilaController;
 use App\Http\Controllers\Admin\RelationshipController;
+use App\Http\Controllers\Admin\CasteController;
 
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 
@@ -52,6 +53,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
     Route::group(['middleware' => ['auth', 'isAdmin']], function () {
         Route::get('/', [AdminHomeController::class, 'index'])->name('index');
+        Route::post('/get-color-chart-data', [AdminHomeController::class, 'getColorChartData'])->name('get.color.chart.data');
+        Route::post('/get-caste-chart-data', [AdminHomeController::class, 'getCasteChartData'])->name('get.caste.chart.data');
+        Route::post('/get-surname-chart-data', [AdminHomeController::class, 'getSurnameChartData'])->name('get.surname.chart.data');
 
         Route::controller(ProfileController::class)->group(function () {
             Route::group(['as' => 'profile.', 'prefix' => 'profile'], function() {
@@ -234,6 +238,18 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         Route::controller(RelationshipController::class)->group(function () {
             Route::group(['as' => 'relationship.', 'prefix' => 'relationship'], function() {
+                Route::get('/', 'index')->name('index');
+                Route::post('/datatable', 'datatable')->name('datatable');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/destroy', 'destroy')->name('destroy');
+                Route::post('/change_status', 'change_status')->name('change.status');
+            });
+        });
+
+        Route::controller(CasteController::class)->group(function () {
+            Route::group(['as' => 'caste.', 'prefix' => 'caste'], function() {
                 Route::get('/', 'index')->name('index');
                 Route::post('/datatable', 'datatable')->name('datatable');
                 Route::get('/create', 'create')->name('create');

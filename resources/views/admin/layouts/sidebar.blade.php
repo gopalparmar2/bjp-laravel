@@ -32,7 +32,7 @@
                             @endcan
 
                             @can('user-list')
-                                <li {{ (\Route::is('admin.user.index') || \Route::is('admin.user.edit') || \Route::is('admin.user.create')) ? 'class=mm-active' : '' }}>
+                                <li {{ (\Route::is('admin.user.index') || \Route::is('admin.user.edit') || \Route::is('admin.user.create') || \Route::is('admin.user.view')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.user.index') }}" key="t-light-sidebar"> Users </a>
                                 </li>
                             @endcan
@@ -40,7 +40,7 @@
                     </li>
                 @endcanany
 
-                @canany(['category-list', 'profession-list', 'education-list', 'religion-list', 'state-list', 'district-list', 'assembly-constituency-list'])
+                @canany(['category-list', 'profession-list', 'religion-list', 'state-list', 'district-list', 'assembly-constituency-list', 'caste-list'])
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-grid-alt"></i>
@@ -60,11 +60,11 @@
                                 </li>
                             @endcan
 
-                            @can('education-list')
+                            {{-- @can('education-list')
                                 <li {{ (\Route::is('admin.education.index') || \Route::is('admin.education.edit') || \Route::is('admin.education.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.education.index') }}" key="t-light-sidebar"> Education </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
 
                             @can('religion-list')
                                 <li {{ (\Route::is('admin.religion.index') || \Route::is('admin.religion.edit') || \Route::is('admin.religion.create')) ? 'class=mm-active' : '' }}>
@@ -117,6 +117,12 @@
                             @can('relationship-list')
                                 <li {{ (\Route::is('admin.relationship.index') || \Route::is('admin.relationship.edit') || \Route::is('admin.relationship.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.relationship.index') }}" key="t-light-sidebar"> Relationship </a>
+                                </li>
+                            @endcan
+
+                            @can('caste-list')
+                                <li {{ (\Route::is('admin.caste.index') || \Route::is('admin.caste.edit') || \Route::is('admin.caste.create')) ? 'class=mm-active' : '' }}>
+                                    <a href="{{ route('admin.caste.index') }}" key="t-light-sidebar"> Caste </a>
                                 </li>
                             @endcan
                         </ul>

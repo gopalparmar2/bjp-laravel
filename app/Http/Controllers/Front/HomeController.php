@@ -375,7 +375,7 @@ class HomeController extends Controller
             $user->mandal_id = $request->mandal_id;
             $user->booth_id = $request->booth_id;
             $user->landline_number = $request->landline_number;
-            $user->ward_name = $request->ward_name;
+            $user->ward_id = $request->ward_id;
 
             if ($user->save()) {
                 $response['success'] = true;
