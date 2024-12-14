@@ -48,7 +48,7 @@ class AjaxController extends Controller
             $resHtml = '';
 
             foreach ($states as $state) {
-                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root stateLi" tabindex="0" role="option" aria-selected="false" data-id="'.$state->id.'" data-name="'.$state->name.'" data-assembly-url="'.route('ajax.get_districts_and_assemblies').'"> '.$state->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi stateLi" data-li-type="state" tabindex="0" role="option" aria-selected="false" data-id="'.$state->id.'" data-name="'.$state->name.'" data-assembly-url="'.route('ajax.get_districts_and_assemblies').'"> '.$state->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             $response['success'] = true;
@@ -69,7 +69,7 @@ class AjaxController extends Controller
             $resHtml = '';
 
             foreach ($zilas as $zila) {
-                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root zilaLi" tabindex="0" role="option" aria-selected="false" data-id="'.$zila->id.'" data-name="'.$zila->name.'"> '.$zila->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi zilaLi" data-li-type="zilla" tabindex="0" role="option" aria-selected="false" data-id="'.$zila->id.'" data-name="'.$zila->name.'"> '.$zila->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             $response['success'] = true;
@@ -90,7 +90,7 @@ class AjaxController extends Controller
             $resHtml = '';
 
             foreach ($mandals as $mandal) {
-                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root mandalLi" tabindex="0" role="option" aria-selected="false" data-id="'.$mandal->id.'" data-name="'.$mandal->name.'"> '.$mandal->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi mandalLi" data-li-type="mandal" tabindex="0" role="option" aria-selected="false" data-id="'.$mandal->id.'" data-name="'.$mandal->name.'"> '.$mandal->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             $response['success'] = true;
@@ -111,7 +111,7 @@ class AjaxController extends Controller
             $resHtml = '';
 
             foreach ($booths as $booth) {
-                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root boothLi" tabindex="0" role="option" aria-selected="false" data-id="'.$booth->id.'" data-name="'.$booth->name.'"> '.$booth->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi boothLi" data-li-type="booth" tabindex="0" role="option" aria-selected="false" data-id="'.$booth->id.'" data-name="'.$booth->name.'"> '.$booth->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             $response['success'] = true;
@@ -136,15 +136,15 @@ class AjaxController extends Controller
             $zilaHtml = '';
 
             foreach ($districts as $district) {
-                $districtHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root districtLi" tabindex="0" role="option" aria-selected="false" data-id="'.$district->id.'" data-name="'.$district->name.'"> '.$district->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                $districtHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi districtLi" data-li-type="district" tabindex="0" role="option" aria-selected="false" data-id="'.$district->id.'" data-name="'.$district->name.'"> '.$district->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             foreach ($assemblies as $assembly) {
-                $assemblyHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root assemblyLi" tabindex="0" role="option" aria-selected="false" data-id="'.$assembly->id.'" data-name="'.$assembly->name.'"> '.$assembly->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                $assemblyHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi assemblyLi" data-li-type="assembly" tabindex="0" role="option" aria-selected="false" data-id="'.$assembly->id.'" data-name="'.$assembly->name.'"> '.$assembly->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             foreach ($zilas as $zila) {
-                $zilaHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root zilaLi" tabindex="0" role="option" aria-selected="false" data-id="'.$zila->id.'" data-name="'.$zila->name.'"> '.$zila->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                $zilaHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi zilaLi" data-li-type="zilla" tabindex="0" role="option" aria-selected="false" data-id="'.$zila->id.'" data-name="'.$zila->name.'"> '.$zila->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             $response['success'] = true;
@@ -189,11 +189,11 @@ class AjaxController extends Controller
                 $assemblyHtml = '';
 
                 foreach ($districts as $district) {
-                    $districtHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root districtLi" tabindex="0" role="option" aria-selected="false" data-id="'.$district->id.'" data-name="'.$district->name.'"> '.$district->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                    $districtHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi districtLi" data-li-type="district" tabindex="0" role="option" aria-selected="false" data-id="'.$district->id.'" data-name="'.$district->name.'"> '.$district->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
                 }
 
                 foreach ($assemblies as $assembly) {
-                    $assemblyHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root assemblyLi" tabindex="0" role="option" aria-selected="false" data-id="'.$assembly->id.'" data-name="'.$assembly->name.'"> '.$assembly->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                    $assemblyHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi assemblyLi" data-li-type="assembly" tabindex="0" role="option" aria-selected="false" data-id="'.$assembly->id.'" data-name="'.$assembly->name.'"> '.$assembly->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
                 }
 
                 $response['districtHtml'] = ($districtHtml != '') ? $districtHtml : null;
@@ -393,6 +393,44 @@ class AjaxController extends Controller
                 if ($pincode->district) {
                     $response['districtId'] = $pincode->district->id;
                 }
+            }
+
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $response['success'] = false;
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response);
+        }
+    }
+
+    public function getSearchOptions(Request $request) {
+        try {
+            $response['success'] = false;
+            $resHtml = '';
+            $objects = '';
+
+            if ($request->type == 'state') {
+                $objects = State::whereStatus(1)->where('name', 'like', '%'.$request->keyword.'%')->orderBy('name', 'asc')->get();
+            } else if ($request->type == 'district' && $request->stateId != '') {
+                $objects = District::whereStatus(1)->where('state_id', $request->stateId)->where('name', 'like', '%'.$request->keyword.'%')->orderBy('name', 'asc')->get();
+            } else if ($request->type == 'assembly' && $request->stateId != '') {
+                $objects = AssemblyConstituency::whereStatus(1)->where('state_id', $request->stateId)->where('name', 'like', '%'.$request->keyword.'%')->orderBy('name', 'asc')->get();
+            } else if ($request->type == 'zila' && $request->stateId != '') {
+                $objects = Zilla::whereStatus(1)->where('state_id', $request->stateId)->where('name', 'like', '%'.$request->keyword.'%')->orderBy('name', 'asc')->get();
+            } else if ($request->type == 'mandal' && $request->zilaId != '') {
+                $objects = Mandal::whereStatus(1)->where('zilla_id', $request->zilaId)->where('name', 'like', '%'.$request->keyword.'%')->orderBy('name', 'asc')->get();
+            } else if ($request->type == 'booth' && $request->assemblyId != '') {
+                $objects = Booth::whereStatus(1)->where('assembly_id', $request->assemblyId)->where('name', 'like', '%'.$request->keyword.'%')->orderBy('name', 'asc')->get();
+            }
+
+            if ($objects != '') {
+                foreach ($objects as $value) {
+                    $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi '.$request->type.'Li" data-li-type="'.$request->type.'" tabindex="0" role="option" aria-selected="false" data-id="'.$value->id.'" data-name="'.$value->name.'"> '.$value->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+                }
+
+                $response['success'] = true;
+                $response['html'] = $resHtml;
             }
 
             return response()->json($response);

@@ -223,7 +223,7 @@
                                 </div>
 
                                 <input name="state" placeholder="State *" id="state" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
-                           
+
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
                                     <path d="M7 10l5 5 5-5z"></path>
@@ -324,50 +324,42 @@
                 <div class="height-div-two"></div>
             </div>
         </form>
+
+        <input type="hidden" id="commonSearchUrl" value="{{ route('ajax.get_search_options') }}">
     </div>
 
-    <div role="presentation" id="menu-state"
-        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none " style="display: flex; align-items: center; justify-content: center;">
-        <div aria-hidden="true"
-            class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
-            style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+    <div role="presentation" id="menu-state" class="divModal MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
         <div tabindex="0" data-testid="sentinelStart"></div>
 
-        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper"
-            tabindex="-1"
-            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1);  transform-origin: 180px 172.588px;">
-            
-           <div class="p-3 search-box" >
-            <span class="mb-2 span-close">
-                <?xml version="1.0" ?><svg height="20" viewBox="0 0 48 48" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/></svg>
-            </span>
-            <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root mt-3">
-                <input type="text" name="text" id="text" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input border" placeholder="search " value="{{ old('search') }}" >
-                <span>
-                    <?xml version="1.0" encoding="iso-8859-1"?>
-                    <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                    <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-                         viewBox="0 0 489.425 489.425" xml:space="preserve">
-                    <g>
-                        <g>
-                            <path d="M122.825,394.663c17.8,19.4,43.2,30.6,69.5,30.6h216.9c44.2,0,80.2-36,80.2-80.2v-200.7c0-44.2-36-80.2-80.2-80.2h-216.9
-                                c-26.4,0-51.7,11.1-69.5,30.6l-111.8,121.7c-14.7,16.1-14.7,40.3,0,56.4L122.825,394.663z M29.125,233.063l111.8-121.8
-                                c13.2-14.4,32-22.6,51.5-22.6h216.9c30.7,0,55.7,25,55.7,55.7v200.6c0,30.7-25,55.7-55.7,55.7h-217c-19.5,0-38.3-8.2-51.5-22.6
-                                l-111.7-121.8C23.025,249.663,23.025,239.663,29.125,233.063z"/>
-                            <path d="M225.425,309.763c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6l47.8-47.8l47.8,47.8c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6
-                                c4.8-4.8,4.8-12.5,0-17.3l-47.9-47.8l47.8-47.8c4.8-4.8,4.8-12.5,0-17.3s-12.5-4.8-17.3,0l-47.8,47.8l-47.8-47.8
-                                c-4.8-4.8-12.5-4.8-17.3,0s-4.8,12.5,0,17.3l47.8,47.8l-47.8,47.8C220.725,297.263,220.725,304.962,225.425,309.763z"/>
-                        </g>
-                    </g>
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1);  transform-origin: 180px 172.588px;">
+            <div class="p-3 search-box" >
+                <span class="mb-2 span-close" data-modal="state">
+                    <?xml version="1.0" ?>
+                    <svg height="20" viewBox="0 0 48 48" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/>
                     </svg>
                 </span>
+
+                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root mt-3">
+                    <input type="text" name="keyword" id="search-state" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input border searchInput" data-search-type="state" placeholder="search">
+
+                    <span class="clearSearch" data-search-type="state">
+                        <?xml version="1.0" encoding="iso-8859-1"?>
+                        <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.425 489.425" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M122.825,394.663c17.8,19.4,43.2,30.6,69.5,30.6h216.9c44.2,0,80.2-36,80.2-80.2v-200.7c0-44.2-36-80.2-80.2-80.2h-216.9 c-26.4,0-51.7,11.1-69.5,30.6l-111.8,121.7c-14.7,16.1-14.7,40.3,0,56.4L122.825,394.663z M29.125,233.063l111.8-121.8 c13.2-14.4,32-22.6,51.5-22.6h216.9c30.7,0,55.7,25,55.7,55.7v200.6c0,30.7-25,55.7-55.7,55.7h-217c-19.5,0-38.3-8.2-51.5-22.6 l-111.7-121.8C23.025,249.663,23.025,239.663,29.125,233.063z"/>
+                                    <path d="M225.425,309.763c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6l47.8-47.8l47.8,47.8c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6 c4.8-4.8,4.8-12.5,0-17.3l-47.9-47.8l47.8-47.8c4.8-4.8,4.8-12.5,0-17.3s-12.5-4.8-17.3,0l-47.8,47.8l-47.8-47.8 c-4.8-4.8-12.5-4.8-17.3,0s-4.8,12.5,0,17.3l47.8,47.8l-47.8,47.8C220.725,297.263,220.725,304.962,225.425,309.763z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </span>
+                </div>
             </div>
-           </div>
 
-            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox"
-                tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="stateUl"
-                style="padding-right: 0px; width: calc(100% + 0px);">
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="stateUl" style="padding-right: 0px; width: calc(100% + 0px);">
 
             </ul>
         </div>
@@ -375,20 +367,38 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
-    <div role="presentation" id="menu-district"
-        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none"  style="display: flex; align-items: center; justify-content: center;">
-        <div aria-hidden="true"
-            class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
-            style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+    <div role="presentation" id="menu-district" class="divModal MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
         <div tabindex="0" data-testid="sentinelStart"></div>
 
-        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper"
-            tabindex="-1"
-            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 180px 172.588px;">
-            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox"
-                tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="districtUl"
-                style="padding-right: 0px; width: calc(100% + 0px);">
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 180px 172.588px;">
+            <div class="p-3 search-box" >
+                <span class="mb-2 span-close" data-modal="district">
+                    <?xml version="1.0" ?>
+                    <svg height="20" viewBox="0 0 48 48" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/>
+                    </svg>
+                </span>
+
+                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root mt-3">
+                    <input type="text" name="keyword" id="search-district" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input border searchInput" data-search-type="district" placeholder="search">
+
+                    <span class="clearSearch" data-search-type="district">
+                        <?xml version="1.0" encoding="iso-8859-1"?>
+                        <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.425 489.425" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M122.825,394.663c17.8,19.4,43.2,30.6,69.5,30.6h216.9c44.2,0,80.2-36,80.2-80.2v-200.7c0-44.2-36-80.2-80.2-80.2h-216.9 c-26.4,0-51.7,11.1-69.5,30.6l-111.8,121.7c-14.7,16.1-14.7,40.3,0,56.4L122.825,394.663z M29.125,233.063l111.8-121.8 c13.2-14.4,32-22.6,51.5-22.6h216.9c30.7,0,55.7,25,55.7,55.7v200.6c0,30.7-25,55.7-55.7,55.7h-217c-19.5,0-38.3-8.2-51.5-22.6 l-111.7-121.8C23.025,249.663,23.025,239.663,29.125,233.063z"/>
+                                    <path d="M225.425,309.763c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6l47.8-47.8l47.8,47.8c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6 c4.8-4.8,4.8-12.5,0-17.3l-47.9-47.8l47.8-47.8c4.8-4.8,4.8-12.5,0-17.3s-12.5-4.8-17.3,0l-47.8,47.8l-47.8-47.8 c-4.8-4.8-12.5-4.8-17.3,0s-4.8,12.5,0,17.3l47.8,47.8l-47.8,47.8C220.725,297.263,220.725,304.962,225.425,309.763z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="districtUl" style="padding-right: 0px; width: calc(100% + 0px);">
 
             </ul>
         </div>
@@ -396,20 +406,38 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
-    <div role="presentation" id="menu-assembly"
-        class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none"  style="display: flex; align-items: center; justify-content: center;">
-        <div aria-hidden="true"
-            class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
-            style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+    <div role="presentation" id="menu-assembly" class="divModal MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
         <div tabindex="0" data-testid="sentinelStart"></div>
 
-        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper"
-            tabindex="-1"
-            style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 180px 172.588px;">
-            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox"
-                tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="assemblyUl"
-                style="padding-right: 0px; width: calc(100% + 0px);">
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 180px 172.588px;">
+            <div class="p-3 search-box" >
+                <span class="mb-2 span-close" data-modal="assembly">
+                    <?xml version="1.0" ?>
+                    <svg height="20" viewBox="0 0 48 48" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/>
+                    </svg>
+                </span>
+
+                <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root mt-3">
+                    <input type="text" name="keyword" id="search-assembly" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input border searchInput" data-search-type="assembly" placeholder="search">
+
+                    <span class="clearSearch" data-search-type="assembly">
+                        <?xml version="1.0" encoding="iso-8859-1"?>
+                        <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.425 489.425" xml:space="preserve">
+                            <g>
+                                <g>
+                                    <path d="M122.825,394.663c17.8,19.4,43.2,30.6,69.5,30.6h216.9c44.2,0,80.2-36,80.2-80.2v-200.7c0-44.2-36-80.2-80.2-80.2h-216.9 c-26.4,0-51.7,11.1-69.5,30.6l-111.8,121.7c-14.7,16.1-14.7,40.3,0,56.4L122.825,394.663z M29.125,233.063l111.8-121.8 c13.2-14.4,32-22.6,51.5-22.6h216.9c30.7,0,55.7,25,55.7,55.7v200.6c0,30.7-25,55.7-55.7,55.7h-217c-19.5,0-38.3-8.2-51.5-22.6 l-111.7-121.8C23.025,249.663,23.025,239.663,29.125,233.063z"/>
+                                    <path d="M225.425,309.763c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6l47.8-47.8l47.8,47.8c2.4,2.4,5.5,3.6,8.7,3.6s6.3-1.2,8.7-3.6 c4.8-4.8,4.8-12.5,0-17.3l-47.9-47.8l47.8-47.8c4.8-4.8,4.8-12.5,0-17.3s-12.5-4.8-17.3,0l-47.8,47.8l-47.8-47.8 c-4.8-4.8-12.5-4.8-17.3,0s-4.8,12.5,0,17.3l47.8,47.8l-47.8,47.8C220.725,297.263,220.725,304.962,225.425,309.763z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="assemblyUl" style="padding-right: 0px; width: calc(100% + 0px);">
 
             </ul>
         </div>
@@ -417,43 +445,28 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
-    <div role="presentation" id="uploadProfilePicPopup"
-        class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none">
-        <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop"
-            style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+    <div role="presentation" id="uploadProfilePicPopup" class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
         <div tabindex="0" data-testid="sentinelStart"></div>
 
-        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper"
-            tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper" tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
             <div class="MuiBox-root css-10mm8wz" role="presentation">
                 <div class="profile-upload-containerr">
                     <div class="profile-upload-sub-containerr">
                         <div>
                             <label class="file-label">
                                 <div class="upload-icon">
-                                    <svg width="124" height="95" viewBox="0 0 124 95" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M64.8419 23.5506L64.5283 23.4687C63.583 23.2218 62.9207 22.292 63.254 21.3127L64.8419 23.5506ZM64.8419 23.5506L64.8658 23.5265M64.8419 23.5506L64.8658 23.5265M64.8658 23.5265C65.7025 23.5985 66.5581 23.154 66.8368 22.33C68.8812 16.3162 75.3599 12.0479 82.6512 12.0479C83.6144 12.0479 84.5273 11.3489 84.5273 10.335C84.5273 9.32101 83.6144 8.62205 82.6512 8.62205C73.5045 8.62205 65.7543 13.9565 63.2541 21.3124L64.8658 23.5265Z"
-                                            fill="#F15600" stroke="#F9FFF9" stroke-width="1.12845"></path>
-                                        <path
-                                            d="M101.015 66.6194H93.1443C92.42 66.6194 91.8324 66.1049 91.8324 65.4707C91.8324 64.8365 92.4199 64.322 93.1443 64.322H101.015C111.866 64.322 120.694 56.5923 120.694 47.0921C120.694 37.5919 111.866 29.8622 101.015 29.8622H100.826C100.446 29.8622 100.084 29.7178 99.8348 29.4659C99.5855 29.214 99.4731 28.88 99.5274 28.5502C99.6446 27.8348 99.7036 27.116 99.7036 26.4162C99.7036 18.1828 92.0524 11.4835 82.6491 11.4835C78.9908 11.4835 75.5021 12.4845 72.5597 14.3789C71.9131 14.7949 70.9948 14.6103 70.6209 13.9875C62.2877 0.0937152 40.5223 -1.77209 29.2381 10.3143C24.4845 15.4062 22.6167 22.0298 24.1134 28.4855C24.2783 29.1985 23.6551 29.863 22.8277 29.863H22.302C11.452 29.863 2.62388 37.5928 2.62388 47.093C2.62388 56.5932 11.452 64.3229 22.302 64.3229H30.1732C30.8975 64.3229 31.4851 64.8373 31.4851 65.4716C31.4851 66.1058 30.8976 66.6202 30.1732 66.6202H22.302C10.005 66.6202 0 57.86 0 47.0929C0 36.6278 9.45106 28.0587 21.2722 27.5861C20.1618 20.8885 22.2852 14.1327 27.2065 8.86047C39.2879 -4.08082 62.4411 -2.63027 72.2284 11.8002C75.3508 10.0862 78.9237 9.18709 82.6486 9.18709C94.0413 9.18709 103.069 17.6774 102.279 27.5968C113.991 28.172 123.317 36.6958 123.317 47.092C123.317 57.86 113.312 66.6194 101.015 66.6194L101.015 66.6194Z"
-                                            fill="#F15600"></path>
-                                        <path
-                                            d="M28.1216 64.8185C28.1216 81.0328 43.1599 94.0996 61.4831 94.0996C79.8066 94.0996 94.8447 81.0326 94.8447 64.8185C94.8447 48.6041 79.8066 35.5373 61.4831 35.5373C43.1597 35.5373 28.1216 48.6043 28.1216 64.8185ZM31.8744 64.8185C31.8744 50.6309 45.0846 38.9636 61.4831 38.9636C77.8814 38.9636 91.0918 50.6307 91.0918 64.8185C91.0918 79.006 77.8814 90.6733 61.4831 90.6733C45.0849 90.6733 31.8744 79.0062 31.8744 64.8185Z"
-                                            fill="#F15600" stroke="#F9FFF9" stroke-width="1.12845"></path>
-                                        <path
-                                            d="M60.5578 76.3778C60.5578 77.2218 61.3134 77.7829 62.0825 77.7829C62.8514 77.7829 63.6072 77.2226 63.6072 76.3778V54.5128C63.6072 53.6688 62.8517 53.1076 62.0825 53.1076C61.3133 53.1076 60.5578 53.6688 60.5578 54.5128V76.3778Z"
-                                            fill="#F15600" stroke="#F15600" stroke-width="1.12845"></path>
-                                        <path
-                                            d="M68.7162 62.2597C69.0173 62.5233 69.3999 62.6457 69.767 62.6457H69.7671C70.133 62.6457 70.5161 62.5246 70.8179 62.2597C71.4498 61.7063 71.4498 60.7747 70.8179 60.2214L63.1344 53.4938C62.5467 52.9792 61.6204 52.9787 61.0327 53.4938C61.0327 53.4938 61.0326 53.4939 61.0326 53.4939C61.0325 53.494 61.0324 53.4941 61.0323 53.4941L53.3492 60.2214C52.7172 60.7747 52.7172 61.7063 53.3492 62.2597C53.9369 62.7743 54.8632 62.7748 55.4509 62.2597C55.451 62.2596 55.451 62.2596 55.4511 62.2596C55.4511 62.2595 55.4512 62.2594 55.4513 62.2594L62.0836 56.4522L68.7162 62.2597C68.7162 62.2597 68.7162 62.2597 68.7162 62.2597Z"
-                                            fill="#F15600" stroke="#F15600" stroke-width="1.12845"></path>
+                                    <svg width="124" height="95" viewBox="0 0 124 95" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M64.8419 23.5506L64.5283 23.4687C63.583 23.2218 62.9207 22.292 63.254 21.3127L64.8419 23.5506ZM64.8419 23.5506L64.8658 23.5265M64.8419 23.5506L64.8658 23.5265M64.8658 23.5265C65.7025 23.5985 66.5581 23.154 66.8368 22.33C68.8812 16.3162 75.3599 12.0479 82.6512 12.0479C83.6144 12.0479 84.5273 11.3489 84.5273 10.335C84.5273 9.32101 83.6144 8.62205 82.6512 8.62205C73.5045 8.62205 65.7543 13.9565 63.2541 21.3124L64.8658 23.5265Z" fill="#F15600" stroke="#F9FFF9" stroke-width="1.12845"></path>
+                                        <path d="M101.015 66.6194H93.1443C92.42 66.6194 91.8324 66.1049 91.8324 65.4707C91.8324 64.8365 92.4199 64.322 93.1443 64.322H101.015C111.866 64.322 120.694 56.5923 120.694 47.0921C120.694 37.5919 111.866 29.8622 101.015 29.8622H100.826C100.446 29.8622 100.084 29.7178 99.8348 29.4659C99.5855 29.214 99.4731 28.88 99.5274 28.5502C99.6446 27.8348 99.7036 27.116 99.7036 26.4162C99.7036 18.1828 92.0524 11.4835 82.6491 11.4835C78.9908 11.4835 75.5021 12.4845 72.5597 14.3789C71.9131 14.7949 70.9948 14.6103 70.6209 13.9875C62.2877 0.0937152 40.5223 -1.77209 29.2381 10.3143C24.4845 15.4062 22.6167 22.0298 24.1134 28.4855C24.2783 29.1985 23.6551 29.863 22.8277 29.863H22.302C11.452 29.863 2.62388 37.5928 2.62388 47.093C2.62388 56.5932 11.452 64.3229 22.302 64.3229H30.1732C30.8975 64.3229 31.4851 64.8373 31.4851 65.4716C31.4851 66.1058 30.8976 66.6202 30.1732 66.6202H22.302C10.005 66.6202 0 57.86 0 47.0929C0 36.6278 9.45106 28.0587 21.2722 27.5861C20.1618 20.8885 22.2852 14.1327 27.2065 8.86047C39.2879 -4.08082 62.4411 -2.63027 72.2284 11.8002C75.3508 10.0862 78.9237 9.18709 82.6486 9.18709C94.0413 9.18709 103.069 17.6774 102.279 27.5968C113.991 28.172 123.317 36.6958 123.317 47.092C123.317 57.86 113.312 66.6194 101.015 66.6194L101.015 66.6194Z" fill="#F15600"></path>
+                                        <path d="M28.1216 64.8185C28.1216 81.0328 43.1599 94.0996 61.4831 94.0996C79.8066 94.0996 94.8447 81.0326 94.8447 64.8185C94.8447 48.6041 79.8066 35.5373 61.4831 35.5373C43.1597 35.5373 28.1216 48.6043 28.1216 64.8185ZM31.8744 64.8185C31.8744 50.6309 45.0846 38.9636 61.4831 38.9636C77.8814 38.9636 91.0918 50.6307 91.0918 64.8185C91.0918 79.006 77.8814 90.6733 61.4831 90.6733C45.0849 90.6733 31.8744 79.0062 31.8744 64.8185Z" fill="#F15600" stroke="#F9FFF9" stroke-width="1.12845"></path>
+                                        <path d="M60.5578 76.3778C60.5578 77.2218 61.3134 77.7829 62.0825 77.7829C62.8514 77.7829 63.6072 77.2226 63.6072 76.3778V54.5128C63.6072 53.6688 62.8517 53.1076 62.0825 53.1076C61.3133 53.1076 60.5578 53.6688 60.5578 54.5128V76.3778Z" fill="#F15600" stroke="#F15600" stroke-width="1.12845"></path>
+                                        <path d="M68.7162 62.2597C69.0173 62.5233 69.3999 62.6457 69.767 62.6457H69.7671C70.133 62.6457 70.5161 62.5246 70.8179 62.2597C71.4498 61.7063 71.4498 60.7747 70.8179 60.2214L63.1344 53.4938C62.5467 52.9792 61.6204 52.9787 61.0327 53.4938C61.0327 53.4938 61.0326 53.4939 61.0326 53.4939C61.0325 53.494 61.0324 53.4941 61.0323 53.4941L53.3492 60.2214C52.7172 60.7747 52.7172 61.7063 53.3492 62.2597C53.9369 62.7743 54.8632 62.7748 55.4509 62.2597C55.451 62.2596 55.451 62.2596 55.4511 62.2596C55.4511 62.2595 55.4512 62.2594 55.4513 62.2594L62.0836 56.4522L68.7162 62.2597C68.7162 62.2597 68.7162 62.2597 68.7162 62.2597Z" fill="#F15600" stroke="#F15600" stroke-width="1.12845"></path>
                                     </svg>
                                 </div>
 
-                                <input id="file-upload-gallery" type="file" class="file-input"
-                                    accept="image/jpeg, image/png, image/heic, image/heif">
+                                <input id="file-upload-gallery" type="file" class="file-input" accept="image/jpeg, image/png, image/heic, image/heif">
                             </label>
                         </div>
 
@@ -476,15 +489,12 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
-    <div role="presentation" id="previewUploadedImg"
-        class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none">
-        <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop"
-            style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+    <div role="presentation" id="previewUploadedImg" class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-195ptfl-MuiModal-root-MuiDrawer-root d-none">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiModal-backdrop css-i9fmh8-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
         <div tabindex="0" data-testid="sentinelStart"></div>
 
-        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper"
-            tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation16 MuiDrawer-paper MuiDrawer-paperAnchorBottom css-9emuhu-MuiPaper-root-MuiDrawer-paper" tabindex="-1" style="transform: none; transition: transform 225ms cubic-bezier(0, 0, 0.2, 1);">
             <div class="MuiBox-root css-10mm8wz" role="presentation">
                 <div class="profile-upload-containerr">
                     <div class="profile-upload-sub-containerr">
@@ -503,12 +513,9 @@
                         <p class="m-0"> Upload</p>
 
                         <div id="uploadImgSvg">
-                            <svg width="35" height="35" viewBox="0 0 35 35" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                            <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="17.1343" cy="17.1343" r="17.1343" fill="#FE9900"></circle>
-                                <path
-                                    d="M21.4179 17.9376C21.4179 18.1873 21.3284 18.4371 21.1367 18.6342L16.6252 23.2739C16.2546 23.6551 15.6411 23.6551 15.2705 23.2739C14.8999 22.8928 14.8999 22.2619 15.2705 21.8807L19.1046 17.9376L15.2705 13.9945C14.8999 13.6133 14.8999 12.9825 15.2705 12.6013C15.6411 12.2201 16.2546 12.2201 16.6252 12.6013L21.1367 17.241C21.3284 17.4382 21.4179 17.6879 21.4179 17.9376Z"
-                                    fill="white"></path>
+                                <path d="M21.4179 17.9376C21.4179 18.1873 21.3284 18.4371 21.1367 18.6342L16.6252 23.2739C16.2546 23.6551 15.6411 23.6551 15.2705 23.2739C14.8999 22.8928 14.8999 22.2619 15.2705 21.8807L19.1046 17.9376L15.2705 13.9945C14.8999 13.6133 14.8999 12.9825 15.2705 12.6013C15.6411 12.2201 16.2546 12.2201 16.6252 12.6013L21.1367 17.241C21.3284 17.4382 21.4179 17.6879 21.4179 17.9376Z" fill="white"></path>
                             </svg>
                         </div>
 
@@ -525,12 +532,22 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
-    <div role="presentation" id="menu-salutation" class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
+    <div role="presentation" id="menu-salutation" class="divModal MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
         <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
         <div tabindex="0" data-testid="sentinelStart"></div>
 
         <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1);  transform-origin: 180px 172.588px;">
+            <div class="p-3 search-box">
+                <span class="mb-2 span-close" data-modal="salutation">
+                    <?xml version="1.0" ?>
+                    <svg height="20" viewBox="0 0 48 48" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/>
+                        <path d="M0 0h48v48h-48z" fill="none"/>
+                    </svg>
+                </span>
+            </div>
+
             <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="salutationUl" style="padding-right: 0px; width: calc(100% + 0px);">
                 <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root salutationLi" tabindex="0" role="option" aria-selected="false" data-id="mrs" data-name="Mrs"> Mrs <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>
                 <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root salutationLi" tabindex="0" role="option" aria-selected="false" data-id="mr" data-name="Mr"> Mr <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>

@@ -258,3 +258,74 @@ function isValidEmail(email) {
     var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
 }
+
+$(document).on('click', '.span-close', function() {
+    const modal = $(this).data('modal');
+    $('#menu-' + modal).addClass('d-none');
+    $('.searchInput').val('');
+});
+
+$(document).on('click', '.optionLi', function() {
+    $('.searchInput').val('');
+
+    const searchType = $(this).data('li-type');
+
+    getCommonValues(searchType);
+});
+
+$(document).on('keyup', '.searchInput', function() {
+    const searchType = $(this).data('search-type');
+    const searchValue = $(this).val();
+
+    getCommonValues(searchType, searchValue);
+});
+
+$(document).on('click', '.clearSearch', function() {
+    const searchType = $(this).data('search-type');
+
+    $('#search-'+searchType).val('');
+
+    getCommonValues(searchType);
+});
+
+
+function getCommonValues(searchType, searchValue = '') {
+    let stateId = '';
+    let zilaId = '';
+    let assemblyId = '';
+
+    if (searchType != 'state') {
+        stateId = $('#state').val();
+    }
+
+    if (searchType == 'mandal') {
+        zilaId = $('#zila_id').val();
+    }
+
+    if (searchType == 'booth') {
+        assemblyId = $('#assembly_constituency').val();
+        $('#boothUl').html('');
+        $('#boothUl').html('<p style="text-align: center;" id="boothLoad">Loading...</p>');
+    }
+
+    $.ajax({
+        type: "POST",
+        url: $('#commonSearchUrl').val(),
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            keyword: searchValue,
+            type: searchType,
+            stateId: stateId,
+            zilaId: zilaId,
+            assemblyId: assemblyId
+        },
+        dataType: "json",
+        success: function(response) {
+            if (response.success) {
+                $('#'+searchType+'Ul').html(response.html);
+            } else {
+                $('#boothLoad').html('No data found');
+            }
+        }
+    });
+}

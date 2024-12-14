@@ -45,6 +45,7 @@ Route::controller(AjaxController::class)->group(function () {
         Route::get('/get-districts', 'getDistricts')->name('get_districts');
         Route::get('/get-booths', 'getBoothDD')->name('get_booth_dd');
         Route::post('/get-pincode-data', 'getPincodeData')->name('get_pincode_data');
+        Route::post('/get-search-options', 'getSearchOptions')->name('get_search_options');
     });
 });
 
