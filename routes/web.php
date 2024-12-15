@@ -36,6 +36,7 @@ Route::controller(AjaxController::class)->group(function () {
         Route::post('/get-pincode-details', 'getPincodeDetails')->name('get_pincode_details');
         Route::post('/check-referral-code', 'checkReferralCode')->name('check.referral.code');
         Route::post('/get-zilas', 'getZilas')->name('get_zilas');
+        Route::post('/get-villages', 'getVillages')->name('get_villages');
         Route::post('/get-mandals', 'getMandals')->name('get_mandals');
         Route::post('/get-booths', 'getBooths')->name('get_booths');
 

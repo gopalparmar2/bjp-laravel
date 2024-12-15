@@ -518,7 +518,7 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict" style="background-color: #cacaca;">
                                 <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divStateName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input" data-url="{{ route('ajax.get_all_states') }}">
                                     {{ $user->state ? $user->state->name : '' }}
                                 </div>
@@ -534,7 +534,7 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict" style="background-color: #cacaca;">
                                 <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divDistrictName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input  css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input" data-dropdown="district">
                                     {{ $user->district ? $user->district->name : '' }}
                                 </div>
@@ -550,12 +550,28 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown" style="background-color: #cacaca;">
                                 <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divAssemblyName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input" data-dropdown="assembly">
                                     {{ $user->assemblyConstituency ? $user->assemblyConstituency->name : '' }}
                                 </div>
 
                                 <input type="text" name="assembly_constituency" id="assembly_constituency" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput {{ $user->assemblyConstituency ? 'd-none' : '' }}" placeholder="Assembly constituency (AC)" value="{{ old('assembly_constituency', $user->assembly_id) }}">
+
+                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
+                                    <path d="M7 10l5 5 5-5z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="primary-dropdown-container">
+                        <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
+                                <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divVillageName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                                    {{ $user->village ? $user->village->name : '' }}
+                                </div>
+
+                                <input type="text" name="village_id" id="village_id" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput {{ $user->village ? 'd-none' : '' }}" placeholder="Village" value="{{ old('village_id', $user->village_id) }}">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
                                     <path d="M7 10l5 5 5-5z"></path>
@@ -573,22 +589,6 @@
                     <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
                         <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
                             <input type="text" name="landline_number" id="landline_number" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Landline number" maxlength="100" value="{{ old('landline_number', $user->landline_number) }}">
-                        </div>
-                    </div>
-
-                    <div class="primary-dropdown-container">
-                        <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
-                                <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divZilaName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
-                                    {{ $user->zila ? $user->zila->name : '' }}
-                                </div>
-
-                                <input type="text" name="zila_id" id="zila_id" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput {{ $user->zila ? 'd-none' : '' }}" placeholder="Zila" value="{{ old('zila_id', $user->zila_id) }}">
-
-                                <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
-                                    <path d="M7 10l5 5 5-5z"></path>
-                                </svg>
-                            </div>
                         </div>
                     </div>
 
@@ -767,14 +767,14 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
-    <div role="presentation" id="menu-zila" class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
+    <div role="presentation" id="menu-village" class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
         <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
         <div tabindex="0" data-testid="sentinelStart"></div>
 
         <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1); transform-origin: 180px 172.588px;">
             <div class="p-3 search-box" >
-                <span class="mb-2 span-close" data-modal="zila">
+                <span class="mb-2 span-close" data-modal="village">
                     <?xml version="1.0" ?>
                     <svg height="20" viewBox="0 0 48 48" width="20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/><path d="M0 0h48v48h-48z" fill="none"/>
@@ -782,9 +782,9 @@
                 </span>
 
                 <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root mt-3">
-                    <input type="text" name="keyword" id="search-zila" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input border searchInput" data-search-type="zila" placeholder="search">
+                    <input type="text" name="keyword" id="search-village" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input border searchInput" data-search-type="village" placeholder="search">
 
-                    <span class="clearSearch" data-search-type="zila">
+                    <span class="clearSearch" data-search-type="village">
                         <?xml version="1.0" encoding="iso-8859-1"?>
                         <svg fill="#000000" height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 489.425 489.425" xml:space="preserve">
                             <g>
@@ -798,7 +798,7 @@
                 </div>
             </div>
 
-            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="zilaUl" style="padding-right: 0px; width: calc(100% + 0px);">
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="villageUl" style="padding-right: 0px; width: calc(100% + 0px);">
 
             </ul>
         </div>
@@ -1205,56 +1205,56 @@
                 $('#salutation').addClass('d-none');
             });
 
-            $(document).on('click', '#divStateName', function() {
-                $.ajax({
-                    type: "GET",
-                    url: "{!! route('ajax.get_all_states') !!}",
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.success) {
-                            $('#stateUl').html(response.html);
-                            $('#menu-state').removeClass('d-none');
-                        }
-                    }
-                });
-            });
+            // $(document).on('click', '#divStateName', function() {
+            //     $.ajax({
+            //         type: "GET",
+            //         url: "{!! route('ajax.get_all_states') !!}",
+            //         dataType: "json",
+            //         success: function(response) {
+            //             if (response.success) {
+            //                 $('#stateUl').html(response.html);
+            //                 $('#menu-state').removeClass('d-none');
+            //             }
+            //         }
+            //     });
+            // });
 
-            $(document).on('click', '.stateLi', function() {
-                const stateId = $(this).data('id');
-                const stateName = $(this).data('name');
+            // $(document).on('click', '.stateLi', function() {
+            //     const stateId = $(this).data('id');
+            //     const stateName = $(this).data('name');
 
-                $('#state').val(stateId);
-                $('#divStateName').html(stateName);
+            //     $('#state').val(stateId);
+            //     $('#divStateName').html(stateName);
 
-                $('#district').val('');
-                $('#district').removeClass('d-none');
-                $('#divDistrictName').html('');
+            //     $('#district').val('');
+            //     $('#district').removeClass('d-none');
+            //     $('#divDistrictName').html('');
 
-                $('#assembly_constituency').val('');
-                $('#assembly_constituency').removeClass('d-none');
-                $('#divAssemblyName').html('');
+            //     $('#assembly_constituency').val('');
+            //     $('#assembly_constituency').removeClass('d-none');
+            //     $('#divAssemblyName').html('');
 
-                $('#menu-state').addClass('d-none');
-                $('#state').addClass('d-none');
+            //     $('#menu-state').addClass('d-none');
+            //     $('#state').addClass('d-none');
 
-                $.ajax({
-                    type: "POST",
-                    url: "{!! route('ajax.get_districts_and_assemblies') !!}",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "stateId": stateId
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.success) {
-                            $('#districtUl').html(response.districtHtml);
-                            $('#assemblyUl').html(response.assemblyHtml);
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "{!! route('ajax.get_districts_and_assemblies') !!}",
+            //         data: {
+            //             "_token": "{{ csrf_token() }}",
+            //             "stateId": stateId
+            //         },
+            //         dataType: "json",
+            //         success: function(response) {
+            //             if (response.success) {
+            //                 $('#districtUl').html(response.districtHtml);
+            //                 $('#assemblyUl').html(response.assemblyHtml);
 
-                            checkFormValues();
-                        }
-                    }
-                });
-            });
+            //                 checkFormValues();
+            //             }
+            //         }
+            //     });
+            // });
 
             $(document).on('click', '#divReligionName', function() {
                 $('#menu-religion').removeClass('d-none');
@@ -1346,47 +1346,48 @@
                 $('#relationship_id').addClass('d-none');
             });
 
-            $(document).on('click', '#divZilaName', function() {
-                const stateId = $('#state').val();
+            $(document).on('click', '#divVillageName', function() {
+                const assemblyId = $('#assembly_constituency').val();
 
-                if (!stateId) {
-                    Toast.fire({ icon: 'error', title: 'Please select state first!' });
+                if (!assemblyId) {
+                    Toast.fire({ icon: 'error', title: 'Please select assembly constituency first!' });
                     return
                 }
 
                 $.ajax({
                     type: "POST",
-                    url: "{!! route('ajax.get_zilas') !!}",
+                    url: "{!! route('ajax.get_villages') !!}",
                     data: {
                         '_token': '{{ csrf_token() }}',
-                        stateId: stateId
+                        assemblyId: assemblyId
                     },
                     dataType: "json",
                     success: function(response) {
                         if (response.success) {
-                            $('#zilaUl').html(response.html);
-                            $('#menu-zila').removeClass('d-none');
+                            $('#villageUl').html(response.html);
+                            $('#menu-village').removeClass('d-none');
                         }
                     }
                 });
             });
 
-            $(document).on('click', '.zilaLi', function() {
-                const zilaId = $(this).data('id');
-                const zilaName = $(this).data('name');
+            $(document).on('click', '.villageLi', function() {
+                const villageId = $(this).data('id');
+                const villageName = $(this).data('name');
 
-                $('#zila_id').val(zilaId);
-                $('#divZilaName').html(zilaName);
+                $('#village_id').val(villageId);
+                $('#divVillageName').html(villageName);
 
-                $('#menu-zila').addClass('d-none');
-                $('#zila_id').addClass('d-none');
+                $('#menu-village').addClass('d-none');
+                $('#village_id').addClass('d-none');
 
                 $('#divMandalName').html('');
                 $('#mandal_id').val('');
             });
 
             $(document).on('click', '#divMandalName', function() {
-                const zilaId = $('#zila_id').val();
+                // const zilaId = $('#zila_id').val();
+                const zilaId = 431;
 
                 if (!zilaId) {
                     Toast.fire({ icon: 'error', title: 'Please select zila first!' });
@@ -1564,7 +1565,7 @@
                     const state = $('#state').val();
                     const district = $('#district').val();
                     const assembly_constituency = $('#assembly_constituency').val();
-                    const zila_id = $('#zila_id').val();
+                    const village_id = $('#village_id').val();
                     const mandal_id = $('#mandal_id').val();
                     const booth_id = $('#booth_id').val();
                     const landline_number = $('#landline_number').val();
@@ -1600,7 +1601,7 @@
                             state: state,
                             district: district,
                             assembly_constituency: assembly_constituency,
-                            zila_id: zila_id,
+                            village_id: village_id,
                             mandal_id: mandal_id,
                             booth_id: booth_id,
                             landline_number: landline_number,
@@ -1826,58 +1827,58 @@
                 }
             });
 
-            $(document).on('click', '#divDistrictName, #divAssemblyName', function() {
-                const dropdownName = $(this).data('dropdown');
-                const stateId = $('#state').val();
+            // $(document).on('click', '#divDistrictName, #divAssemblyName', function() {
+            //     const dropdownName = $(this).data('dropdown');
+            //     const stateId = $('#state').val();
 
-                if (!stateId) {
-                    Toast.fire("Failed!", "Please select state first!", "error");
-                    return
-                }
+            //     if (!stateId) {
+            //         Toast.fire("Failed!", "Please select state first!", "error");
+            //         return
+            //     }
 
-                $.ajax({
-                    type: "POST",
-                    url: "{!! route('ajax.get_districts_and_assemblies') !!}",
-                    data: {
-                        "_token": $('meta[name="csrf-token"]').attr('content'),
-                        "stateId": stateId
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.success) {
-                            $('#districtUl').html(response.districtHtml);
-                            $('#assemblyUl').html(response.assemblyHtml);
-                        }
-                    },
-                    complete: function() {
-                        if (dropdownName == 'district') {
-                            $('#menu-district').removeClass('d-none');
-                        } else if (dropdownName == 'assembly') {
-                            $('#menu-assembly').removeClass('d-none');
-                        }
-                    }
-                });
-            });
+            //     $.ajax({
+            //         type: "POST",
+            //         url: "{!! route('ajax.get_districts_and_assemblies') !!}",
+            //         data: {
+            //             "_token": $('meta[name="csrf-token"]').attr('content'),
+            //             "stateId": stateId
+            //         },
+            //         dataType: "json",
+            //         success: function(response) {
+            //             if (response.success) {
+            //                 $('#districtUl').html(response.districtHtml);
+            //                 $('#assemblyUl').html(response.assemblyHtml);
+            //             }
+            //         },
+            //         complete: function() {
+            //             if (dropdownName == 'district') {
+            //                 $('#menu-district').removeClass('d-none');
+            //             } else if (dropdownName == 'assembly') {
+            //                 $('#menu-assembly').removeClass('d-none');
+            //             }
+            //         }
+            //     });
+            // });
 
-            $(document).on('click', '.districtLi', function() {
-                const districtId = $(this).data('id');
-                const districtName = $(this).data('name');
+            // $(document).on('click', '.districtLi', function() {
+            //     const districtId = $(this).data('id');
+            //     const districtName = $(this).data('name');
 
-                $('#district').val(districtId);
-                $('#divDistrictName').html(districtName);
-                $('#menu-district').addClass('d-none');
-                $('#district').addClass('d-none');
-            });
+            //     $('#district').val(districtId);
+            //     $('#divDistrictName').html(districtName);
+            //     $('#menu-district').addClass('d-none');
+            //     $('#district').addClass('d-none');
+            // });
 
-            $(document).on('click', '.assemblyLi', function() {
-                const assemblyId = $(this).data('id');
-                const assemblyName = $(this).data('name');
+            // $(document).on('click', '.assemblyLi', function() {
+            //     const assemblyId = $(this).data('id');
+            //     const assemblyName = $(this).data('name');
 
-                $('#assembly_constituency').val(assemblyId);
-                $('#divAssemblyName').html(assemblyName);
-                $('#menu-assembly').addClass('d-none');
-                $('#assembly').addClass('d-none');
-            });
+            //     $('#assembly_constituency').val(assemblyId);
+            //     $('#divAssemblyName').html(assemblyName);
+            //     $('#menu-assembly').addClass('d-none');
+            //     $('#assembly').addClass('d-none');
+            // });
 
             $(document).on('click', '#divBoothName', function() {
                 const assemblyId = $('#assembly_constituency').val();

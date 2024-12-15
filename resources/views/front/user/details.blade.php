@@ -217,12 +217,12 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict input-box">
-
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict input-box" style="background-color: #cacaca;">
                                 <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divStateName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input position-absolute" data-url="{{ route('ajax.get_all_states') }}">
+                                    Gujarat
                                 </div>
 
-                                <input name="state" placeholder="State *" id="state" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
+                                <input name="state" id="state" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput d-none" placeholder="State *" value="7">
 
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
@@ -234,11 +234,12 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict">
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown stateOrDistrict" style="background-color: #cacaca;">
                                 <div tabindex="0" role="combobox" aria-controls=":rb:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divDistrictName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input  css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                                    Rajkot
                                 </div>
 
-                                <input name="district" placeholder="District *" id="district" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
+                                <input name="district" id="district" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput d-none" placeholder="District *" value="180">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
                                     <path d="M7 10l5 5 5-5z"></path>
@@ -249,11 +250,12 @@
 
                     <div class="primary-dropdown-container">
                         <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
-                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
+                            <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown" style="background-color: #cacaca;">
                                 <div tabindex="0" role="combobox" aria-controls=":rc:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divAssemblyName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                                    Jetpur (Rajkot)
                                 </div>
 
-                                <input name="assembly_constituency" placeholder="Assembly constituency (AC)" id="assembly_constituency" aria-hidden="true" tabindex="-1" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput">
+                                <input name="assembly_constituency" id="assembly_constituency" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput d-none" placeholder="Assembly constituency (AC)" value="805">
 
                                 <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
                                     <path d="M7 10l5 5 5-5z"></path>
@@ -578,96 +580,96 @@
             checkFormValues();
         });
 
-        $(document).on('click', '#divStateName', function() {
-            $.ajax({
-                type: "GET",
-                url: "{!! route('ajax.get_all_states') !!}",
-                dataType: "json",
-                success: function(response) {
-                    if (response.success) {
-                        $('#stateUl').html(response.html);
-                        $('#menu-state').removeClass('d-none');
-                    }
-                }
-            });
-        });
+        // $(document).on('click', '#divStateName', function() {
+        //     $.ajax({
+        //         type: "GET",
+        //         url: "{!! route('ajax.get_all_states') !!}",
+        //         dataType: "json",
+        //         success: function(response) {
+        //             if (response.success) {
+        //                 $('#stateUl').html(response.html);
+        //                 $('#menu-state').removeClass('d-none');
+        //             }
+        //         }
+        //     });
+        // });
 
-        $(document).on('click', '.stateLi', function() {
-            const stateId = $(this).data('id');
-            const stateName = $(this).data('name');
+        // $(document).on('click', '.stateLi', function() {
+        //     const stateId = $(this).data('id');
+        //     const stateName = $(this).data('name');
 
-            $('#state').val(stateId);
-            $('#divStateName').html(stateName);
+        //     $('#state').val(stateId);
+        //     $('#divStateName').html(stateName);
 
-            $('#district').val('');
-            $('#district').removeClass('d-none');
-            $('#divDistrictName').html('');
+        //     $('#district').val('');
+        //     $('#district').removeClass('d-none');
+        //     $('#divDistrictName').html('');
 
-            $('#assembly_constituency').val('');
-            $('#assembly_constituency').removeClass('d-none');
-            $('#divAssemblyName').html('');
+        //     $('#assembly_constituency').val('');
+        //     $('#assembly_constituency').removeClass('d-none');
+        //     $('#divAssemblyName').html('');
 
-            $('#menu-state').addClass('d-none');
-            $('#state').addClass('d-none');
+        //     $('#menu-state').addClass('d-none');
+        //     $('#state').addClass('d-none');
 
-            $.ajax({
-                type: "POST",
-                url: "{!! route('ajax.get_districts_and_assemblies') !!}",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "stateId": stateId
-                },
-                dataType: "json",
-                success: function(response) {
-                    if (response.success) {
-                        $('#districtUl').html(response.districtHtml);
-                        $('#assemblyUl').html(response.assemblyHtml);
+        //     $.ajax({
+        //         type: "POST",
+        //         url: "{!! route('ajax.get_districts_and_assemblies') !!}",
+        //         data: {
+        //             "_token": "{{ csrf_token() }}",
+        //             "stateId": stateId
+        //         },
+        //         dataType: "json",
+        //         success: function(response) {
+        //             if (response.success) {
+        //                 $('#districtUl').html(response.districtHtml);
+        //                 $('#assemblyUl').html(response.assemblyHtml);
 
-                        checkFormValues();
-                    }
-                }
-            });
-        });
+        //                 checkFormValues();
+        //             }
+        //         }
+        //     });
+        // });
 
-        $(document).on('click', '#divDistrictName', function() {
-            const stateId = $('#state').val();
+        // $(document).on('click', '#divDistrictName', function() {
+        //     const stateId = $('#state').val();
 
-            if (stateId != '') {
-                $('#menu-district').removeClass('d-none');
-            }
-        });
+        //     if (stateId != '') {
+        //         $('#menu-district').removeClass('d-none');
+        //     }
+        // });
 
-        $(document).on('click', '.districtLi', function() {
-            const districtId = $(this).data('id');
-            const districtName = $(this).data('name');
+        // $(document).on('click', '.districtLi', function() {
+        //     const districtId = $(this).data('id');
+        //     const districtName = $(this).data('name');
 
-            $('#district').val(districtId);
-            $('#divDistrictName').html(districtName);
-            $('#menu-district').addClass('d-none');
-            $('#district').addClass('d-none');
+        //     $('#district').val(districtId);
+        //     $('#divDistrictName').html(districtName);
+        //     $('#menu-district').addClass('d-none');
+        //     $('#district').addClass('d-none');
 
-            checkFormValues();
-        });
+        //     checkFormValues();
+        // });
 
-        $(document).on('click', '#divAssemblyName', function() {
-            const stateId = $('#state').val();
+        // $(document).on('click', '#divAssemblyName', function() {
+        //     const stateId = $('#state').val();
 
-            if (stateId != '') {
-                $('#menu-assembly').removeClass('d-none');
-            }
-        });
+        //     if (stateId != '') {
+        //         $('#menu-assembly').removeClass('d-none');
+        //     }
+        // });
 
-        $(document).on('click', '.assemblyLi', function() {
-            const assemblyId = $(this).data('id');
-            const assemblyName = $(this).data('name');
+        // $(document).on('click', '.assemblyLi', function() {
+        //     const assemblyId = $(this).data('id');
+        //     const assemblyName = $(this).data('name');
 
-            $('#assembly_constituency').val(assemblyId);
-            $('#divAssemblyName').html(assemblyName);
-            $('#menu-assembly').addClass('d-none');
-            $('#assembly_constituency').addClass('d-none');
+        //     $('#assembly_constituency').val(assemblyId);
+        //     $('#divAssemblyName').html(assemblyName);
+        //     $('#menu-assembly').addClass('d-none');
+        //     $('#assembly_constituency').addClass('d-none');
 
-            checkFormValues();
-        });
+        //     checkFormValues();
+        // });
 
         $(document).on('change', '#first_name, #last_name, #dob, #isPledge', function() {
             checkFormValues();

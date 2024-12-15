@@ -104,4 +104,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function booth() {
         return $this->belongsTo(Booth::class);
     }
+
+    public function village() {
+        return $this->belongsTo(Village::class);
+    }
 }

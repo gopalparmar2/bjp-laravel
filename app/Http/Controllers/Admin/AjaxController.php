@@ -12,6 +12,7 @@ use App\Models\State;
 use App\Models\Zilla;
 use App\Models\Booth;
 use App\Models\User;
+use App\Models\Village;
 
 class AjaxController extends Controller
 {
@@ -70,6 +71,27 @@ class AjaxController extends Controller
 
             foreach ($zilas as $zila) {
                 $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi zilaLi" data-li-type="zilla" tabindex="0" role="option" aria-selected="false" data-id="'.$zila->id.'" data-name="'.$zila->name.'"> '.$zila->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
+            }
+
+            $response['success'] = true;
+            $response['html'] = $resHtml;
+
+            return response()->json($response);
+        } catch (\Exception $e) {
+            $response['success'] = false;
+            $response['message'] = $e->getMessage();
+
+            return response()->json($response);
+        }
+    }
+
+    public function getVillages(Request $request) {
+        try {
+            $villages = Village::whereStatus(1)->where('assembly_id', $request->assemblyId)->orderBy('priority', 'desc')->get();
+            $resHtml = '';
+
+            foreach ($villages as $village) {
+                $resHtml .= '<li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root optionLi villageLi" data-li-type="zilla" tabindex="0" role="option" aria-selected="false" data-id="'.$village->id.'" data-name="'.$village->name.'"> '.$village->name.' <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>';
             }
 
             $response['success'] = true;
@@ -422,6 +444,8 @@ class AjaxController extends Controller
                 $objects = Mandal::whereStatus(1)->where('zilla_id', $request->zilaId)->where('name', 'like', '%'.$request->keyword.'%')->orderBy('name', 'asc')->get();
             } else if ($request->type == 'booth' && $request->assemblyId != '') {
                 $objects = Booth::whereStatus(1)->where('assembly_id', $request->assemblyId)->where('name', 'like', '%'.$request->keyword.'%')->orderBy('name', 'asc')->get();
+            } else if ($request->type == 'village' && $request->assemblyId != '') {
+                $objects = Village::whereStatus(1)->where('assembly_id', $request->assemblyId)->where('name', 'like', '%'.$request->keyword.'%')->orderBy('priority', 'desc')->get();
             }
 
             if ($objects != '') {

@@ -51,52 +51,52 @@ $(document).on('click', '.dropdown', function() {
     }
 });
 
-$(document).on('keyup', '#pincode', function() {
-    const pincode = $(this).val();
-    const url = $(this).data('url');
+// $(document).on('keyup', '#pincode', function() {
+//     const pincode = $(this).val();
+//     const url = $(this).data('url');
 
-    if (pincode.length == 6) {
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: {
-                "_token": $('meta[name="csrf-token"]').attr('content'),
-                "pincode": pincode
-            },
-            dataType: "json",
-            success: function(response) {
-                if (response.success) {
-                    $('.stateOrDistrict').find('svg').removeClass('css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
-                    $('.stateOrDistrict').find('svg').addClass('MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
+//     if (pincode.length == 6) {
+//         $.ajax({
+//             type: "POST",
+//             url: url,
+//             data: {
+//                 "_token": $('meta[name="csrf-token"]').attr('content'),
+//                 "pincode": pincode
+//             },
+//             dataType: "json",
+//             success: function(response) {
+//                 if (response.success) {
+//                     $('.stateOrDistrict').find('svg').removeClass('css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon');
+//                     $('.stateOrDistrict').find('svg').addClass('MuiSelect-iconOpen css-1mf6u8l-MuiSvgIcon-root-MuiSelect-icon');
 
-                    $('.stateOrDistrict').prev('label').removeClass('css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
-                    $('.stateOrDistrict').prev('label').addClass('MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root');
+//                     $('.stateOrDistrict').prev('label').removeClass('css-aqpgxn-MuiFormLabel-root-MuiInputLabel-root');
+//                     $('.stateOrDistrict').prev('label').addClass('MuiInputLabel-shrink Mui-focused css-1c2i806-MuiFormLabel-root-MuiInputLabel-root');
 
-                    $('.stateOrDistrict').addClass('Mui-focused');
+//                     $('.stateOrDistrict').addClass('Mui-focused');
 
-                    $('#state').val(response.stateId);
-                    $('#divStateName').html(response.stateName);
-                    $('#state').addClass('d-none');
+//                     $('#state').val(response.stateId);
+//                     $('#divStateName').html(response.stateName);
+//                     $('#state').addClass('d-none');
 
-                    $('#district').val(response.districtId);
-                    $('#divDistrictName').html(response.districtName);
-                    $('#district').addClass('d-none');
+//                     $('#district').val(response.districtId);
+//                     $('#divDistrictName').html(response.districtName);
+//                     $('#district').addClass('d-none');
 
-                    $('#assembly_constituency').val('');
-                    $('#assembly_constituency').removeClass('d-none');
-                    $('#divAssemblyName').html('');
+//                     $('#assembly_constituency').val('');
+//                     $('#assembly_constituency').removeClass('d-none');
+//                     $('#divAssemblyName').html('');
 
-                    $('#districtUl').html(response.districtHtml);
-                    $('#assemblyUl').html(response.assemblyHtml);
+//                     $('#districtUl').html(response.districtHtml);
+//                     $('#assemblyUl').html(response.assemblyHtml);
 
-                    if (currentUrl.includes("user-details")) {
-                        checkFormValues();
-                    }
-                }
-            }
-        });
-    }
-});
+//                     if (currentUrl.includes("user-details")) {
+//                         checkFormValues();
+//                     }
+//                 }
+//             }
+//         });
+//     }
+// });
 
 $('#dob').datepicker({
     dateFormat: 'dd-mm-yy',
@@ -263,6 +263,8 @@ $(document).on('click', '.span-close', function() {
     const modal = $(this).data('modal');
     $('#menu-' + modal).addClass('d-none');
     $('.searchInput').val('');
+
+    // getCommonValues(modal);
 });
 
 $(document).on('click', '.optionLi', function() {
@@ -288,7 +290,6 @@ $(document).on('click', '.clearSearch', function() {
     getCommonValues(searchType);
 });
 
-
 function getCommonValues(searchType, searchValue = '') {
     let stateId = '';
     let zilaId = '';
@@ -299,13 +300,18 @@ function getCommonValues(searchType, searchValue = '') {
     }
 
     if (searchType == 'mandal') {
-        zilaId = $('#zila_id').val();
+        // zilaId = $('#zila_id').val();
+        zilaId = 431;
     }
 
     if (searchType == 'booth') {
         assemblyId = $('#assembly_constituency').val();
         $('#boothUl').html('');
         $('#boothUl').html('<p style="text-align: center;" id="boothLoad">Loading...</p>');
+    }
+
+    if (searchType == 'village') {
+        assemblyId = $('#assembly_constituency').val();
     }
 
     $.ajax({

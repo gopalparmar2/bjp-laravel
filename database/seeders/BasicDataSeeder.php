@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AssemblyConstituency;
 use Illuminate\Database\Seeder;
 use App\Models\Relationship;
 use App\Models\Profession;
@@ -11,6 +12,7 @@ use App\Models\Education;
 use App\Models\Caste;
 use App\Models\City;
 use App\Models\District;
+use App\Models\Village;
 
 class BasicDataSeeder extends Seeder
 {
@@ -232,6 +234,71 @@ class BasicDataSeeder extends Seeder
                 $newCity->district_id = $district->id;
                 $newCity->name = $city['name'];
                 $newCity->save();
+            }
+        }
+
+        $villages = [
+            ["name" => "Umrali", "priority" => 0 ],
+            ["name" => "Valadungra", "priority" => 0 ],
+            ["name" => "Haripar", "priority" => 0 ],
+            ["name" => "Mevasa", "priority" => 0 ],
+            ["name" => "Jepur", "priority" => 0 ],
+            ["name" => "Virpur", "priority" => 0 ],
+            ["name" => "Thorala", "priority" => 0 ],
+            ["name" => "Jambudi", "priority" => 0 ],
+            ["name" => "Premgadh", "priority" => 0 ],
+            ["name" => "Lunagara", "priority" => 0 ],
+            ["name" => "Lunagiri", "priority" => 0 ],
+            ["name" => "Kerali", "priority" => 0 ],
+            ["name" => "Rabarika", "priority" => 0 ],
+            ["name" => "Seluka", "priority" => 0 ],
+            ["name" => "Kagvad", "priority" => 0 ],
+            ["name" => "Pithadiya", "priority" => 0 ],
+            ["name" => "Sardharpur", "priority" => 0 ],
+            ["name" => "Panchpipla", "priority" => 0 ],
+            ["name" => "Mota Gundala", "priority" => 0 ],
+            ["name" => "Mandlikpur", "priority" => 0 ],
+            ["name" => "Pedhla", "priority" => 0 ],
+            ["name" => "Derdi", "priority" => 0 ],
+            ["name" => "Monpar", "priority" => 0 ],
+            ["name" => "Vadasada", "priority" => 0 ],
+            ["name" => "Amarnagar", "priority" => 0 ],
+            ["name" => "Khajuri Gundala", "priority" => 0 ],
+            ["name" => "Khirsara", "priority" => 0 ],
+            ["name" => "Champrajpur", "priority" => 1 ],
+            ["name" => "Juni Sankali", "priority" => 0 ],
+            ["name" => "Navi Sankali", "priority" => 1 ],
+            ["name" => "Bordi Samadhiyala", "priority" => 1 ],
+            ["name" => "Thana Galol", "priority" => 0 ],
+            ["name" => "Station Vavdi", "priority" => 0 ],
+            ["name" => "Charaniya", "priority" => 0 ],
+            ["name" => "Charan Samadhiyala", "priority" => 0 ],
+            ["name" => "Amrapar", "priority" => 0 ],
+            ["name" => "Kharachiya", "priority" => 0 ],
+            ["name" => "Rupavati", "priority" => 1 ],
+            ["name" => "Dedarva", "priority" => 1 ],
+            ["name" => "Pipalva", "priority" => 1 ],
+            ["name" => "Akala", "priority" => 1 ],
+            ["name" => "Arab Timbdi", "priority" => 1 ],
+            ["name" => "Bava Pipaliya", "priority" => 1 ],
+            ["name" => "Bheda Pipaliya", "priority" => 0 ],
+            ["name" => "Reshamdi Galol", "priority" => 0 ],
+            ["name" => "Devki Galol", "priority" => 0 ],
+            ["name" => "Jetalsar", "priority" => 1 ],
+            ["name" => "Jetalsar Junction", "priority" => 1 ],
+        ];
+
+        $assembly = AssemblyConstituency::where('name', 'Jetpur (Rajkot)')->first();
+
+        foreach ($villages as $village) {
+            $exist = Village::where('name', $village['name'])->first();
+
+            if (!$exist) {
+                $newVillage = new Village();
+                $newVillage->assembly_id = $assembly->id;
+                $newVillage->name = $village['name'];
+                $newVillage->priority = $village['priority'];
+                $newVillage->save();
             }
         }
     }
