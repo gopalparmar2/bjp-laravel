@@ -224,6 +224,26 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3 controls">
+                                    <label class="form-label">Select Village <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" name="village_id" id="village_id">
+                                        <option value="">Select Village</option>
+                                        @if (isset($user) && isset($user->village))
+                                            <option value="{{ $user->village->id }}" selected>{{ $user->village->name }}</option>
+                                        @endif
+                                    </select>
+
+                                    @error('village_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3 controls">
                                     <label class="form-label">Select Religion <span class="text-danger">*</span></label>
                                     <select class="form-control select2" name="religion_id" id="religion_id">
                                         <option value="">Select Religion</option>
@@ -239,9 +259,7 @@
                                     @enderror
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3 controls">
                                     <label class="form-label">Select Category <span class="text-danger">*</span></label>
@@ -253,24 +271,6 @@
                                     </select>
 
                                     @error('category_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3 controls">
-                                    <label class="form-label">Select Caste <span class="text-danger">*</span></label>
-                                    <select class="form-control select2" name="caste_id" id="caste_id">
-                                        <option value="">Select Caste</option>
-                                        @foreach ($castes as $caste)
-                                            <option value="{{ $caste->id }}" {{ (isset($user) && $user->caste_id != '' && $user->caste_id == $caste->id) ? 'selected' : '' }}>{{ $caste->name }}</option>
-                                        @endforeach
-                                    </select>
-
-                                    @error('caste_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -300,6 +300,24 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3 controls">
+                                    <label class="form-label">Select Caste <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" name="caste_id" id="caste_id">
+                                        <option value="">Select Caste</option>
+                                        @foreach ($castes as $caste)
+                                            <option value="{{ $caste->id }}" {{ (isset($user) && $user->caste_id != '' && $user->caste_id == $caste->id) ? 'selected' : '' }}>{{ $caste->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('caste_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3 controls">
                                     <label class="form-label">Select Profession <span class="text-danger">*</span></label>
                                     <select class="form-control select2" name="profession_id" id="profession_id">
                                         <option value="">Select Profession</option>
@@ -315,16 +333,16 @@
                                     @enderror
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label @error('whatsapp_number') is-invalid @enderror">Whatsapp / Alternative number</label>
                                     <input type="text" class="form-control numbers_only" name="whatsapp_number" id="whatsapp_number" value="{{ old('whatsapp_number', isset($user) ? $user->whatsapp_number : '') }}" maxlength="10" placeholder="Enter whatsapp / alternative number">
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label @error('relationship_name') is-invalid @enderror">Father / Spouse name</label>
@@ -732,13 +750,16 @@
                     assembly_id: {
                         required: true
                     },
+                    village_id: {
+                        required: true
+                    },
                     religion_id: {
                         required: true
                     },
                     category_id: {
                         required: true
                     },
-                    caste: {
+                    caste_id: {
                         required: true
                     },
                     // education_id: {
@@ -789,13 +810,16 @@
                     assembly_id: {
                         required: "The assembly constituency field is required."
                     },
+                    village_id: {
+                        required: "The village field is required."
+                    },
                     religion_id: {
                         required: "The religion field is required."
                     },
                     category_id: {
                         required: "The category field is required."
                     },
-                    caste: {
+                    caste_id: {
                         required: "The caste field is required."
                     },
                     // education_id: {
@@ -897,10 +921,30 @@
             let optionSelected = $("option:selected", this);
             $('#booth_id').attr('disabled', true);
             $("#booth_id").val(null).trigger("change");
+            $('#village_id').attr('disabled', true);
+            $("#village_id").val(null).trigger("change");
 
             if (this.value) {
                 $('#booth_id').attr('disabled', false);
+                $('#village_id').attr('disabled', false);
             }
+        });
+
+        $('#village_id').select2({
+            allowClear: true,
+            ajax: {
+                url: "{!! route('ajax.get_village_dd') !!}",
+                dataType: 'json',
+                delay: 250,
+                data: function(params) {
+                    return {
+                        search: params.term,
+                        page: params.page || 1,
+                        assemblyId: $('#assembly_id').find(":selected").val()
+                    };
+                },
+            },
+            placeholder: 'Select Village',
         });
 
         $('#booth_id').select2({

@@ -1565,6 +1565,8 @@
                     const state = $('#state').val();
                     const district = $('#district').val();
                     const assembly_constituency = $('#assembly_constituency').val();
+                    // const zila_id = $('#zila_id').val();
+                    const zila_id = 431;
                     const village_id = $('#village_id').val();
                     const mandal_id = $('#mandal_id').val();
                     const booth_id = $('#booth_id').val();

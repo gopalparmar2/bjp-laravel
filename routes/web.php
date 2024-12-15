@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\StateController;
 use App\Http\Controllers\Admin\DistrictController;
 use App\Http\Controllers\Admin\AssemblyConstituencyController;
+use App\Http\Controllers\Admin\VillageController;
 use App\Http\Controllers\Admin\ProfessionController;
 use App\Http\Controllers\Admin\EducationController;
 use App\Http\Controllers\Admin\ReligionController;
@@ -44,6 +45,7 @@ Route::controller(AjaxController::class)->group(function () {
         Route::get('/get-zilas', 'getZilasDD')->name('get_zila_dd');
         Route::get('/get-mandals', 'getMandalDD')->name('get_mandal_dd');
         Route::get('/get-districts', 'getDistricts')->name('get_districts');
+        Route::get('/get-villages', 'getVillageDD')->name('get_village_dd');
         Route::get('/get-booths', 'getBoothDD')->name('get_booth_dd');
         Route::post('/get-pincode-data', 'getPincodeData')->name('get_pincode_data');
         Route::post('/get-search-options', 'getSearchOptions')->name('get_search_options');
@@ -180,6 +182,18 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         Route::controller(AssemblyConstituencyController::class)->group(function () {
             Route::group(['as' => 'assemblyConstituency.', 'prefix' => 'assembly-constituency'], function() {
+                Route::get('/', 'index')->name('index');
+                Route::post('/datatable', 'datatable')->name('datatable');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/destroy', 'destroy')->name('destroy');
+                Route::post('/change_status', 'change_status')->name('change.status');
+            });
+        });
+
+        Route::controller(VillageController::class)->group(function () {
+            Route::group(['as' => 'village.', 'prefix' => 'village'], function() {
                 Route::get('/', 'index')->name('index');
                 Route::post('/datatable', 'datatable')->name('datatable');
                 Route::get('/create', 'create')->name('create');

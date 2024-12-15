@@ -371,6 +371,7 @@ class HomeController extends Controller
             $user->state_id = $request->state;
             $user->district_id = $request->district;
             $user->assembly_id = $request->assembly_constituency;
+            $user->zila_id = $request->zila_id;
             $user->village_id = $request->village_id;
             $user->mandal_id = $request->mandal_id;
             $user->booth_id = $request->booth_id;

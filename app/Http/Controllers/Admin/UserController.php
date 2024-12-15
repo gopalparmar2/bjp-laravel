@@ -19,6 +19,7 @@ use App\Models\Religion;
 use App\Models\Category;
 use App\Models\Roles;
 use App\Models\User;
+use App\Models\Village;
 
 class UserController extends Controller
 {
@@ -51,8 +52,8 @@ class UserController extends Controller
             );
 
             $data['roles'] = Roles::whereStatus(1)->get();
-
-            $data['castes'] = Caste::whereStatus(1)->get();
+            $data['castes'] = Caste::whereStatus(1)->orderBy('name', 'asc')->get();
+            $data['villages'] = Village::whereStatus(1)->orderBy('name', 'asc')->get();
 
             return view('admin.user.index', $data);
         } catch (\Exception $e) {
@@ -69,9 +70,9 @@ class UserController extends Controller
                 $user->where('name', 'like', '%'.$name.'%');
             }
 
-            if (isset($request->filter['village']) && $request->filter['village'] != '') {
-                // $village = $request->filter['village'];
-                // $user->where('village', 'like', '%'.$village.'%');
+            if (isset($request->filter['village_id']) && $request->filter['village_id'] != '') {
+                $village_id = $request->filter['village_id'];
+                $user->where('village_id', $village_id);
             }
 
             if (isset($request->filter['caste_id']) && $request->filter['caste_id'] != '') {
@@ -242,11 +243,11 @@ class UserController extends Controller
                 'title' => 'Add User'
             );
 
-            $data['religions'] = Religion::select('id', 'name')->whereStatus(1)->get();
-            $data['categories'] = Category::select('id', 'name')->whereStatus(1)->get();
-            $data['professions'] = Profession::select('id', 'name')->whereStatus(1)->get();
-            $data['relationships'] = Relationship::select('id', 'name')->whereStatus(1)->get();
-            $data['castes'] = Caste::select('id', 'name')->whereStatus(1)->get();
+            $data['religions'] = Religion::whereStatus(1)->select('id', 'name')->get();
+            $data['categories'] = Category::whereStatus(1)->select('id', 'name')->get();
+            $data['professions'] = Profession::whereStatus(1)->select('id', 'name')->get();
+            $data['relationships'] = Relationship::whereStatus(1)->select('id', 'name')->get();
+            $data['castes'] = Caste::whereStatus(1)->select('id', 'name')->get();
 
             return view('admin.user.create', $data);
         } catch (\Exception $e) {
@@ -267,6 +268,7 @@ class UserController extends Controller
                 'state_id'    => 'required',
                 'district_id'    => 'required',
                 'assembly_id'    => 'required',
+                'village_id'    => 'required',
                 'religion_id'    => 'required',
                 'category_id'    => 'required',
                 'caste_id'    => 'required',
@@ -294,8 +296,8 @@ class UserController extends Controller
 
             $messages = [
                 'salutation.required'      => 'The salutation field is required.',
-                'first_name.required'    => 'The first name field is required.',
-                'last_name.required'     => 'The last name field is required.',
+                'first_name.required'      => 'The first name field is required.',
+                'last_name.required'       => 'The last name field is required.',
                 'email.required'           => 'The email field is required.',
                 'email.unique'             => 'The email already exists.',
                 'mobile_number.required'   => 'The mobile number field is required.',
@@ -307,6 +309,7 @@ class UserController extends Controller
                 'state_id.required'        => 'The state field is required.',
                 'district_id.required'     => 'The district field is required.',
                 'assembly_id.required'     => 'The assembly field is required.',
+                'village_id.required'      => 'The village field is required.',
                 'religion_id.required'     => 'The religion field is required.',
                 'category_id.required'     => 'The category field is required.',
                 'caste_id.required'        => 'The caste field is required.',
@@ -362,6 +365,7 @@ class UserController extends Controller
                 $user->state_id = $request->state_id;
                 $user->district_id = $request->district_id;
                 $user->assembly_id = $request->assembly_id;
+                $user->village_id = $request->village_id;
                 $user->religion_id = $request->religion_id;
                 $user->category_id = $request->category_id;
                 $user->caste_id = $request->caste_id;
@@ -476,12 +480,11 @@ class UserController extends Controller
 
             if ($user) {
                 $data['user'] = $user;
-                $data['religions'] = Religion::select('id', 'name')->whereStatus(1)->get();
-                $data['categories'] = Category::select('id', 'name')->whereStatus(1)->get();
-                $data['educations'] = Education::select('id', 'name')->whereStatus(1)->get();
-                $data['professions'] = Profession::select('id', 'name')->whereStatus(1)->get();
-                $data['relationships'] = Relationship::select('id', 'name')->whereStatus(1)->get();
-                $data['castes'] = Caste::select('id', 'name')->whereStatus(1)->get();
+                $data['religions'] = Religion::whereStatus(1)->select('id', 'name')->get();
+                $data['categories'] = Category::whereStatus(1)->select('id', 'name')->get();
+                $data['professions'] = Profession::whereStatus(1)->select('id', 'name')->get();
+                $data['relationships'] = Relationship::whereStatus(1)->select('id', 'name')->get();
+                $data['castes'] = Caste::whereStatus(1)->select('id', 'name')->get();
 
                 return view('admin.user.create', $data);
             } else {

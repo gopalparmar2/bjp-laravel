@@ -61,6 +61,7 @@ class UserSeeder extends Seeder
                 'State List', 'State Add', 'State Edit', 'State Delete',
                 'District List', 'District Add', 'District Edit', 'District Delete',
                 'Assembly Constituency List', 'Assembly Constituency Add', 'Assembly Constituency Edit', 'Assembly Constituency Delete',
+                'Village List', 'Village Add', 'Village Edit', 'Village Delete',
                 'Profession List', 'Profession Add', 'Profession Edit', 'Profession Delete',
                 'Religion List', 'Religion Add', 'Religion Edit', 'Religion Delete',
                 'Category List', 'Category Add', 'Category Edit', 'Category Delete',

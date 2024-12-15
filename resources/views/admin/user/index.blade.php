@@ -29,8 +29,13 @@
 
                             <div class="col-lg-4">
                                 <div class="mb-3 controls">
-                                    <label for="village" class="form-label">Village</label>
-                                    <input type="text" class="form-control" name="village" id="village" autocomplete="off">
+                                    <label for="village_id" class="form-label">Village</label>
+                                    <select class="form-control select2" name="village_id" id="village_id">
+                                        <option value="">Select village</option>
+                                        @foreach ($villages as $village)
+                                            <option value="{{ $village->id }}">{{ $village->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -181,7 +186,7 @@
                 sortingFalse = [1, 11];
             @endif
 
-            createDataTable(url, columns, ['name', 'village', 'caste_id', 'last_name', 'business_name', 'mobile_number', 'fltStatus', 'is_mobile_number', 'date'], sortingFalse);
+            createDataTable(url, columns, ['name', 'village_id', 'caste_id', 'last_name', 'business_name', 'mobile_number', 'fltStatus', 'is_mobile_number', 'date'], sortingFalse);
         });
     </script>
 @endsection

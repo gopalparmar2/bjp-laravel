@@ -112,6 +112,10 @@
                                         <th class="th-width">Assembly constituency (AC)</th>
                                         <td>{{ $user->assemblyConstituency ? $user->assemblyConstituency->name : '-' }}</td>
                                     </tr>
+                                    <tr>
+                                        <th class="th-width">Village</th>
+                                        <td>{{ $user->village ? $user->village->name : '-' }}</td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

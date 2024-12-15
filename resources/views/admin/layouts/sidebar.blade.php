@@ -90,6 +90,12 @@
                                 </li>
                             @endcan
 
+                            @can('village-list')
+                                <li {{ (\Route::is('admin.village.index') || \Route::is('admin.village.edit') || \Route::is('admin.village.create')) ? 'class=mm-active' : '' }}>
+                                    <a href="{{ route('admin.village.index') }}" key="t-light-sidebar"> Village </a>
+                                </li>
+                            @endcan
+
                             @can('booth-list')
                                 <li {{ (\Route::is('admin.booth.index') || \Route::is('admin.booth.edit') || \Route::is('admin.booth.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.booth.index') }}" key="t-light-sidebar"> Booth </a>
