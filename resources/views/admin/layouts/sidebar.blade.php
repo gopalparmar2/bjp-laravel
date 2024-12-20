@@ -40,7 +40,7 @@
                     </li>
                 @endcanany
 
-                @canany(['category-list', 'profession-list', 'religion-list', 'state-list', 'district-list', 'assembly-constituency-list', 'caste-list'])
+                @canany(['category-list', 'profession-list', 'religion-list', 'state-list', 'district-list', 'assembly-constituency-list', 'caste-list', 'blood-group-list'])
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
                             <i class="bx bx-grid-alt"></i>
@@ -129,6 +129,12 @@
                             @can('caste-list')
                                 <li {{ (\Route::is('admin.caste.index') || \Route::is('admin.caste.edit') || \Route::is('admin.caste.create')) ? 'class=mm-active' : '' }}>
                                     <a href="{{ route('admin.caste.index') }}" key="t-light-sidebar"> Caste </a>
+                                </li>
+                            @endcan
+
+                            @can('blood-group-list')
+                                <li {{ (\Route::is('admin.bloodgroup.index') || \Route::is('admin.bloodgroup.edit') || \Route::is('admin.bloodgroup.create')) ? 'class=mm-active' : '' }}>
+                                    <a href="{{ route('admin.bloodgroup.index') }}" key="t-light-sidebar"> Blood Group </a>
                                 </li>
                             @endcan
                         </ul>

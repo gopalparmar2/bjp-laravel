@@ -197,19 +197,25 @@
                         <span style="color: red;" id="emailErr" class="d-none">Enter a valid email </span>
                     </div>
 
-                    <div>
-                        <div>
-                            <div class="input-container">
-                                <div class="MuiFormControl-root MuiTextField-root css-1u3bzj6-MuiFormControl-root-MuiTextField-root">
-                                    <div class="MuiInputBase-root MuiFilledInput-root MuiFilledInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-batk84-MuiInputBase-root-MuiFilledInput-root">
-                                        <input type="text" name="blood_group" id="blood_group" class="MuiInputBase-input-box MuiInputBase-input MuiFilledInput-input css-10botns-MuiInputBase-input-MuiFilledInput-input" placeholder="Blood Group" value="{{ old('blood_group', $user->blood_group) }}">
+                    <div class="user-extra-form-container">
+                        <div class="primary-dropdown-container">
+                            <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
+                                <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
+                                    <div tabindex="0" role="combobox" aria-controls=":ra:" aria-expanded="false" aria-haspopup="listbox" aria-labelledby="demo-simple-select-standard-label demo-simple-select-standard" id="divBloodGroupName" class="MuiSelect-select MuiSelect-standard MuiInputBase-input MuiInput-input css-1rxz5jq-MuiSelect-select-MuiInputBase-input-MuiInput-input">
+                                        @if($user->blood_group_id != '')
+                                            {{ $user->bloodGroup->name }}
+                                        @endif
                                     </div>
+
+                                    <input name="blood_group_id" id="blood_group_id" class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput {{ $user->blood_group_id != '' ? 'd-none' : '' }}" value="{{ old('blood_group_id', $user->blood_group_id) }}" placeholder="Blood Group">
+
+                                    <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconStandard css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24" data-testid="ArrowDropDownIcon">
+                                        <path d="M7 10l5 5 5-5z"></path>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="user-extra-form-container">
                         <div class="primary-dropdown-container">
                             <div class="MuiFormControl-root css-1869usk-MuiFormControl-root">
                                 <div class="MuiInputBase-root MuiInputBase-input-box MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-n70jm4-MuiInputBase-root-MuiInput-root-MuiSelect-root dropdown">
@@ -910,6 +916,32 @@
         <div tabindex="0" data-testid="sentinelEnd"></div>
     </div>
 
+    <div role="presentation" id="menu-bloodgroup" class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
+        <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
+
+        <div tabindex="0" data-testid="sentinelStart"></div>
+
+        <div class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper MuiMenu-paper MuiMenu-paper css-12711zd-MuiPaper-root-MuiPopover-paper-MuiMenu-paper" tabindex="-1" style="opacity: 1; transform: none; min-width: 360px; transition: opacity 384ms cubic-bezier(0.4, 0, 0.2, 1), transform 256ms cubic-bezier(0.4, 0, 0.2, 1);  transform-origin: 180px 172.588px;">
+            <div class="p-3 search-box">
+                <span class="mb-2 span-close" data-modal="bloodgroup">
+                    <?xml version="1.0" ?>
+                    <svg height="20" viewBox="0 0 48 48" width="20" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z"/>
+                        <path d="M0 0h48v48h-48z" fill="none"/>
+                    </svg>
+                </span>
+            </div>
+
+            <ul class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list" role="listbox" tabindex="-1" aria-labelledby="demo-simple-select-standard-label" id="bloodgroupUl" style="padding-right: 0px; width: calc(100% + 0px);">
+                @foreach ($bloodgroups as $bloodgroup)
+                    <li class="MuiButtonBase-root MuiMenuItem-root MuiMenuItem-gutters MuiMenuItem-root MuiMenuItem-gutters css-1dinu7n-MuiButtonBase-root-MuiMenuItem-root bloodgroupLi" tabindex="0" role="option" aria-selected="false" data-id="{{ $bloodgroup->id }}" data-name="{{ $bloodgroup->name }}"> {{ $bloodgroup->name }} <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span> </li>
+                @endforeach
+            </ul>
+        </div>
+
+        <div tabindex="0" data-testid="sentinelEnd"></div>
+    </div>
+
     <div role="presentation" id="menu-religion" class="MuiPopover-root MuiMenu-root MuiModal-root css-10nakn3-MuiModal-root-MuiPopover-root-MuiMenu-root d-none" style="display: flex; align-items: center; justify-content: center;">
         <div aria-hidden="true" class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop" style="opacity: 1; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1);"></div>
 
@@ -1256,6 +1288,21 @@
             //     });
             // });
 
+            $(document).on('click', '#divBloodGroupName', function() {
+                $('#menu-bloodgroup').removeClass('d-none');
+            });
+
+            $(document).on('click', '.bloodgroupLi', function() {
+                const bloodgroupId = $(this).data('id');
+                const bloodgroupName = $(this).data('name');
+
+                $('#blood_group_id').val(bloodgroupId);
+                $('#divBloodGroupName').html(bloodgroupName);
+
+                $('#menu-bloodgroup').addClass('d-none');
+                $('#blood_group_id').addClass('d-none');
+            });
+
             $(document).on('click', '#divReligionName', function() {
                 $('#menu-religion').removeClass('d-none');
             });
@@ -1470,7 +1517,6 @@
 
                     $('#divSubmit').html('Update & got to dashboard');
                 }
-
             });
 
             $(document).on('click', '#btnSubmit', function() {
@@ -1487,19 +1533,19 @@
 
                     if (salutation == '' || firstName == '' || lastName == '' || dob == '' || gender == '') {
                         if (salutation == '') {
-                            Toast.fire({ icon: 'error', title: 'Salutation is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'Salutation is required.' });
                         }
                         if (firstName == '') {
-                            Toast.fire({ icon: 'error', title: 'First name is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'First name is required.' });
                         }
                         if (lastName == '') {
-                            Toast.fire({ icon: 'error', title: 'Last name is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'Last name is required.' });
                         }
                         if (dob == '') {
-                            Toast.fire({ icon: 'error', title: 'DOB is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'DOB is required.' });
                         }
                         if (gender == '') {
-                            Toast.fire({ icon: 'error', title: 'Gender is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'Gender is required.' });
                         }
 
                         return false;
@@ -1517,7 +1563,7 @@
                             gender: gender,
                             age: $('#age').val(),
                             email: $('#email').val(),
-                            blood_group: $('#blood_group').val(),
+                            blood_group_id: $('#blood_group_id').val(),
                             color_id: $('#color_id').val(),
                             religion_id: $('#religion_id').val(),
                             category_id: $('#category_id').val(),
@@ -1575,19 +1621,19 @@
 
                     if (address == '' && pincode == '' && state == '' && district == '' && assembly_constituency == '') {
                         if (address == '') {
-                            Toast.fire({ icon: 'error', title: 'Address is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'Address is required.' });
                         }
                         if (pincode == '') {
-                            Toast.fire({ icon: 'error', title: 'Pincode is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'Pincode is required.' });
                         }
                         if (state == '') {
-                            Toast.fire({ icon: 'error', title: 'State is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'State is required.' });
                         }
                         if (district == '') {
-                            Toast.fire({ icon: 'error', title: 'Dstrict is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'Dstrict is required.' });
                         }
                         if (assembly_constituency == '') {
-                            Toast.fire({ icon: 'error', title: 'Assembly constituency is reuired.' });
+                            Toast.fire({ icon: 'error', title: 'Assembly constituency is required.' });
                         }
 
                         return false;
@@ -1634,16 +1680,16 @@
 
                 if ( firstName == '' || lastName == '' || relationshipId == '' || memberDob == '' || memberAge == '') {
                     if (firstName == '') {
-                        Toast.fire({ icon: 'error', title: 'First name is reuired.' });
+                        Toast.fire({ icon: 'error', title: 'First name is required.' });
                     }
                     if (lastName == '') {
-                        Toast.fire({ icon: 'error', title: 'Last name is reuired.' });
+                        Toast.fire({ icon: 'error', title: 'Last name is required.' });
                     }
                     if (relationshipId == '') {
-                        Toast.fire({ icon: 'error', title: 'Relationship is reuired.' });
+                        Toast.fire({ icon: 'error', title: 'Relationship is required.' });
                     }
                     if (memberDob == '') {
-                        Toast.fire({ icon: 'error', title: 'D.O.B is reuired.' });
+                        Toast.fire({ icon: 'error', title: 'D.O.B is required.' });
                     }
                     if (memberAge == '') {
                         Toast.fire({ icon: 'error', title: 'Age is reuired.' });

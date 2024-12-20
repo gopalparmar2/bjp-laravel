@@ -46,7 +46,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label @error('first_name') is-invalid @enderror">First Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="first_name" id="first_name" value="{{ old('first_name', isset($user) ? $user->first_name : '') }}" placeholder="Enter first name">
@@ -59,12 +59,30 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-5">
+                            <div class="col-md-4">
                                 <div class="mb-3">
                                     <label class="form-label @error('last_name') is-invalid @enderror">Last Name <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="last_name" id="last_name" value="{{ old('last_name', isset($user) ? $user->last_name : '') }}" placeholder="Enter last name">
 
                                     @error('last_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="mb-3 controls">
+                                    <label class="form-label @error('blood_group_id') is-invalid @enderror">Select Blood Group <span class="text-danger">*</span></label>
+                                    <select class="form-control select2" name="blood_group_id" id="blood_group_id">
+                                        <option value="">Select Gender</option>
+                                        @foreach ($bloodGroups as $bloodGroup)
+                                            <option value="{{ $bloodGroup->id }}" {{ (old('blood_group_id') == $bloodGroup->id || (isset($user) && $user->blood_group_id == $bloodGroup->id) ? 'selected' : '') }}>{{ $bloodGroup->name }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @error('gender')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>
@@ -714,6 +732,9 @@
                     last_name: {
                         required: true
                     },
+                    blood_group_id: {
+                        required: true
+                    },
                     email: {
                         required: true,
                         enhancedEmail: true,
@@ -781,6 +802,9 @@
                     },
                     last_name: {
                         required: "The last name field is required."
+                    },
+                    blood_group_id: {
+                        required: "The blood group field is required."
                     },
                     email: {
                         required: "The email field is required.",

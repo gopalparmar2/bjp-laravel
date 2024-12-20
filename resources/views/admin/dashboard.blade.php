@@ -113,7 +113,9 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Caste Chart</h4>
 
-                    <div id="caste_chart" data-colors='["--bs-primary"]' class="apex-charts" dir="ltr"></div>
+                    <div id="caste_chart"
+                        data-colors='["--bs-primary", "--bs-secondary", "--bs-success", "--bs-danger", "--bs-warning", "--bs-info", "--bs-dark"]'
+                        class="apex-charts" dir="ltr"></div>
                 </div>
             </div>
         </div>
@@ -123,7 +125,9 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Surname Chart</h4>
 
-                    <div id="surname_chart" data-colors='["--bs-warning"]' class="apex-charts" dir="ltr"></div>
+                    <div id="surname_chart"
+                        data-colors='["--bs-primary", "--bs-secondary", "--bs-success", "--bs-danger", "--bs-warning", "--bs-info", "--bs-dark"]'
+                        class="apex-charts" dir="ltr"></div>
                 </div>
             </div>
         </div>
@@ -135,7 +139,8 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Color Chart</h4>
 
-                    <div id="color_chart" data-colors='["--bs-success", "--bs-danger", "--bs-info"]' class="apex-charts"  dir="ltr"></div>
+                    <div id="color_chart" data-colors='["--bs-success", "--bs-danger", "--bs-info"]' class="apex-charts"
+                        dir="ltr"></div>
                 </div>
             </div>
         </div>
@@ -160,7 +165,7 @@
                 _token: "{{ csrf_token() }}"
             },
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 casteOptions = barChartOptions(response.series, response.labels, casteChartColors);
 
                 new ApexCharts(casteChartElement, casteOptions).render();
@@ -178,7 +183,7 @@
                 _token: "{{ csrf_token() }}"
             },
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 surnameOptions = barChartOptions(response.series, response.labels, surnameChartColors);
 
                 new ApexCharts(surnameChartElement, surnameOptions).render();
@@ -196,9 +201,12 @@
                 _token: "{{ csrf_token() }}"
             },
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 colorOptions = {
-                    chart: { height: 320, type: "donut" },
+                    chart: {
+                        height: 320,
+                        type: "donut"
+                    },
                     series: response.series,
                     labels: ["Green", "Red", "White"],
                     colors: colorChartColors,
@@ -211,12 +219,17 @@
                         fontSize: "14px",
                         offsetX: 0,
                     },
-                    responsive: [
-                        {
+                    responsive: [{
                         breakpoint: 600,
-                            options: { chart: { height: 240 }, legend: { show: !1 } },
+                        options: {
+                            chart: {
+                                height: 240
+                            },
+                            legend: {
+                                show: !1
+                            }
                         },
-                    ],
+                    }, ],
                 };
 
                 new ApexCharts(colorChartElement, colorOptions).render();
@@ -228,7 +241,7 @@
                 var t = document.getElementById(e).getAttribute("data-colors");
 
                 if (t) {
-                    return (t = JSON.parse(t)).map(function (e) {
+                    return (t = JSON.parse(t)).map(function(e) {
                         var t = e.replace(" ", "");
 
                         if (-1 === t.indexOf(",")) {
@@ -237,7 +250,8 @@
                         }
 
                         var o = e.split(",");
-                        return 2 != o.length ? t : "rgba(" + getComputedStyle(document.documentElement).getPropertyValue(o[0]) + "," + o[1] + ")";
+                        return 2 != o.length ? t : "rgba(" + getComputedStyle(document.documentElement)
+                            .getPropertyValue(o[0]) + "," + o[1] + ")";
                     });
                 }
             }
@@ -245,67 +259,37 @@
 
         function barChartOptions(series, labels, colors) {
             return {
-                    chart: { height: 350, type: "bar", toolbar: { show: !1 } },
-                    plotOptions: { bar: { dataLabels: { position: "top" } } },
-                    dataLabels: {
-                        enabled: !0,
-                        formatter: function (e) {
-                            return e + "%";
-                        },
-                        offsetY: -22,
-                        style: { fontSize: "12px", colors: ["#304758"] },
-                    },
-                    series: [
-                        {
-                            name: "Total Users",
-                            data: series,
-                        },
-                    ],
-                    colors: colors,
-                    grid: { borderColor: "#f1f1f1" },
-                    xaxis: {
-                        categories: labels,
-                        position: "top",
-                        labels: { offsetY: -18 },
-                        axisBorder: { show: !1 },
-                        axisTicks: { show: !1 },
-                        crosshairs: {
-                            fill: {
-                                type: "gradient",
-                                gradient: {
-                                    colorFrom: "#D8E3F0",
-                                    colorTo: "#BED1E6",
-                                    stops: [0, 100],
-                                    opacityFrom: 0.4,
-                                    opacityTo: 0.5,
-                                },
-                            },
-                        },
-                        tooltip: { enabled: !0, offsetY: -35 },
-                    },
-                    fill: {
-                        gradient: {
-                            shade: "light",
-                            type: "horizontal",
-                            shadeIntensity: 0.25,
-                            gradientToColors: void 0,
-                            inverseColors: !0,
-                            opacityFrom: 1,
-                            opacityTo: 1,
-                            stops: [50, 0, 100, 100],
-                        },
-                    },
-                    yaxis: {
-                        axisBorder: { show: !1 },
-                        axisTicks: { show: !1 },
-                        labels: {
-                            show: !1,
-                            formatter: function (e) {
-                                return e;
-                            },
-                        },
-                    },
+                series: [{
+                    name: 'Total Users',
+                    data: series
+                }],
+                chart: {
+                    height: 350,
+                    type: 'bar',
+                },
+                colors: colors,
+                plotOptions: {
+                    bar: {
+                        columnWidth: '45%',
+                        distributed: true,
+                    }
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                legend: {
+                    show: false
+                },
+                xaxis: {
+                    categories: labels,
+                    labels: {
+                        style: {
+                            colors: colors,
+                            fontSize: '12px'
+                        }
+                    }
                 }
+            }
         }
     </script>
 @endsection

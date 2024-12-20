@@ -71,6 +71,7 @@ class UserSeeder extends Seeder
                 'Pincode List', 'Pincode Add', 'Pincode Edit', 'Pincode Delete',
                 'Relationship List', 'Relationship Add', 'Relationship Edit', 'Relationship Delete',
                 'Zila List', 'Zila Add', 'Zila Edit', 'Zila Delete',
+                'Blood Group List', 'Blood Group Add', 'Blood Group Edit', 'Blood Group Delete',
             ];
 
             if (!empty($permissionsArr)) {

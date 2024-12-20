@@ -15,19 +15,19 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="{{ route('admin.caste.store') }}" name="addfrm" id="addfrm" method="POST"
+                    <form action="{{ route('admin.bloodgroup.store') }}" name="addfrm" id="addfrm" method="POST"
                         enctype="multipart/form-data" autocomplete="off">
                         @csrf
 
-                        @isset($caste)
-                            <input type="hidden" name="caste_id" id="caste_id" value="{{ $caste->id }}">
+                        @isset($bloodgroup)
+                            <input type="hidden" name="blood_group_id" id="blood_group_id" value="{{ $bloodgroup->id }}">
                         @endisset
 
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label @error('name') is-invalid @enderror">Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name', isset($caste) ? $caste->name : '') }}">
+                                    <label class="form-label @error('name') is-invalid @enderror">Blood Group <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="name" id="name" value="{{ old('name', isset($bloodgroup) ? $bloodgroup->name : '') }}">
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                                 <div class="mb-3 controls">
                                     <label class="form-label">Status</label>
                                     <div class="form-check form-switch form-switch-md mb-3" dir="ltr">
-                                        <input type="checkbox" name="status" class="form-check-input" {{ isset($caste) && $caste->status === 1 ? 'checked' : '' }}>
+                                        <input type="checkbox" name="status" class="form-check-input" {{ isset($bloodgroup) && $bloodgroup->status === 1 ? 'checked' : '' }}>
                                     </div>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
 
                         <div>
                             <button type="submit" class="btn btn-primary w-md button-responsive">Submit</button>
-                            <a href="{{ route('admin.caste.index') }}" class="btn btn-secondary w-md button-responsive">Cancel</a>
+                            <a href="{{ route('admin.bloodgroup.index') }}" class="btn btn-secondary w-md button-responsive">Cancel</a>
                         </div>
                     </form>
                 </div>
@@ -91,7 +91,7 @@
                 },
                 messages: {
                     name: {
-                        required: 'The name field is required.'
+                        required: 'The blood group field is required.'
                     }
                 }
             })

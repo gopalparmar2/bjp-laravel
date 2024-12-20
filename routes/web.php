@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\PincodeController;
 use App\Http\Controllers\Admin\ZilaController;
 use App\Http\Controllers\Admin\RelationshipController;
 use App\Http\Controllers\Admin\CasteController;
+use App\Http\Controllers\Admin\BloodGroupController;
 
 use App\Http\Controllers\Front\HomeController as FrontHomeController;
 
@@ -266,6 +267,18 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         Route::controller(CasteController::class)->group(function () {
             Route::group(['as' => 'caste.', 'prefix' => 'caste'], function() {
+                Route::get('/', 'index')->name('index');
+                Route::post('/datatable', 'datatable')->name('datatable');
+                Route::get('/create', 'create')->name('create');
+                Route::post('/store', 'store')->name('store');
+                Route::get('/edit/{id}', 'edit')->name('edit');
+                Route::post('/destroy', 'destroy')->name('destroy');
+                Route::post('/change_status', 'change_status')->name('change.status');
+            });
+        });
+
+        Route::controller(BloodGroupController::class)->group(function () {
+            Route::group(['as' => 'bloodgroup.', 'prefix' => 'blood-group'], function() {
                 Route::get('/', 'index')->name('index');
                 Route::post('/datatable', 'datatable')->name('datatable');
                 Route::get('/create', 'create')->name('create');

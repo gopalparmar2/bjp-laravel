@@ -15,6 +15,7 @@ use App\Models\Caste;
 use App\Models\Relationship;
 use App\Models\Profession;
 use App\Models\Education;
+use App\Models\BloodGroup;
 use App\Models\Religion;
 use App\Models\Category;
 use App\Models\Roles;
@@ -248,6 +249,7 @@ class UserController extends Controller
             $data['professions'] = Profession::whereStatus(1)->select('id', 'name')->get();
             $data['relationships'] = Relationship::whereStatus(1)->select('id', 'name')->get();
             $data['castes'] = Caste::whereStatus(1)->select('id', 'name')->get();
+            $data['bloodGroups'] = BloodGroup::whereStatus(1)->select('id', 'name')->get();
 
             return view('admin.user.create', $data);
         } catch (\Exception $e) {
@@ -261,6 +263,7 @@ class UserController extends Controller
                 'salutation' => 'required',
                 'first_name'    => 'required',
                 'last_name'    => 'required',
+                'blood_group_id'    => 'required',
                 'dob'    => 'required',
                 'gender'    => 'required',
                 'address'    => 'required',
@@ -298,6 +301,7 @@ class UserController extends Controller
                 'salutation.required'      => 'The salutation field is required.',
                 'first_name.required'      => 'The first name field is required.',
                 'last_name.required'       => 'The last name field is required.',
+                'blood_group_id.required'  => 'The blood group field is required.',
                 'email.required'           => 'The email field is required.',
                 'email.unique'             => 'The email already exists.',
                 'mobile_number.required'   => 'The mobile number field is required.',
@@ -349,6 +353,7 @@ class UserController extends Controller
                 $user->name = $request->first_name.' '.$request->last_name;
                 $user->first_name = $request->first_name;
                 $user->last_name = $request->last_name;
+                $user->blood_group_id = $request->blood_group_id;
                 $user->email = $request->email;
                 $user->mobile_number = $request->mobile_number;
 
@@ -400,7 +405,7 @@ class UserController extends Controller
                 }
 
                 if ($user->save()) {
-                    if (count($request->familyMembers) > 0) {
+                    if (count($request->familyMembers) > 0 && $request->familyMembers[0]['first_name'] != '') {
                         if ($request->has('user_id') && $request->user_id != '') {
                             $parentUser = User::where('id', $request->user_id)->first();
 
@@ -485,6 +490,7 @@ class UserController extends Controller
                 $data['professions'] = Profession::whereStatus(1)->select('id', 'name')->get();
                 $data['relationships'] = Relationship::whereStatus(1)->select('id', 'name')->get();
                 $data['castes'] = Caste::whereStatus(1)->select('id', 'name')->get();
+                $data['bloodGroups'] = BloodGroup::whereStatus(1)->select('id', 'name')->get();
 
                 return view('admin.user.create', $data);
             } else {

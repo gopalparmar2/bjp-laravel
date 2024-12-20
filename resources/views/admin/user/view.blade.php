@@ -57,6 +57,10 @@
                                         <td>{{ $gender }}</td>
                                     </tr>
                                     <tr>
+                                        <th class="th-width">Blood Group</th>
+                                        <td>{{ $user->bloodGroup ? $user->bloodGroup->name : '-' }}</td>
+                                    </tr>
+                                    <tr>
                                         <th class="th-width">Religion</th>
                                         <td>{{ $user->religion ? $user->religion->name : '-' }}</td>
                                     </tr>

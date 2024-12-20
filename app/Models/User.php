@@ -108,4 +108,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function village() {
         return $this->belongsTo(Village::class);
     }
+
+    public function bloodGroup() {
+        return $this->belongsTo(BloodGroup::class);
+    }
 }

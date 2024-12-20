@@ -7,16 +7,17 @@ use Illuminate\Http\Request;
 use Spatie\Image\Enums\ImageDriver;
 use Spatie\Image\Image;
 use App\Models\Relationship;
+use App\Models\BloodGroup;
 use App\Models\Profession;
 use App\Models\Religion;
 use App\Models\Category;
 use App\Models\Caste;
 use App\Models\User;
+use Carbon\Carbon;
 use Validator;
 use Session;
 use File;
 use Auth;
-use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -211,6 +212,7 @@ class HomeController extends Controller
             $data['castes'] = Caste::whereStatus(1)->get();
             $data['professions'] = Profession::whereStatus(1)->get();
             $data['relationships'] = Relationship::whereStatus(1)->get();
+            $data['bloodgroups'] = BloodGroup::whereStatus(1)->get();
 
             return view('front.user.update_details', $data);
         } catch (\Exception $e) {
@@ -233,7 +235,7 @@ class HomeController extends Controller
             $user->age = str_replace(' Yrs', '', $request->age);
             $user->gender = $request->gender;
             $user->email = $request->email;
-            $user->blood_group = $request->blood_group;
+            $user->blood_group_id = $request->blood_group_id;
             $user->color_id = $request->color_id;
             $user->religion_id = $request->religion_id;
             $user->category_id = $request->category_id;

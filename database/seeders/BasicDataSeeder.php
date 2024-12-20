@@ -2,17 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\AssemblyConstituency;
 use Illuminate\Database\Seeder;
+use App\Models\AssemblyConstituency;
 use App\Models\Relationship;
+use App\Models\BloodGroup;
 use App\Models\Profession;
+use App\Models\Education;
 use App\Models\Religion;
 use App\Models\Category;
-use App\Models\Education;
-use App\Models\Caste;
-use App\Models\City;
 use App\Models\District;
 use App\Models\Village;
+use App\Models\Caste;
+use App\Models\City;
 
 class BasicDataSeeder extends Seeder
 {
@@ -299,6 +300,27 @@ class BasicDataSeeder extends Seeder
                 $newVillage->name = $village['name'];
                 $newVillage->priority = $village['priority'];
                 $newVillage->save();
+            }
+        }
+
+        $bloodGroups = [
+            [ "name" => "A+" ],
+            [ "name" => "A-" ],
+            [ "name" => "B+" ],
+            [ "name" => "B-" ],
+            [ "name" => "O+" ],
+            [ "name" => "O-" ],
+            [ "name" => "AB+" ],
+            [ "name" => "AB-" ],
+        ];
+
+        foreach ($bloodGroups as $bloodGroup) {
+            $exist = BloodGroup::where('name', $bloodGroup['name'])->first();
+
+            if (!$exist) {
+                $newBloodGroup = new BloodGroup();
+                $newBloodGroup->name = $bloodGroup['name'];
+                $newBloodGroup->save();
             }
         }
     }
