@@ -27,7 +27,7 @@
     <div class="main-container-bg main-container">
         <div class="d-flex align-style align-items-center secondary-container fixed-position">
             <div class="d-flex align-items-center" style="column-gap: 6px;">
-                <img src="{{ asset('frontAssets/imgs/logo.svg') }}" alt="logo">
+                <img src="{{ asset('frontAssets/imgs/logo.png') }}" alt="logo">
                 <p class="m-0 bjp-text">BHARATIYA JANATA PARTY</p>
             </div>
         </div>

@@ -6,7 +6,7 @@
     <title>Login | {{ config('app.name') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Themesbrand" name="author" />
-    <link rel="shortcut icon" href="{{ asset('assets/img/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/img/logo.png') }}">
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/app.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
@@ -36,7 +36,7 @@
                                 <a href="{{ route('login') }}">
                                     <div class="avatar-md profile-user-wid mb-4">
                                         <span class="avatar-title rounded-circle bg-light">
-                                            <img src="{{ asset('assets/img/favicon.ico') }}" alt="" class="rounded-circle" height="34">
+                                            <img src="{{ asset('assets/img/logo.png') }}" alt="" class="rounded-circle" height="34">
                                         </span>
                                     </div>
                                 </a>

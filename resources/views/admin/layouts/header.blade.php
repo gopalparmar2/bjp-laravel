@@ -4,19 +4,19 @@
             <div class="navbar-brand-box">
                 <a href="{{ route('admin.index') }}" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/img/favicon.ico') }}" alt="" height="22">
+                        <img src="{{ asset('assets/img/logo.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/img/favicon.ico') }}" alt="" height="17">
+                        <img src="{{ asset('assets/img/logo.png') }}" alt="" height="17">
                     </span>
                 </a>
 
                 <a href="{{ route('admin.index') }}" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/img/favicon.ico') }}" alt="" height="22">
+                        <img src="{{ asset('assets/img/logo.png') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/img/favicon.ico') }}" alt="" height="19">
+                        <img src="{{ asset('assets/img/logo.png') }}" alt="" height="19">
                     </span>
                 </a>
             </div>

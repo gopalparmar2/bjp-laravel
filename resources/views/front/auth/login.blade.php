@@ -13,7 +13,7 @@
 
             <div class="auth-container">
                 <div class="auth-text-container">
-                    <img src="{{ asset('frontAssets/imgs/img2.png') }}" alt="not_found"
+                    <img src="{{ asset('frontAssets/imgs/satyasena.jpg') }}" alt="not_found"
                         style="width: 100%; border-radius: 8px">
                     <p class="auth-text">भाजपा सदस्यता अभियान - {{ date('Y') }}</p>
                 </div>
