@@ -35,7 +35,7 @@
         <div class="auth-container">
             <div class="auth-text-container">
                 <img src="{{ asset('frontAssets/imgs/img2.png') }}" alt="not_found" style="width: 100%; border-radius: 8px">
-                <p class="auth-text">भाजपा सदस्यता अभियान - 2024</p>
+                <p class="auth-text">Contact: +91 9105144444</p>
             </div>
             <div class="d-flex flex-column" style="margin: 0px 26px; row-gap: 13px;">
                 <p class="m-0 enter-mobile">Enter Verification Code</p>

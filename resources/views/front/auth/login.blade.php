@@ -15,7 +15,7 @@
                 <div class="auth-text-container">
                     <img src="{{ asset('frontAssets/imgs/satyasena.jpg') }}" alt="not_found"
                         style="width: 100%; border-radius: 8px">
-                    <p class="auth-text">भाजपा सदस्यता अभियान - {{ date('Y') }}</p>
+                    <p class="auth-text">Contact: +91 9105144444</p>
                 </div>
 
                 <div class="d-flex flex-column" style="margin: 0px 26px; row-gap: 13px">
