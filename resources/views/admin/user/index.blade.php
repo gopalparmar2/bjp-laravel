@@ -16,7 +16,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <form action="#" method="POST" id="frmFilter">
+                    <form action="{{ route('admin.user.export') }}" method="POST" id="frmFilter">
                         @csrf
 
                         <div class="row">
@@ -106,6 +106,7 @@
                             <div class="col-lg-6">
                                 <button type="button" class="btn btn-primary w-md button-responsive" onclick="createDataTable()">Filter</button>
                                 <button type="button" class="btn btn-secondary w-md button-responsive" onclick="resetFilter()">Clear</button>
+                                <button type="submit" class="btn btn-success w-md button-responsive">Export</button>
                             </div>
                         </div>
                     </form>
