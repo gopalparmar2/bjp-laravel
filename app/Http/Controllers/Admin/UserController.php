@@ -21,6 +21,8 @@ use App\Models\Category;
 use App\Models\Roles;
 use App\Models\User;
 use App\Models\Village;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
 
 class UserController extends Controller
 {
@@ -598,6 +600,16 @@ class UserController extends Controller
 
                 return response()->json($return);
             }
+        } catch (\Exception $e) {
+            return abort(404);
+        }
+    }
+
+    public function export(Request $request) {
+        try {
+            $fileName = 'users_'.date('YmdHis').'.xlsx';
+
+            return Excel::download(new UsersExport($request), $fileName);
         } catch (\Exception $e) {
             return abort(404);
         }

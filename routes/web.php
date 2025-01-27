@@ -106,6 +106,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::post('/destroy', 'destroy')->name('destroy');
                 Route::post('/change_status', 'change_status')->name('change.status');
                 Route::post('/exists', 'exists')->name('exists');
+                Route::post('/export', 'export')->name('export');
             });
         });
 
